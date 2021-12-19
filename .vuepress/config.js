@@ -1,5 +1,5 @@
 module.exports = {
-  title: "Krins",
+  title: "My New World",
   description: 'Welcome to my little world .',
   dest: 'public',
   head: [
@@ -40,7 +40,7 @@ module.exports = {
         icon: 'reco-message',
         items: [
           { text: 'GitHub', link: 'https://github.com/NewLearner4396/', icon: 'reco-github' },
-          { text: 'GitHubMaster', link: 'https://github.com/Redns?tab=repositories', icon: '/jing.jpeg' }
+          { text: 'GitHubMaster', link: 'https://github.com/Redns?tab=repositories', icon: 'reco-github' }
         ]
       }
     ],
@@ -74,6 +74,12 @@ module.exports = {
         avatar: "https://vuepress-theme-reco.recoluan.com/icon_vuepress_reco.png",
         link: 'https://vuepress-theme-reco.recoluan.com'
       },
+      {
+        title: 'krins\'s little World',
+        desc: 'Welcome to his little world.',
+        avatar: "/jing.jpeg",
+        link: 'https://krins.vercel.app/'
+      },
     ],
     logo: '/logo.png',
     // 搜索设置
@@ -84,9 +90,9 @@ module.exports = {
     // 最后更新时间
     lastUpdated: 'Last Updated',
     // 作者
-    author: 'Krins',
+    author: 'NewLearner4396',
     // 作者头像
-    authorAvatar: '/jing.jpeg',
+    authorAvatar: '/portrait.jpg',
     // 备案号
     record: 'xxxx',
     // 项目开始时间
