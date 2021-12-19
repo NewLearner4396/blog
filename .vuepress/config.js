@@ -70,7 +70,7 @@ module.exports = {
     friendLink: [
       {
         title: 'vuepress-theme-reco',
-        desc: 'A simple and beautiful vuepress Blog & Doc theme.',
+        desc: 'A simple and beautiful vuepress Blog & Doc theme. &#10 A simple and beautiful vuepress blog theme.',
         avatar: "https://vuepress-theme-reco.recoluan.com/icon_vuepress_reco.png",
         link: 'https://vuepress-theme-reco.recoluan.com'
       },
@@ -96,7 +96,9 @@ module.exports = {
     // 备案号
     record: 'xxxx',
     // 项目开始时间
-    startYear: '2017'
+    startYear: '2017',
+    heroText: 'vuepress-theme-reco',
+    tagline: 'A simple and beautiful vuepress blog theme.'
   },
   markdown: {
     lineNumbers: true
