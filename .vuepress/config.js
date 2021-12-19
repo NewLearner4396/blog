@@ -39,7 +39,8 @@ module.exports = {
       { text: 'Contact', 
         icon: 'reco-message',
         items: [
-          { text: 'GitHub', link: 'https://github.com/Redns?tab=repositories', icon: 'reco-github' }
+          { text: 'GitHub', link: 'https://github.com/NewLearner4396/', icon: 'reco-github' },
+          { text: 'GitHubMaster', link: 'https://github.com/Redns?tab=repositories', icon: '/jing.jpeg' }
         ]
       }
     ],
