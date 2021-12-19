@@ -1,7 +1,7 @@
 ---
 home: true
-heroText: My new little World
-tagline: Welcome to My little World.
+heroText: My little World
+tagline: Looking forward to a better tomorrow.
 # heroImage: /hero.png
 # heroImageStyle: {
 #   maxWidth: '600px',
