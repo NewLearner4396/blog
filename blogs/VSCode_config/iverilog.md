@@ -7,7 +7,7 @@ tags:
 categories:
  -  VSCode配置
 ---
-## 记录Vscode写Verilog时好用的插件
+## 记录如何配置Vscode从而方便地写Verilog
 
 ### 用VSCode写Verilog的原因
 
@@ -18,7 +18,7 @@ categories:
 ### 所需的VSCode插件
 
 1. Verilog-HDL/SystemVerilog/Bluespec SystemVerilog
-   代码高亮，配合iVerilog可以实现查找语法错误（注意是语法错误，逻辑错误还需要自己仔细）
+   代码高亮，配合iVerilog可以实现查找语法错误（只能查找语法错误，逻辑错误还需要自己写的时候细心）
 
    ![Verilog-HDL/SystemVerilog/Bluespec SystemVerilog](http://imagebed.krins.cloud/api/image/R2X0L20N.png)
     <!-- TODO:找ljgg处理图床插件 -->
