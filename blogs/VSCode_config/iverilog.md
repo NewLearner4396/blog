@@ -15,10 +15,10 @@ categories:
 2. 有时不需要大费周章建立工程，VSCode+iVerilog+GtkWave可以轻量化实现仿真波形（但还不能综合出RTL电路）；
 3. Vivado、Quartus的编辑器没VSCode好用。
 
-### 所需的VSCode插件:blush:
+### 所需的VSCode插件😉
 
 1. Verilog-HDL/SystemVerilog/Bluespec SystemVerilog
-   代码高亮，配合iVerilog可以实现查找语法错误（只能查找语法错误，逻辑错误还需要自己写的时候细心）
+   代码高亮，配合iVerilog可以实现查找语法错误（只能查找语法错误，逻辑错误还需要自己写的时候细心:blush:）
 
    ![Verilog-HDL/SystemVerilog/Bluespec SystemVerilog](http://imagebed.krins.cloud/api/image/R2X0L20N.png)
 2. Verilog_Testbench
@@ -26,6 +26,6 @@ categories:
 
    ![Verilog_Testbench](http://imagebed.krins.cloud/api/image/0Z4T4VD8.png)
 3. Verilog Format
-   （可选）快速将代码格式化，排列的更好看一点，习惯自己排版的可以不用。
+   （可选）:upside_down_face:快速将代码格式化，排列的更好看一点，习惯自己排版的可以不用。
 
    ![Verilog Format](http://imagebed.krins.cloud/api/image/VH4ZJHX2.png)
