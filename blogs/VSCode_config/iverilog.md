@@ -1,22 +1,32 @@
 ---
-title: Ê¹ÓÃVSCode´î½¨Verilog»·¾³
+title: VSCodeé‡ŒVerilogçš„æ’ä»¶é…ç½®
 date: 2022-8-15
 tags:
  - VSCode
  - Verilog
 categories:
- -  VSCodeÅäÖÃ
+ -  VSCodeé…ç½®
 ---
-## VscodeÖĞ¹ØÓÚVerilogµÄÈ«²¿ÅäÖÃ£¬´òÔìÒ»¸öË³ÊÖµÄ±à¼­Æ÷
+## è®°å½•Vscodeå†™Verilogæ—¶å¥½ç”¨çš„æ’ä»¶
 
-### Ê¹ÓÃVSCode½øĞĞ±àĞ´VerilogµÄÔ­Òò
+### ç”¨VSCodeå†™Verilogçš„åŸå› 
 
-1. VSCode´ò¿ªºÜ¿ì£¬±ÈÆğVivado¡¢QuartusµÈIDEÑ¸ËÙµÄ¶à£¬¼òµ¥²é¿´¸öÎÄ¼şÒª·½±ãµÄ¶à£»
-2. Ğ´¸öĞ¡Ä£¿é²é¿´·ÂÕæ²¨ĞÎ²»ĞèÒª´ó·ÑÖÜÕÂ½¨Ò»¸ö¹¤³Ì£¬ÀûÓÃiVerilog+GtkWave¼´¿É£»
-3. Vivado¡¢QuartusµÄÄÚÖÃ±à¼­Æ÷Ã»ÓĞVSCodeºÃÓÃ¡£
+1. VSCodeæ‰“å¼€è¿…é€Ÿï¼Œæ¯”èµ·Vivadoã€Quartusç­‰IDEï¼Œç®€å•æŸ¥çœ‹æˆ–ä¿®æ”¹æ–‡ä»¶è¦æ–¹ä¾¿çš„å¤šï¼›
+2. æœ‰æ—¶ä¸éœ€è¦å¤§è´¹å‘¨ç« å»ºç«‹å·¥ç¨‹ï¼ŒVSCode+iVerilog+GtkWaveå¯ä»¥è½»é‡åŒ–å®ç°ä»¿çœŸæ³¢å½¢ï¼ˆä½†è¿˜ä¸èƒ½ç»¼åˆå‡ºRTLç”µè·¯ï¼‰ï¼›
+3. Vivadoã€Quartusçš„ç¼–è¾‘å™¨æ²¡VSCodeå¥½ç”¨ã€‚
 
-### ËùÓÃµ½µÄVSCode²å¼ş
+### æ‰€éœ€çš„VSCodeæ’ä»¶
 
 1. Verilog-HDL/SystemVerilog/Bluespec SystemVerilog
-  <!-- TODO:Í¼´²²å¼ş»¹ÒªÕÒljggĞŞ -->
+   ä»£ç é«˜äº®ï¼Œé…åˆiVerilogå¯ä»¥å®ç°æŸ¥æ‰¾è¯­æ³•é”™è¯¯ï¼ˆæ³¨æ„æ˜¯è¯­æ³•é”™è¯¯ï¼Œé€»è¾‘é”™è¯¯è¿˜éœ€è¦è‡ªå·±ä»”ç»†ï¼‰
+
+   ![Verilog-HDL/SystemVerilog/Bluespec SystemVerilog](http://imagebed.krins.cloud/api/image/R2X0L20N.png)
+    <!-- TODO:æ‰¾ljggå¤„ç†å›¾åºŠæ’ä»¶ -->
 2. Verilog_Testbench
+   è‡ªåŠ¨å¸®åŠ©ä¾‹åŒ–å’Œå†™Testbenchçš„æ’ä»¶ï¼Œååˆ†å¥½ç”¨ï¼Œå¾ˆçœå¿ƒã€‚
+
+   ![Verilog_Testbench](http://imagebed.krins.cloud/api/image/0Z4T4VD8.png)
+3. Verilog Format
+   ï¼ˆå¯é€‰ï¼‰å¿«é€Ÿå°†ä»£ç æ ¼å¼åŒ–ï¼Œæ’åˆ—çš„æ›´å¥½çœ‹ä¸€ç‚¹ï¼Œä¹ æƒ¯è‡ªå·±æ’ç‰ˆçš„å¯ä»¥ä¸ç”¨ã€‚
+
+   ![Verilog Format](http://imagebed.krins.cloud/api/image/VH4ZJHX2.png)
