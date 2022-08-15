@@ -12,7 +12,7 @@ categories:
 ### 用VSCode写Verilog的原因🧐
 
 1. VSCode打开迅速，比起Vivado、Quartus等IDE，简单查看或修改文件要方便的多；
-2. 有时不需要大费周章建立工程，VSCode+iVerilog+GtkWave可以轻量化实现仿真波形（但还不能综合出RTL电路）；
+2. 有时不需要大费周章建立工程，VSCode+iVerilog+GtkWave可以轻量化进行波形仿真（但还不能综合出RTL电路）；
 3. Vivado、Quartus的编辑器没VSCode好用。
 
 ### 所需的VSCode插件😉
