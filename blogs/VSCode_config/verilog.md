@@ -49,7 +49,7 @@ VSCode是一个用着十分舒心的编辑器，搭配上各种插件，可以�
 
    安装好Python后在cmd（命令行）中写下`python --version`，能正确显示安装版本号即为安装正常。
 
-   如果命令行出现`‘python’不是内部或外部命令`,则说明`python.exe`的路径没有加入到环境变量，我们在手动添加一下。
+   如果命令行出现`‘python’不是内部或外部命令`,则说明`python.exe`的路径没有加入到环境变量，我们再手动添加一下。
 
    首先我们要检查一下python是否成功安装：开始菜单中有python相关程序即为成功。
 
@@ -82,7 +82,9 @@ VSCode是一个用着十分舒心的编辑器，搭配上各种插件，可以�
    `http://pypi.douban.com/simple/`
 
    使用`pip list`这个命令可以查看已安装的库，输出列表中有chardet即可。
+
    因为`Verilog_Testbench`这个插件是将生成的testbench输出在VSCode的命令行内，还需要自己手动生成文件并把它复制过去，有点麻烦，所以我们可以写一个脚本，每次使用这个插件的时候就调用它。
+
    具体步骤如下：
 
    1. 用管理员身份打开PowerShell；
@@ -118,9 +120,17 @@ VSCode是一个用着十分舒心的编辑器，搭配上各种插件，可以�
    以上我们就把`Verilog_Testbench`这个插件配置好了。写完一个.v文件想生成它的testbench的话，在终端（按Ctrl+~可呼出）输入createtb xxx.v(xxx为你的文件名)就可以看到在同目录下新建了一个tb_xx.v文件，这就是自动生成的Testbench。该插件会自动生成时钟并例化好模块，自己再按需求修改一下就可以直接仿真啦。
 
    但要注意它的默认编码不是`UTF_8`，仿真时会出错，要在VSCode右下角修改编码。点击右下角的当前编码，选择`通过编码重新保存`，选择`UTF_8`（推荐）或者`gbk`。
+
    ![修改编码并保存](http://imagebed.krins.cloud/api/image/08T028P0.png)
+
+   按`F1`或`Ctrl+Shift+P`，调出VSCode命令行，输入`Instance`，该插件可以自动帮你例化模块，例化的思路和生成Testbench一样，而且输出在终端里，但用起来确实方便不少。
+
+   ![输入Instance](http://imagebed.krins.cloud/api/image/0NP8PL4F.png)
+
+   ![例化效果](http://imagebed.krins.cloud/api/image/4FFB8800.png)
+
 3. Verilog Format
-   （可选）:blush:快速将代码格式化，排列的更好看一点，习惯自己排版的可以不用。
+   （可选）:blush:快速将代码格式化，习惯自己排版的可以不用。
 
    ![Verilog Format](http://imagebed.krins.cloud/api/image/VH4ZJHX2.png)
 
@@ -154,7 +164,7 @@ VSCode是一个用着十分舒心的编辑器，搭配上各种插件，可以�
 
       ![填写程序与配置文件路径](http://imagebed.krins.cloud/api/image/HFL6N8FN.png)
 
-      由于作者失误，为了启用该配置文件我们还需多一步，在我们的VSCode配置文件`settings.json`中的某一行的`verilog-format.setting`的后面加一个`s`。
+      由于作者失误，为了启用该配置文件我们还需多一步，在我们的VSCode配置文件`settings.json`中的某一行的`verilog-format.setting`的后面加一个`s`。加完之后这一行会变灰，提示`未知的配置设置`，但没关系，这样反而能正常使用。
 
       ![在verilog-format.setting后添加s](http://imagebed.krins.cloud/api/image/6LJTRD86.png)
 
@@ -196,6 +206,7 @@ VSCode是一个用着十分舒心的编辑器，搭配上各种插件，可以�
       4. 在命令行输入`iverilog`确认是否正确安装。
 
 Ctags和iVerilog安装完我们就要配置插件`Verilog-HDL/SystemVerilog/Bluespec SystemVerilog`了。
+
 `Ctrl+Shift+X`呼出拓展菜单，找到`Verilog-HDL/SystemVerilog/Bluespec SystemVerilog`,点击右下角的齿轮，选择拓展设置。
 
 ![找到Verilog-HDL/SystemVerilog/Bluespec SystemVerilog拓展设置](http://imagebed.krins.cloud/api/image/40X0220V.png)
@@ -213,6 +224,7 @@ Ctags和iVerilog安装完我们就要配置插件`Verilog-HDL/SystemVerilog/Blue
 3. `Linting:linter`选择`iverilog`
 
 配置完之后重启VSCode，打开一个.v文件就可以跳转定义和自动纠错啦。
+
 将鼠标放在一个变量名上可以看到它的定义，按住`Ctrl`再点击变量可以直接跳转到定义。
 
 ![跳转定义](http://imagebed.krins.cloud/api/image/B0BV24B2.png)
@@ -499,7 +511,7 @@ Ctags和iVerilog安装完我们就要配置插件`Verilog-HDL/SystemVerilog/Blue
 
       6. 输入`proc; opt`，将RTL设计转为网络元素，并做一次优化。注意分号后面有个空格。
 
-      7. 输入`show`，将在工作区生成`show.dot`文件，通过VSCode的插件`Graphviz Interactive Preview`，点击右上角的预览即可查看RTL连接。但有一说一，没有vivado那种门符号，不太容易看得懂。
+      7. 输入`show`，将在工作区生成`show.dot`文件，通过VSCode的插件`Graphviz Interactive Preview`，点击右上角的预览即可查看RTL连接。但有一说一，不是vivado那种门符号，不太容易看得懂。
 
       ![RTL图型查看](http://imagebed.krins.cloud/api/image/2XTP8D8R.png)
 
