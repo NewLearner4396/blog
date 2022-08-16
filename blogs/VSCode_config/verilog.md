@@ -16,7 +16,8 @@ categories:
   - [二、配置所需的VSCode插件😉](#二配置所需的vscode插件)
   - [三、将vivado文本编辑器修改为VSCode😋](#三将vivado文本编辑器修改为vscode)
   - [四、使用Iverilog+GtkWave进行简单的波形仿真🤗](#四使用iveriloggtkwave进行简单的波形仿真)
-  - [五、参考资料🤪](#五参考资料)
+  - [五、使用yosys进行综合😐](#五使用yosys进行综合)
+  - [六、参考资料🤪](#六参考资料)
 
 ### 零、写在开头🤣
 
@@ -121,6 +122,8 @@ VSCode是一个用着十分舒心的编辑器，搭配上各种插件，可以�
    （可选）:blush:快速将代码格式化，排列的更好看一点，习惯自己排版的可以不用。
 
    ![Verilog Format](http://imagebed.krins.cloud/api/image/VH4ZJHX2.png)
+
+   插件说明页有具体设置说明，根据自己喜爱配置参数即可。
 
 `以下组件需要额外下载和安装`
 
@@ -396,7 +399,10 @@ Ctags和iVerilog安装完我们就要配置插件`Verilog-HDL/SystemVerilog/Blue
 
    保存之后在`.v`文件中输入`vcd`就可选择替换成此代码块。
 
-### 五、参考资料🤪
+### 五、使用yosys进行综合😐
+
+   还没搞定，只在虚拟环境下成功过一次，不能正常使用。
+### 六、参考资料🤪
 
 1. [Vivado加上VsCode让你的生活更美好](https://blog.csdn.net/qq_39498701/article/details/84668833)
 2. [用VSCode编辑verilog代码、iverilog编译、自动例化、自动补全、自动格式化等常用插件](https://zhuanlan.zhihu.com/p/338497672)

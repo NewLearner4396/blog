@@ -39,8 +39,8 @@ module.exports = {
       { text: 'Contact', 
         icon: 'reco-message',
         items: [
-          { text: 'GitHub', link: 'https://github.com/NewLearner4396/', icon: 'reco-github' },
-          { text: 'GitHubMaster', link: 'https://github.com/Redns?tab=repositories', icon: 'reco-github' }
+          { text: 'GitHub_NewLearner4396', link: 'https://github.com/NewLearner4396/', icon: 'reco-github' },
+          { text: 'GitHubM_Redns', link: 'https://github.com/Redns/', icon: 'reco-github' }
         ]
       }
     ],
@@ -75,10 +75,10 @@ module.exports = {
         link: 'https://vuepress-theme-reco.recoluan.com'
       },
       {
-        title: 'krins\'s little World',
+        title: 'Krins\'s little World',
         desc: 'Welcome to his little world.',
         avatar: "/jing.jpeg",
-        link: 'https://krins.vercel.app/'
+        link: 'https://github.com/Redns/'
       },
     ],
     logo: '/logo.png',
