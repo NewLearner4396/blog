@@ -136,24 +136,29 @@ categories:
 Ctags和iVerilog安装完我们就要配置插件`Verilog-HDL/SystemVerilog/Bluespec SystemVerilog`了。
 `Ctrl+Shift+X`呼出拓展菜单，找到`Verilog-HDL/SystemVerilog/Bluespec SystemVerilog`,点击右下角的齿轮，选择拓展设置。
 ![找到Verilog-HDL/SystemVerilog/Bluespec SystemVerilog拓展设置](http://imagebed.krins.cloud/api/image/40X0220V.png)
+
 具体设置如下：
 
 1. 在`Ctags：path`这一栏填写`Ctags.exe路径`或只写`Ctags`即可。
+
    ![Ctags路径设置](http://imagebed.krins.cloud/api/image/NP4FP2DT.png)
 
 2. 在`linting>Iverilog:Arguments`中填写`-i`,避免Iverilog报`Unknown Type`类型错误。
+
    ![Iverilog参数修正](http://imagebed.krins.cloud/api/image/V600V2X2.png)
 
 3. `Linting:linter`选择`iverilog`
 
 配置完之后重启VSCode，打开一个.v文件就可以跳转定义和自动纠错啦。
 将鼠标放在一个变量名上可以看到它的定义，按住`Ctrl`再点击变量可以直接跳转到定义。
+
 ![跳转定义](http://imagebed.krins.cloud/api/image/B0BV24B2.png)
 
 自动纠错也能正常运行，语法错误部分有红色波浪线标注。但要注意iverilog检查的是已保存的文件，每次修改完保存一下才能看到正确的检查结果。按`Ctrl+Shift+M`，可以在VSCode下方看到当前文件所以问题，单击问题即可跳转到问题所在行。
+
 ![错误检查](http://imagebed.krins.cloud/api/image/XN6JBR8X.png)
 
-### 将vivado文本编辑器修改为VSCode
+### 将vivado文本编辑器修改为VSCode😋
 
 打开vivado，点击左上角的`Tools`，再点击`Settings...`
 ![打开vivado_Settings](http://imagebed.krins.cloud/api/image/4FR8NF40.png)
@@ -162,3 +167,5 @@ Ctags和iVerilog安装完我们就要配置插件`Verilog-HDL/SystemVerilog/Blue
 ![调整编辑器到VSCode](http://imagebed.krins.cloud/api/image/0TZ8Z004.png)
 
 注意不要先打开vivado之后，在vivado里选中文件打开，会导致vivado所有相关文件都用vscode打开，会特别卡，出现这种情况就用任务管理器终止掉VSCode这个进程，然后手动打开VSCode，再通过vivado打开要查看和修改的文件就可以了。也就是，不能不打开VSCode，就直接用vivado打开文件。
+
+### 使用Iverilog+GtkWave进行简单的波形仿真🤗
