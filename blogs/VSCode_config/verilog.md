@@ -175,12 +175,14 @@ Ctags和iVerilog安装完我们就要配置插件`Verilog-HDL/SystemVerilog/Blue
 ### 三、将vivado文本编辑器修改为VSCode😋
 
 打开vivado，点击左上角的`Tools`，再点击`Settings...`
+
 ![打开vivado_Settings](http://imagebed.krins.cloud/api/image/4FR8NF40.png)
 
 选择`Text Editor`，下拉框选择`Customer Editor...`，点击旁边的三个点，在文本框中输入`VSCode.exe的绝对路径 [file name]:[line number]`
+
 ![调整编辑器到VSCode](http://imagebed.krins.cloud/api/image/0TZ8Z004.png)
 
-注意不要先打开vivado之后，在vivado里选中文件打开，会导致vivado所有相关文件都用vscode打开，会特别卡，出现这种情况就用任务管理器终止掉VSCode这个进程，然后手动打开VSCode，再通过vivado打开要查看和修改的文件就可以了。也就是，不能不打开VSCode，就直接用vivado打开文件。
+注意不要直接在vivado里选中文件打开，会导致vivado所有相关文件都用vscode打开，会特别卡，出现这种情况就用任务管理器终止掉VSCode这个进程，然后手动打开VSCode，再通过vivado打开要查看和修改的文件就可以了。也就是，不能不打开VSCode，就直接用vivado打开文件。
 
 ### 四、使用Iverilog+GtkWave进行简单的波形仿真🤗
 
