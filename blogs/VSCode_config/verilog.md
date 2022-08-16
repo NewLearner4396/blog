@@ -21,7 +21,7 @@ categories:
 
 ### 零、写在开头🤣
 
-VSCode是一个用着十分舒心的编辑器，搭配上各种插件，可以帮助我们跳过许多繁琐的操作。之前为了避开vivado难用的编辑器，配置我的VSCode折腾了好久，踩了不少坑。于是整理此文档供后人使用。
+VSCode是一个用着十分舒心的编辑器，搭配上各种插件，可以帮助我们跳过许多繁琐的操作。之前为了避开vivado难用的编辑器，配置我的VSCode折腾了好久，踩了不少坑。于是整理此文档供后人使用。其中部分资源下载时需要代理，请提前准备，或自行寻找其他下载链接，抱歉。
 
 ### 一、用VSCode写Verilog的原因🧐
 
@@ -123,7 +123,49 @@ VSCode是一个用着十分舒心的编辑器，搭配上各种插件，可以�
 
    ![Verilog Format](http://imagebed.krins.cloud/api/image/VH4ZJHX2.png)
 
-   插件说明页有具体设置说明，根据自己喜爱配置参数即可。
+   1. 安装JDK
+
+      该插件依赖于Java，所以我们需要提前安装。
+
+      JDK下载地址：<https://www.oracle.com/java/technologies/downloads/#jdk18-windows>
+
+      滑到下面选择`x64 installer`进行下载
+
+      ![下载x64 installer](http://imagebed.krins.cloud/api/image/2086DLLX.png)
+
+      接着是配置Java的环境变量，有四个需要配置。
+
+      1. 新建系统变量，变量名: `JAVA_TOOL_OPTIONS`，变量值：`-Dfile.encoding=UTF-8`。这一步设置JDK默认编码为`UTF-8`，避免将中文注释格式化为乱码。但亲测会将中文注释最后一个字格式化为奇怪字符，所以建议写了中文注释就不要用这个格式化了，或者不写中文注释。
+
+      2. 新建系统变量，变量名为：`JAVA_HOME`，变量值为：`安装时jdk文件夹所在路径`。这一步为添加其他路径做准备。
+
+      3. 新建系统变量，变量名为：`classpath` ，变量值为：`.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\tools.jar`。注意变量值最前面有个`.`。
+
+      4. 修改变量`PATH`，新增两个变量值`%JAVA_HOME%\bin`，`%JAVA_HOME%\jre\bin`。
+
+      都添加完后打开cmd，分别输入`java`，`javac`，都有反应代表安装成功。
+
+   2. 在[github](https://github.com/ericsonj/verilog-format/blob/master/bin/verilog-format-WIN.zip)上下载该插件对应的程序和配置文件。
+
+      ![下载对应zip](http://imagebed.krins.cloud/api/image/L6X2JZ2X.png)
+
+   3. 解压后将对应路径填写到插件设置中。
+
+      ![填写程序与配置文件路径](http://imagebed.krins.cloud/api/image/HFL6N8FN.png)
+
+      由于作者失误，为了启用该配置文件我们还需多一步，在我们的VSCode配置文件`settings.json`中的某一行的`verilog-format.setting`的后面加一个`s`。
+
+      ![在verilog-format.setting后添加s](http://imagebed.krins.cloud/api/image/6LJTRD86.png)
+
+   4. 修改配置文件
+
+      插件说明页有具体设置说明，根据自己喜爱配置参数即可。
+
+      我的设置如下：
+
+      ![VerilogFormat个人配置](http://imagebed.krins.cloud/api/image/HJ6FH0NB.png)
+
+   之后就可以在Verilog文件中按`Alt+Shift+F`，或`右键-格式化文档`对文档进行格式化。
 
 `以下组件需要额外下载和安装`
 
@@ -351,7 +393,9 @@ Ctags和iVerilog安装完我们就要配置插件`Verilog-HDL/SystemVerilog/Blue
 
       使用`vvp -n wave -lxt2`命令生成vcd波形文件，运行之后，会在当前目录下生成.vcd文件。
 
-      其中`-n`命令是为了结束之前的仿真避免数据出错。`wave`是执行我们之前编译之后生成的`wave.out`文件。
+      其中`-n`命令是为了结束仿真，退出程序。如果忘记加了的话，在命令行输入`finish`，也可退出仿真，进行下一步。
+
+      `wave`是执行我们之前编译之后生成的`wave.out`文件。
 
       `-lxt2`是以lxt2形式生成`.vcd`文件，可以不加。
 
@@ -359,9 +403,15 @@ Ctags和iVerilog安装完我们就要配置插件`Verilog-HDL/SystemVerilog/Blue
 
       使用命令`gtkwave wave.vcd`，即可在图形化界面中查看仿真的波形图。
 
+      刚打开一般什么波形都没有。我们先点击左上角窗口的模块名，再双击例化的模块，就可以在左下角的窗口看到信号，双击要观察波形的信号，就可以在右边窗口看到波形。
+
+      点击上方的放大镜可以是波形缩放到一整个窗口刚好看完，所以可以把窗口调大后，再点击该图标，波形可以看的更清楚一些。
+
+      ![波形图](http://imagebed.krins.cloud/api/image/HF2J00LJ.png)
+
 4. Verilog转换为VHDL
 
-   虽然VHDL和Verilog都诞生于20世纪80年代，而且都属于硬件描述语言（HDL），但是二者的语法特性却不一样。Icarus Verilog 还有一个小功能就是支持把使用Verilog语言编写的.v文件转换为VHDL语言的.vhd文件。
+   虽然VHDL和Verilog都属于硬件描述语言（HDL），但是二者的语法特性却不一样。Icarus Verilog 还有一个小功能就是支持把使用Verilog语言编写的.v文件转换为VHDL语言的.vhd文件。
 
    如把`led_demo.v`文件转换为VHDL文件`led_demo.vhd`，使用命令`iverilog -tvhdl -o led_demo.vhd led_demo.v`。
 
@@ -401,9 +451,58 @@ Ctags和iVerilog安装完我们就要配置插件`Verilog-HDL/SystemVerilog/Blue
 
 ### 五、使用yosys进行综合😐
 
-   还没搞定，只在虚拟环境下成功过一次，不能正常使用。
+   yosys为一套开源的针对verilog的rtl综合框架，安装完这个框架后可以实现通过VSCode综合出RTL电路。
+
+   1. 安装yosys
+
+      因为没有人将`yosys`打包成`exe`，所以下载完源码后要自己编译，我试了几个包都没有成功，不得已只能换一种方法——使用msys2模拟linux环境下载`yosys`，方便、高效。`msys2`是基于`cygwin`和`mingw`的一套开发环境，使用msys2可以在windows上获得和linux几乎一致的开发环境。
+
+      1. 下载msys2
+
+         从[msys2官网](https://www.msys2.org/)下载最新的安装文件，双击并连续点击下一步安装即可，记得自己的安装路径就好。
+
+         ![下载msys2](http://imagebed.krins.cloud/api/image/8N6JN6ND.png)
+
+      2. 下载工具包
+
+         打开`msys2.exe`,输入`#pacman -S mingw-w64-x86_64-eda`,再输入`23`选择下载`yosys`，之后按`Y`。可选得下载`nextpnr`、`icestorm`、`icesprog`软件包进行安装。
+
+         ![安装yosys](http://imagebed.krins.cloud/api/image/0622VZH2.png)
+
+      3. 将`yosys.exe`添加进环境变量
+
+         找到`yosys.exe`所在路径，一般是`.\MSYS2\mingw64\bin`,`.\`是之前安装`MSYS2`的路径。然后将此路径添加到环境变量即可。
+
+         之后重启电脑。亲测一定要重启电脑，不然一直找不到程序。
+
+         添加完后在`cmd`输入`yosys`测试是否成功。
+
+         ![yosys测试](http://imagebed.krins.cloud/api/image/86H80T4B.png)
+
+   2. 用`yosys`综合
+
+      以之前`led_demo.v`为例。
+
+      1. 将VSCode的工作区设在`led_demo.v`所在文件夹。
+
+      2. 在终端输入`yosys`
+
+      3. 输入`read -sv led_demo.v`，意思是以`sv标准`读取该verilog文件。
+
+      4. 输入`hierarchy -top led_demo`，这一步设置顶层模块，后面输入的是模块名。
+
+      5. 输入`write_rtlil`，将设计写入Yosys内部文件格式。
+
+      6. 输入`proc; opt`，将RTL设计转为网络元素，并做一次优化。注意分号后面有个空格。
+
+      7. 输入`show`，将在工作区生成`show.dot`文件，通过VSCode的插件`Graphviz Interactive Preview`，点击右上角的预览即可查看RTL连接。但有一说一，没有vivado那种门符号，不太容易看得懂。
+
+      ![RTL图型查看](http://imagebed.krins.cloud/api/image/2XTP8D8R.png)
+
 ### 六、参考资料🤪
 
 1. [Vivado加上VsCode让你的生活更美好](https://blog.csdn.net/qq_39498701/article/details/84668833)
 2. [用VSCode编辑verilog代码、iverilog编译、自动例化、自动补全、自动格式化等常用插件](https://zhuanlan.zhihu.com/p/338497672)
 3. [全平台轻量开源verilog仿真工具iverilog+GTKWave使用教程](https://www.cnblogs.com/whik/p/11980103.html)
+4. [Windows 安装FPGA开源工具链](https://zhuanlan.zhihu.com/p/344993954)
+5. [集成电路设计开源EDA软件yosys详解1：工具安装](https://blog.csdn.net/fangfanglovezhou/article/details/124987987)
