@@ -52,6 +52,7 @@ VSCode是一个用着十分舒心的编辑器，搭配上各种插件，可以�
    如果命令行出现`‘python’不是内部或外部命令`,则说明`python.exe`的路径没有加入到环境变量，我们在手动添加一下。
 
    首先我们要检查一下python是否成功安装：开始菜单中有python相关程序即为成功。
+
    ![Python相关程序](http://imagebed.krins.cloud/api/image/644B2H2V.png)
 
    点击这个黑色的编辑器，分别输入`import sys`,`sys.path`,即可找到Python安装路径（一般倒数第二个就是要找的路径），复制一下。
@@ -173,7 +174,9 @@ VSCode是一个用着十分舒心的编辑器，搭配上各种插件，可以�
 
    下载地址：<https://github.com/universal-ctags/ctags-win32/tags>
    选择不带日期的版本号点进去，一般选择x64版本安装。
+
    ![Ctags下载](http://imagebed.krins.cloud/api/image/4T02084Z.png)
+
    下载完后解压，尤其注意路径不能有中文和空格。之后把`Ctags.exe`，这个文件所在路径复制，按照上文提到的方法添加进环境变量里。
 
    可以在命令行输入`Ctags --version`确认是否成功添加。
@@ -194,6 +197,7 @@ VSCode是一个用着十分舒心的编辑器，搭配上各种插件，可以�
 
 Ctags和iVerilog安装完我们就要配置插件`Verilog-HDL/SystemVerilog/Bluespec SystemVerilog`了。
 `Ctrl+Shift+X`呼出拓展菜单，找到`Verilog-HDL/SystemVerilog/Bluespec SystemVerilog`,点击右下角的齿轮，选择拓展设置。
+
 ![找到Verilog-HDL/SystemVerilog/Bluespec SystemVerilog拓展设置](http://imagebed.krins.cloud/api/image/40X0220V.png)
 
 具体设置如下：
