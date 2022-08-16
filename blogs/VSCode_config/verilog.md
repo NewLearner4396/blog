@@ -11,19 +11,19 @@ categories:
 ## 配置VSCode，愉快编写小的Verilog工程
 
 - [配置VSCode，愉快编写小的Verilog工程](#配置vscode愉快编写小的verilog工程)
-  - [零、写在开头🤣](#零写在开头)
-  - [一、用VSCode写Verilog的原因🧐](#一用vscode写verilog的原因)
+  - [零、写在开头🧐](#零写在开头)
+  - [一、用VSCode写Verilog的原因🤣](#一用vscode写verilog的原因)
   - [二、配置所需的VSCode插件😉](#二配置所需的vscode插件)
   - [三、将vivado文本编辑器修改为VSCode😋](#三将vivado文本编辑器修改为vscode)
   - [四、使用Iverilog+GtkWave进行简单的波形仿真🤗](#四使用iveriloggtkwave进行简单的波形仿真)
-  - [五、使用yosys进行综合😐](#五使用yosys进行综合)
-  - [六、参考资料🤪](#六参考资料)
+  - [五、使用yosys进行综合🤨](#五使用yosys进行综合)
+  - [六、参考资料😆](#六参考资料)
 
-### 零、写在开头🤣
+### 零、写在开头🧐
 
 VSCode是一个用着十分舒心的编辑器，搭配上各种插件，可以帮助我们跳过许多繁琐的操作。之前为了避开vivado难用的编辑器，配置我的VSCode折腾了好久，踩了不少坑。于是整理此文档供后人使用。其中部分资源下载时需要代理，请提前准备，或自行寻找其他下载链接，不便之处还请原谅。
 
-### 一、用VSCode写Verilog的原因🧐
+### 一、用VSCode写Verilog的原因🤣
 
 1. VSCode打开迅速，比起`Vivado`、`Quartus`等IDE，简单查看或修改文件要方便的多；
 2. 有时不需要大费周章建立工程，`iVerilog+GtkWave`可以轻量化进行波形仿真，用`yosys`可以进行RTL仿真；
@@ -101,34 +101,36 @@ VSCode是一个用着十分舒心的编辑器，搭配上各种插件，可以�
     $tbFileName = "tb_" + $FileName.split("\")[-1]
     echo $tbFileName
     python $env:TestBenchPath $FileName >> $tbFileName}
-
+   
    set-alias ll Get-ChildItemColor  
-
+   
    $env:TestBenchPath="C:\Users\22306\.vscode\extensions\truecrab.verilog-testbench-instance-0.0.5\out\vTbgenerator.py"
-
+   
    set-alias createtb createtb_function
    ```
 
    注意要把`$env:TestBenchPath="C:\Users\22306\.vscode\extensions\truecrab.verilog-testbench-instance-0.0.5\out\vTbgenerator.py"`改成自己的路径，一般把`22306`改成自己的用户名就好了。
 
-   还有一件事，Windows系统下默认是不允许用户自己的没有数字签名的脚本的，所以我们还要多一步。
+   还有一件事，Windows系统下默认是不允许用户使用自己写的没有数字签名的脚本的，所以我们还要多一步。
 
    用管理员身份打开Powershell，输入`set-executionpolicy remotesigned`，后按`Y`，即可成功设置。
 
    可以用`get-executionpolicy`命令查看当前策略，如果显示`RemoteSigned`，就代表设置成功了。
 
-   以上我们就把`Verilog_Testbench`这个插件配置好了。写完一个.v文件想生成它的testbench的话，在终端（按Ctrl+~可呼出）输入createtb xxx.v(xxx为你的文件名)就可以看到在同目录下新建了一个tb_xx.v文件，这就是自动生成的Testbench。该插件会自动生成时钟并例化好模块，自己再按需求修改一下就可以直接仿真啦。
+   以上我们就把`Verilog_Testbench`这个插件配置好了。
+
+   写完一个.v文件想生成它的testbench的话，在终端（按Ctrl+~可呼出）输入createtb xxx.v(xxx为你的文件名)就可以看到在同目录下新建了一个tb_xx.v文件，这就是自动生成的Testbench。该插件会自动生成时钟并例化好模块，自己再按需求修改一下就可以直接仿真啦。
 
    但要注意它的默认编码不是`UTF_8`，仿真时会出错，要在VSCode右下角修改编码。点击右下角的当前编码，选择`通过编码重新保存`，选择`UTF_8`（推荐）或者`gbk`。
 
    ![修改编码并保存](http://imagebed.krins.cloud/api/image/08T028P0.png)
 
-   按`F1`或`Ctrl+Shift+P`，调出VSCode命令行，输入`Instance`，该插件可以自动帮你例化模块，例化的思路和生成Testbench一样，而且输出在终端里，但用起来确实方便不少。
+   按`F1`或`Ctrl+Shift+P`，调出VSCode命令行，输入`Instance`，该插件可以自动帮你例化模块，例化的思路和生成Testbench一样，虽然输出仍然在终端里，但用起来还是会觉得方便不少。
 
    ![输入Instance](http://imagebed.krins.cloud/api/image/0NP8PL4F.png)
 
    ![例化效果](http://imagebed.krins.cloud/api/image/4FFB8800.png)
-
+   
 3. Verilog Format
    （可选）:blush:快速将代码格式化，习惯自己排版的可以不用。
 
@@ -229,7 +231,7 @@ Ctags和iVerilog安装完我们就要配置插件`Verilog-HDL/SystemVerilog/Blue
 
 ![跳转定义](http://imagebed.krins.cloud/api/image/B0BV24B2.png)
 
-自动纠错也能正常运行，语法错误部分有红色波浪线标注。但要注意iverilog检查的是已保存的文件，每次修改完保存一下才能看到正确的检查结果。按`Ctrl+Shift+M`，可以在VSCode下方看到当前文件所以问题，单击问题即可跳转到问题所在行。
+自动纠错也能正常运行，语法错误部分有红色波浪线标注。但要注意iverilog检查的是已保存的文件，每次修改完保存一下才能看到正确的检查结果。按`Ctrl+Shift+M`，可以在VSCode下方看到当前文件所有问题，单击问题即可跳转到问题所在行。
 
 ![错误检查](http://imagebed.krins.cloud/api/image/XN6JBR8X.png)
 
@@ -301,7 +303,7 @@ Ctags和iVerilog安装完我们就要配置插件`Verilog-HDL/SystemVerilog/Blue
 
    1. 首先创建要编译的文件
 
-      `led_demo.v`   每10个时钟，LED翻转一次
+      `led_demo.v`  该模块每10个时钟令LED翻转一次
 
       ```Verilog
       module led_demo(
@@ -447,7 +449,7 @@ Ctags和iVerilog安装完我们就要配置插件`Verilog-HDL/SystemVerilog/Blue
 
       ![配置verilog专用片段](http://imagebed.krins.cloud/api/image/8ZLZJ82F.png)
 
-   3. 在大括号内输入以下代码：
+   3. 在最外面的大括号内输入以下代码：
 
       ```verilog
       "波形文件":{
@@ -462,16 +464,20 @@ Ctags和iVerilog安装完我们就要配置插件`Verilog-HDL/SystemVerilog/Blue
          "description": "生成波形文件"
       }
       ```
+      
+      保存。
 
-   保存之后在`.v`文件中输入`vcd`就可选择替换成此代码块。
+   之后在`.v`文件中输入`vcd`就可选择替换成此代码块。
+   
+   ![vcd](http://imagebed.krins.cloud/api/image/H44RRR6R.png)
 
-### 五、使用yosys进行综合😐
+### 五、使用yosys进行综合🤨
 
    yosys为一套开源的针对verilog的rtl综合框架，安装完这个框架后可以实现通过VSCode综合出RTL电路。
 
    1. 安装yosys
 
-      因为没有人将`yosys`打包成`exe`，所以下载完源码后要自己编译，我试了几个包都没有成功，不得已只能换一种方法——使用msys2模拟linux环境下载`yosys`，方便、高效。`msys2`是基于`cygwin`和`mingw`的一套开发环境，使用msys2可以在windows上获得和linux几乎一致的开发环境。
+      因为没有人将`yosys`打包成`exe`，所以下载完源码后要自己编译，我试了几个包都没有成功，郁闷😔之际找到一种方法——使用msys2模拟linux环境下载`yosys`，方便、高效。`msys2`是基于`cygwin`和`mingw`的一套开发环境，使用msys2可以在windows上获得和linux几乎一致的开发环境。
 
       1. 下载msys2
 
@@ -481,13 +487,13 @@ Ctags和iVerilog安装完我们就要配置插件`Verilog-HDL/SystemVerilog/Blue
 
       2. 下载工具包
 
-         打开`msys2.exe`,输入`#pacman -S mingw-w64-x86_64-eda`,再输入`23`选择下载`yosys`，之后按`Y`。可选得下载`nextpnr`、`icestorm`、`icesprog`软件包进行安装。
+         打开`msys2.exe`,输入`#pacman -S mingw-w64-x86_64-eda`,再输入`23`选择下载`yosys`，之后按`Y`。依自身情况选择是否下载`nextpnr`、`icestorm`、`icesprog`等软件包进行安装。
 
          ![安装yosys](http://imagebed.krins.cloud/api/image/0622VZH2.png)
 
       3. 将`yosys.exe`添加进环境变量
 
-         找到`yosys.exe`所在路径，一般是`.\MSYS2\mingw64\bin`,`.\`是之前安装`MSYS2`的路径。然后将此路径添加到环境变量即可。
+         找到`yosys.exe`所在路径，一般是`.\MSYS2\mingw64\bin`，`.\`是之前安装`MSYS2`的路径。然后将此路径添加到环境变量即可。
 
          之后重启电脑。亲测一定要重启电脑，不然一直找不到程序。
 
@@ -515,7 +521,9 @@ Ctags和iVerilog安装完我们就要配置插件`Verilog-HDL/SystemVerilog/Blue
 
       ![RTL图型查看](http://imagebed.krins.cloud/api/image/2XTP8D8R.png)
 
-### 六、参考资料🤪
+至此，我们就完成了VSCode关于Verilog的所有配置，也尝试了直接用它实现工程级的应用。虽然配置起来有很多包需要下，我需要注意的地方我都说明了。实操起来应该会很快。希望看到这篇文章的人都能一遍就走完所有流程。🥳
+
+### 六、参考资料😆
 
 1. [Vivado加上VsCode让你的生活更美好](https://blog.csdn.net/qq_39498701/article/details/84668833)
 2. [用VSCode编辑verilog代码、iverilog编译、自动例化、自动补全、自动格式化等常用插件](https://zhuanlan.zhihu.com/p/338497672)
