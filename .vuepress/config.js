@@ -27,8 +27,9 @@ module.exports = {
       { text: 'Resources', 
         icon: 'reco-message',
         items: [
-          { text: 'TextBook', link: '/resources/TextBook/' },
-          { text: 'Software', link: '/resources/Software/' }
+          { text: 'KeepLearning', link: 'https://github.com/peng-zhihui/' },
+          { text: 'Vercel', link: 'https://vercel.com/dashboard' },
+          { text: 'ResourceIntegration', link: 'https://www.lovejay.top/' }
         ]
       },
 
@@ -94,9 +95,9 @@ module.exports = {
     // 作者头像
     authorAvatar: '/portrait.jpg',
     // 备案号
-    record: 'xxxx',
+    record: 'NC',
     // 项目开始时间
-    startYear: '2017',
+    startYear: '2021',
   },
   markdown: {
     lineNumbers: true
