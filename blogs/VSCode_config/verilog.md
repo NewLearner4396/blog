@@ -1,5 +1,5 @@
 ---
-title: VSCode里Verilog的插件配置
+title: VSCode关于Verilog的全部配置归在此档
 date: 2022-8-15
 tags:
  - Verilog
@@ -8,9 +8,9 @@ categories:
 ---
 
 
-## 记录如何配置Vscode从而方便地写Verilog
+## 配置VSCode，愉快编写小的Verilog工程
 
-- [记录如何配置Vscode从而方便地写Verilog](#记录如何配置vscode从而方便地写verilog)
+- [配置VSCode，愉快编写小的Verilog工程](#配置vscode愉快编写小的verilog工程)
   - [零、写在开头🤣](#零写在开头)
   - [一、用VSCode写Verilog的原因🧐](#一用vscode写verilog的原因)
   - [二、配置所需的VSCode插件😉](#二配置所需的vscode插件)
