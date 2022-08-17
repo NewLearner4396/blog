@@ -66,7 +66,9 @@ VSCode是一个用着十分舒心的编辑器，搭配上各种插件，可以�
    选择环境变量。
 
    任选一个`Path`,双击，新建，粘贴上刚复制的路径，注意把每个双斜线删成单斜线。
+
    ![新增系统变量](http://imagebed.krins.cloud/api/image/40RX0X0N.png)
+
    之后在cmd中输入`pip install chardet`，安装chardet。
 
    如果下载过慢或出错，可以使用国内镜像站下载，使用命令如下：
