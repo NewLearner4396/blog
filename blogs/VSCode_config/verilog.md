@@ -130,7 +130,7 @@ VSCode是一个用着十分舒心的编辑器，搭配上各种插件，可以�
    ![输入Instance](http://imagebed.krins.cloud/api/image/0NP8PL4F.png)
 
    ![例化效果](http://imagebed.krins.cloud/api/image/4FFB8800.png)
-   
+
 3. Verilog Format
    （可选）:blush:快速将代码格式化，习惯自己排版的可以不用。
 
@@ -464,11 +464,11 @@ Ctags和iVerilog安装完我们就要配置插件`Verilog-HDL/SystemVerilog/Blue
          "description": "生成波形文件"
       }
       ```
-      
+
       保存。
 
    之后在`.v`文件中输入`vcd`就可选择替换成此代码块。
-   
+
    ![vcd](http://imagebed.krins.cloud/api/image/H44RRR6R.png)
 
 ### 五、使用yosys进行综合🤨
