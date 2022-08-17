@@ -166,11 +166,11 @@ VSCode是一个用着十分舒心的编辑器，搭配上各种插件，可以�
 
    3. 解压后将对应路径填写到插件设置中。
 
-      ![填写程序与配置文件路径](http://imagebed.krins.cloud/api/image/HFL6N8FN.png)
+      ![填写程序与配置文件路径](http://imagebed.krins.cloud/api/image/8F2880BP.png)
 
       由于作者失误，为了启用该配置文件我们还需多一步，在我们的VSCode配置文件`settings.json`中的某一行的`verilog-format.setting`的后面加一个`s`。加完之后这一行会变灰，提示`未知的配置设置`，但没关系，这样反而能正常使用。
 
-      ![在verilog-format.setting后添加s](http://imagebed.krins.cloud/api/image/6LJTRD86.png)
+      ![在verilog-format.setting后添加s](http://imagebed.krins.cloud/api/image/L0L86T80.png)
 
    4. 修改配置文件
 
