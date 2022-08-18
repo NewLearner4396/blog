@@ -7,7 +7,6 @@ categories:
  -  VSCode配置
 ---
 
-
 ## 配置VSCode，愉快编写Verilog小工程
 
 - [配置VSCode，愉快编写Verilog小工程](#配置vscode愉快编写verilog小工程)
@@ -36,12 +35,12 @@ VSCode是一个用着十分舒心的编辑器，搭配上各种插件，可以�
 1. Verilog-HDL/SystemVerilog/Bluespec SystemVerilog
    这个插件可以实现语法高亮、自动补齐、列出端口，配合iVerilog可以实现查找语法错误（只能查找语法错误，逻辑错误还需要自己写的时候细心从而避免:upside_down_face:）
 
-   ![Verilog-HDL/SystemVerilog/Bluespec SystemVerilog](http://imagebed.krins.cloud/api/image/R2X0L20N.png)
+   ![Verilog-HDL/SystemVerilog/Bluespec SystemVerilog](http://imagebed.krins.cloud/api/image/R2X0L20N.png#pic_center)
 
 2. Verilog_Testbench
    自动帮助例化和写Testbench的插件，十分好用，很省心。
 
-   ![Verilog_Testbench](http://imagebed.krins.cloud/api/image/0Z4T4VD8.png)
+   ![Verilog_Testbench](http://imagebed.krins.cloud/api/image/0Z4T4VD8.png#pic_center)
 
    这个插件依赖chardet库，需要Python，请提前下载好Python并将其加入环境变量（在安装时有`add Python to PATH`这个选项直接勾上就好）
 
@@ -74,7 +73,7 @@ VSCode是一个用着十分舒心的编辑器，搭配上各种插件，可以�
    如果下载过慢或出错，可以使用国内镜像站下载，使用命令如下：
 
    `pip install chardet -i https://pypi.tuna.tsinghua.edu.cn/simple`
-  
+
    如若清华这个的镜像站挂了，可以试试以下几个镜像站
 
    `http://mirrors.aliyun.com/pypi/simple/`
@@ -134,9 +133,10 @@ VSCode是一个用着十分舒心的编辑器，搭配上各种插件，可以�
    ![例化效果](http://imagebed.krins.cloud/api/image/4FFB8800.png)
 
 3. Verilog Format
-   （可选）:blush:快速将代码格式化，习惯自己排版的可以不用。
 
-   ![Verilog Format](http://imagebed.krins.cloud/api/image/VH4ZJHX2.png)
+   快速将代码格式化，习惯自己排版的可以不用（可选）:blush:。
+
+   ![Verilog Format](http://imagebed.krins.cloud/api/image/VH4ZJHX2.png#pic_center)
 
    1. 安装JDK
 
@@ -178,7 +178,7 @@ VSCode是一个用着十分舒心的编辑器，搭配上各种插件，可以�
 
       我的设置如下：
 
-      ![VerilogFormat个人配置](http://imagebed.krins.cloud/api/image/HJ6FH0NB.png)
+      ![VerilogFormat个人配置](http://imagebed.krins.cloud/api/image/HJ6FH0NB.png#pic_center)
 
    之后就可以在Verilog文件中按`Alt+Shift+F`，或`右键-格式化文档`对文档进行格式化。
 
@@ -231,7 +231,7 @@ Ctags和iVerilog安装完我们就要配置插件`Verilog-HDL/SystemVerilog/Blue
 
 将鼠标放在一个变量名上可以看到它的定义，按住`Ctrl`再点击变量可以直接跳转到定义。
 
-![跳转定义](http://imagebed.krins.cloud/api/image/B0BV24B2.png)
+![跳转定义](http://imagebed.krins.cloud/api/image/B0BV24B2.png#pic_center)
 
 自动纠错也能正常运行，语法错误部分有红色波浪线标注。但要注意iverilog检查的是已保存的文件，每次修改完保存一下才能看到正确的检查结果。按`Ctrl+Shift+M`，可以在VSCode下方看到当前文件所有问题，单击问题即可跳转到问题所在行。
 
@@ -523,7 +523,11 @@ Ctags和iVerilog安装完我们就要配置插件`Verilog-HDL/SystemVerilog/Blue
 
       ![RTL图型查看](http://imagebed.krins.cloud/api/image/2XTP8D8R.png)
 
+---
+
 至此，我们就完成了VSCode关于Verilog的所有配置，也尝试了直接用它实现工程级的应用。虽然配置起来有很多包需要下，但需要注意的地方我都说明了。实操起来应该会很快。希望看到这篇文章的人都能一遍就走完所有流程。🥳
+
+---
 
 ### 六、参考资料😆
 
