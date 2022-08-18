@@ -1,6 +1,6 @@
 module.exports = {
   title: "Land of Fragment",
-  description: 'Welcome to my little world .',
+  description: 'Welcome to my little world.',
   dest: 'public',
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
