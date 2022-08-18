@@ -16,7 +16,7 @@ bgImageStyle: {
 }
 isShowTitleInHome: false
 actionText: Guide
-actionLink: /views/other/guide
+actionLink: ./guide.md
 features:
 - title: Yesterday
   details: 开发一款看着开心、写着顺手的 vuepress 博客主题
@@ -25,3 +25,4 @@ features:
 - title: Tomorrow
   details: 希望更多的爱好者能够参与进来，帮助这个主题更好的成长
 ---
+感谢原作者的辛勤开发，让我能如此轻易的搭建一个好看又好用的博客🥳

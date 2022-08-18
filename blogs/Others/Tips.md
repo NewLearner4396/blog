@@ -9,7 +9,11 @@ categories:
 
 ## 遇到的小问题的可能原因与解决方案😅
 
-### 1. markdown的用户代码配置
+- [遇到的小问题的可能原因与解决方案😅](#遇到的小问题的可能原因与解决方案)
+  - [1. markdown的用户代码配置😇](#1-markdown的用户代码配置)
+  - [2. git bash的代理设置😇](#2-git-bash的代理设置)
+
+### 1. markdown的用户代码配置😇
 
 因为博客的Markdown需要一个`yawl`格式的头部代码，于是想做成`代码块`，这样就不用每次都复制粘贴。
 
@@ -48,7 +52,7 @@ categories:
 
 参考资料链接：[VS Code中markdown文件内为什么用户代码片段无法生效？](https://www.zhihu.com/question/370485701)
 
-### 2. git bash的代理设置
+### 2. git bash的代理设置😇
 
 之前要将本地仓库的更改push到github的话，我是用的`github desktop`这款软件，图形化界面，打开代理后简单点两下就完成了。但后来想尝试一下用VSCode的`gitlens`来直接push，这样就不用再开一个软件了。但因为我是host代理，我又不想全局代理，那样会很麻烦，于是导致gitlens一直用不了我的代理，所以我只能在VSCode里开一个`git bash`终端，用`git指令`手动上传。在git里我`push`的时候一直报错:upside_down_face:，原因是我设置代理一直用的是`https`的协议接口，换成`http`协议就好了。
 
