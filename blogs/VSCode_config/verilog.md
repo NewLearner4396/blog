@@ -33,11 +33,13 @@ VSCode是一个用着十分舒心的编辑器，搭配上各种插件，可以�
 `以下插件在VSCode插件市场可直接安装，按Ctrl+Shift+X可直接呼出，搜Verilog即可看到以下三个插件`
 
 1. Verilog-HDL/SystemVerilog/Bluespec SystemVerilog
+
    这个插件可以实现语法高亮、自动补齐、列出端口，配合iVerilog可以实现查找语法错误（只能查找语法错误，逻辑错误还需要自己写的时候细心从而避免:upside_down_face:）
 
    ![Verilog-HDL/SystemVerilog/Bluespec SystemVerilog](http://imagebed.krins.cloud/api/image/R2X0L20N.png#pic_center)
 
 2. Verilog_Testbench
+   
    自动帮助例化和写Testbench的插件，十分好用，很省心。
 
    ![Verilog_Testbench](http://imagebed.krins.cloud/api/image/0Z4T4VD8.png#pic_center)
