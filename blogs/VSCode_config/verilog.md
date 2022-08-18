@@ -39,7 +39,7 @@ VSCode是一个用着十分舒心的编辑器，搭配上各种插件，可以�
    ![Verilog-HDL/SystemVerilog/Bluespec SystemVerilog](http://imagebed.krins.cloud/api/image/R2X0L20N.png#pic_center)
 
 2. Verilog_Testbench
-   
+
    自动帮助例化和写Testbench的插件，十分好用，很省心。
 
    ![Verilog_Testbench](http://imagebed.krins.cloud/api/image/0Z4T4VD8.png#pic_center)
