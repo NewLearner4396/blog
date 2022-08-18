@@ -4,7 +4,7 @@ date: 2022-8-19
 tags:
  - web
 categories:
--  other
+-  Others
 ---
 ## 此网站的各种别名  
 
