@@ -4,7 +4,7 @@ date: 2022-8-19
 tags:
  - Tips
 categories:
-- Tips  
+- Others  
 ---
 
 ## 遇到的小问题的可能原因与解决方案😅
@@ -15,7 +15,7 @@ categories:
 
 写的效果如下：
 
-```javascript
+```JavaScript
     "博客开头":{
         "prefix": "blog_start",
         "body": [
@@ -32,9 +32,9 @@ categories:
     }
 ```
 
-但是在`.md`文件中却不能调用，查了一下是因为`VSCode`默认没开`Markdown`的用户代码片段，要在`VSCode`的`settings.json`中加入这么一段话：
+但是在`.md`文件中却不能调用:upside_down_face:，查了一下是因为`VSCode`默认没开`Markdown`的用户代码片段，要在`VSCode`的`settings.json`中加入这么一段话：
 
-```javascript
+```JavaScript
     "[markdown]":{
         "editor.quickSuggestions": {
             "other": "on", //是否在除了注释和字符串内启用快速建议
@@ -50,7 +50,7 @@ categories:
 
 ### 2. git bash的代理设置
 
-之前要将本地仓库的更改push到github的话，我是用的`github desktop`这款软件，图形化界面，打开代理后简单点两下就完成了。但后来想尝试一下用VSCode的`gitlens`来直接push，这样就不用再开一个软件了。但因为我是host代理，我又不想全局代理，那样会很麻烦，于是导致gitlens一直用不了我的代理，所以我只能在VSCode里开一个`git bash`终端，用`git指令`手动上传。在git里我设置代理一直用的是`https`的协议接口，导致`push`的时候一直报错，换成`http`协议就好了。
+之前要将本地仓库的更改push到github的话，我是用的`github desktop`这款软件，图形化界面，打开代理后简单点两下就完成了。但后来想尝试一下用VSCode的`gitlens`来直接push，这样就不用再开一个软件了。但因为我是host代理，我又不想全局代理，那样会很麻烦，于是导致gitlens一直用不了我的代理，所以我只能在VSCode里开一个`git bash`终端，用`git指令`手动上传。在git里我`push`的时候一直报错:upside_down_face:，原因是我设置代理一直用的是`https`的协议接口，换成`http`协议就好了。
 
 不设置代理的报错如下：
 
