@@ -19,7 +19,7 @@ categories:
 
 写的效果如下：
 
-```JavaScript
+```javascript
     "博客开头":{
         "prefix": "blog_start",
         "body": [
@@ -38,7 +38,7 @@ categories:
 
 但是在`.md`文件中却不能调用:upside_down_face:，查了一下是因为`VSCode`默认没开`Markdown`的用户代码片段，要在`VSCode`的`settings.json`中加入这么一段话：
 
-```JavaScript
+```javascript
     "[markdown]":{
         "editor.quickSuggestions": {
             "other": "on", //是否在除了注释和字符串内启用快速建议
@@ -58,25 +58,25 @@ categories:
 
 不设置代理的报错如下：
 
-```git
+```bash
 fatal: unable to access 'https://github.com/NewLearner4396/blogs/': Failed to connect to github.com port 443: Timed out
 ```
 
 代理设置如下：
 
-```git
+```bash
 git config https.proxy https://127.0.0.1:4780
 ```
 
 设置完代理报错如下：
 
-```git
+```bash
 fatal: unable to access 'https://github.com/NewLearner4396/blogs/': schannel: failed to receive handshake, SSL/TLS connection failed
 ```
 
 后来取消了原来的代理，改成了：
 
-```git
+```bash
 git config http.proxy http://127.0.0.1:4780
 ```
 
