@@ -9,8 +9,6 @@ categories:
 
 ## NumPy库的使用
 
-[TOC]
-
 ### 简介
 
 NumPy(Numerical Python) 是 Python 语言的一个扩展程序库，支持大量的维度数组与矩阵运算，此外也针对数组运算提供大量的数学函数库。NumPy提供了一系列快速高效的方法来创建数组并操作数组中的数值数据。与数组可以在单个列表中包含不同的数据类型不同，NumPy数组中的所以元素都是同类型的。
@@ -73,9 +71,14 @@ numpy.array(object, dtype = None, copy = True, order = None, subok = False, ndmi
 dtype 为数组元素的数据类型（默认为int32）
 
 常用的有：
-   1. float(float32、float64)
-   2. int(int8、int16、int32)、uint 
-   3. complex
+      1. float(float32、float64)
+      2. int(int8、int16、int32)、uint 
+      3. complex
+
+数据类型转换：
+
+1. np.dtype(obj)
+2. obj.astype(np.dtype)
 
 ### 常用函数
 
@@ -99,12 +102,12 @@ dtype 为数组元素的数据类型（默认为int32）
 
 2. 矩阵转换
 
-   1. a.reshape(m,n)/np.reshape(a,（m,n）,order)新的尺寸不能使元素数量改变，m为-1时，系统会根据n自动计算m应为多少
-   2. a.flatten()将数组一行行的移到数组末尾变为1维
-   3. a.ravel()功能与flatten一样，但返回的是a矩阵的变形，没有生成一个新矩阵，与a会相互影响
-   4. a.T/a.transpose矩阵转置
-   5. np.hstack([A,B])将A,B两矩阵水平并在一起
-   6. np.vstack([A,B])将A,B两矩阵竖直并在一起
+   1. a.reshape(m,n)/np.reshape(a,（m,n）,order) 新的尺寸不能使元素数量改变，m为-1时，系统会根据n自动计算m应为多少
+   2. a.flatten() 将数组一行行的移到数组末尾变为1维
+   3. a.ravel() 功能与flatten一样，但返回的是a矩阵的变形，没有生成一个新矩阵，与a会相互影响
+   4. a.T/a.transpose 矩阵转置
+   5. np.hstack([A,B]) 将A,B两矩阵水平并在一起
+   6. np.vstack([A,B]) 将A,B两矩阵竖直并在一起
 
 3. 矩阵统计值
 
@@ -114,7 +117,7 @@ dtype 为数组元素的数据类型（默认为int32）
 
    3. a.mean() 平均值
 
-      axis=0,则按列返回，=1则按行返回
+      可设置参数axis，=0,则按列返回，=1则按行返回
 
 4. 数学运算
 
@@ -128,6 +131,12 @@ dtype 为数组元素的数据类型（默认为int32）
 5. 切片
 
    A[m:,n:]从第m行n列切到末尾
+
+6. 设域
+
+   np.clip(a,min,max)
+
+   a中元素小于min的设为min，大于max的设为max
 
 ### 参考资料
 
