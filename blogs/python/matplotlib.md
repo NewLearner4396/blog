@@ -1,6 +1,6 @@
 ---
 title: Matplotlib库的学习笔记
-date: 2022-09-03
+date: 2022-09-02
 tags:
  - matplotlib
 categories:
