@@ -84,30 +84,88 @@ dtype 为数组元素的数据类型（默认为int32）
 
 1. 矩阵创建
 
-   1. np.array([1,2,3])创建1维行向量
-   2. np.uint8([1,2,3])创建1维行向量，但数据类型是八位无符号数
-   3. np.arange(start，stop，[step])左闭右开，步进可以为小数
-   4. np.linspace(start,stop,num)左闭右闭
-   5. np.zeros(dim/(m,n))n维或n行m列0矩阵
-   6. np.ones(dim/(m,n))n维或n行m列1矩阵
-   7. np.eye(n,[m,k,dtype,order]),n行m列单位阵，k为对脚线平移列数（正数左移），order为数组输出形式（默认为行优先）
-   8. np.identity(n,[dtype])创建n维单位方阵
+   1. np.array([1,2,3])
+      
+      创建1维行向量
+      
+   2. np.uint8([1,2,3])
+      
+      创建1维行向量，但数据类型是八位无符号数
+
+   3. np.arange(start，stop，[step])
+      
+      左闭右开，步进可以为小数
+
+   4. np.linspace(start,stop,num)
+      
+      左闭右闭，num设置生成多少个元素
+
+   5. np.zeros(dim/(m,n))
+      
+      n维或n行m列0矩阵
+
+   6. np.ones(dim/(m,n))
+      
+      n维或n行m列1矩阵
+
+   7. np.eye(n,[m,k,dtype,order])
+      
+      n行m列单位阵，k为对脚线平移列数（正数左移），order为数组输出形式（默认为行优先）
+
+   8. np.identity(n,[dtype])
+      
+      创建n维单位方阵
+
    9. np.random
-      1. np.random.rand(m,n) 生成指定维度的的**[0,1)范围**之间的随机数
-      2. np.random.randn(m,n)生成指定维度的的**[0,1)范围**之间服从正态分布的随机数
-      3. np.random.randint(low,high,(m,n),[dtype])生成指定维度的的**[low,high)范围**之间服从正态分布的随机数
-      4. np.random.random_integers(low,high,(m,n))生成指定维度的的**[low,high]范围**之间服从正态分布的随机数
-      5. np.random.choice(a, size = None, replace = True, p = None) 从给定数组a中随机选择,p可以指定a中每个元素被选择的概率，p的size应与a一致，replace=True则返回的数可以有重复的
-      6. np.random.seed()设置随机数种子
+      1. np.random.rand(m,n) 
+         
+         生成指定维度的的**[0,1)范围**之间的随机数
+
+      2. np.random.randn(m,n)
+         
+         生成指定维度的的**[0,1)范围**之间服从正态分布的随机数
+         
+      3. np.random.randint(low,high,(m,n),[dtype])
+         
+         生成指定维度的的**[low,high)范围**之间服从正态分布的随机数
+         
+      4. np.random.random_integers(low,high,(m,n))
+         
+         生成指定维度的的**[low,high]范围**之间服从正态分布的随机数
+         
+      5. np.random.choice(a, size = None, replace = True, p = None) 
+         
+         从给定数组a中随机选择,p可以指定a中每个元素被选择的概率，p的size应与a一致，replace=True则返回的数可以有重复的
+         
+      6. np.random.seed()
+         
+         设置随机数种子
 
 2. 矩阵转换
 
-   1. a.reshape(m,n)/np.reshape(a,（m,n）,order) 新的尺寸不能使元素数量改变，m为-1时，系统会根据n自动计算m应为多少
-   2. a.flatten() 将数组一行行的移到数组末尾变为1维
-   3. a.ravel() 功能与flatten一样，但返回的是a矩阵的变形，没有生成一个新矩阵，与a会相互影响
-   4. a.T/a.transpose 矩阵转置
-   5. np.hstack([A,B]) 将A,B两矩阵水平并在一起
-   6. np.vstack([A,B]) 将A,B两矩阵竖直并在一起
+   1. a.reshape(m,n)/np.reshape(a,（m,n）,order) 
+      
+      新的尺寸不能使元素数量改变，m为-1时，系统会根据n自动计算m应为多少
+
+   2. a.flatten() 
+      
+      将数组一行行的移到数组末尾变为1维
+
+   3. a.ravel()
+      
+      功能与flatten一样，但返回的是a矩阵的变形，没有生成一个新矩阵，与a会相互影响
+
+   4. a.T/a.transpose 
+      
+      矩阵转置
+
+   5. np.hstack([A,B])
+      
+      将A,B两矩阵水平并在一起
+
+   6. np.vstack([A,B])
+      
+      将A,B两矩阵竖直并在一起
 
 3. 矩阵统计值
 
@@ -122,10 +180,15 @@ dtype 为数组元素的数据类型（默认为int32）
 4. 数学运算
 
    1. np.power(A,2) 幂函数，A的每个元素平方
+
    2. np.sqrt() 开根号
+
    3. np.log() 以e为底
+
    4. np.log2() 以2为底
+
    5. np.log10() 以10为底
+
    6. A.dot(B)/ A @ B A,B两矩阵矩阵相乘，A*B为对应元素相乘
 
 5. 切片
