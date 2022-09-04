@@ -26,7 +26,7 @@ CV_32F - 32位浮点数（-FLT_MAX…FLT_MAX，INF，NAN）
 CV_64F - 64位浮点数（-DBL_MAX…DBL_MAX，INF，NAN）
 
 而C1、C2、C3是什么意思呢？
-这里的1、2、3代表的是通道数，比如RGB就是3通道，颜色表示最大为255,所以可以用CV_8UC3这个数据类型来表示;灰度图就是C1，只有一个通道；而带alph通道的PNG图像就是C4，是4通道图片。
+这里的1、2、3代表的是通道数，比如RGB就是3通道，颜色表示最大为255,所以可以用CV_8UC3这个数据类型来表示;灰度图就是C1，只有一个通道；而带alpha通道的PNG图像就是C4，是4通道图片。
 参考：<https://blog.csdn.net/ai_faker/article/details/118183702>
 ```
 
@@ -233,6 +233,79 @@ cv.Canny(img,minVal,maxVal)
 # 阈值整体设的小，检测出的边缘更细致
 # 阈值整体设的大，检测出的边缘更干净
 ```
+
+```python
+# 上采样
+# 尺寸变大但分辨率不会提升
+cv.pyrUp(img, dstsize=None, borderType=None)
+# dstsize：表示输出图像的大小
+# borderType：表示图像边界的处理方式
+
+# 下采样
+# 操作一次一个 MxN 的图像就变成了一个 M/2xN/2 的图像
+cv.pyrDown(img, dstsize=None, borderType=None)
+```
+
+```python
+# 轮廓检测
+
+cv.findContours(img,mode,method)
+# mode：轮廓检索模式
+# RETR_EXTERNAL ：只检索最外面的轮廓。
+# RETR_LIST：检索所有的轮廓，并将其保存到一条链表当中。
+# RETR_CCOMP：检索所有的轮廓，并将他们组织为两层：顶层是各部分的外部边界，第二层是空洞的边界。
+# RETR_TREE：检索所有的轮廓，并重构嵌套轮廓的整个层次。( 最常用 )
+
+#method：轮廓逼近方法
+# CHAIN_APPROX_NONE：以Freeman链码的方式输出整个轮廓
+# CHAIN_APPROX_SIMPLE：只保留每条线的终点部分
+
+#为了更高的准确度，把图像转为二值图
+img = cv.imread('PATH')
+gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+ret, thresh = cv.threshold(gray, 127, 255, cv.THRESH_BINARY)
+
+# 检测轮廓
+binary, contours, hierarchy = cv.findContours(thresh,cv.RETR_TREE, cv.CHAIN_APPOX_NONE)
+# binary返回原图像
+# contours返回轮廓点信息
+# hierarchy返回轮廓层级结构
+
+# 绘制轮廓
+# 若不用拷贝后的，而是用原图画轮廓，则画轮廓图绘把原始的输入图像重写，覆盖掉
+# 传入参数：绘制图像、轮廓信息、轮廓索引(-1则自适应，画所有轮廓)，线条颜色(BGR模式)，线条厚度
+draw_img = img.copy()
+res = cv.drawContours(draw_img, contours, -1, (0,0,255), 2)
+
+# 轮廓特征提取
+cnt = contours[0] # 通过轮廓索引，拿到该索引对应的轮廓特征
+print(cv.contourArea(cnt)) # 打印该轮廓的面积
+print(cv.arcLength(cnt,True)) # 打印该轮廓的周长，True表示闭合的
+
+# 轮廓近似
+# 正常轮廓展示是最右边的图，但是当我们需要轮廓没有那么不规则，而是想要轮廓近似成规则的形状，这就叫轮廓近似，近似成下图中中间图像的轮廓。
+# 一条呈抛物线的曲线的端点为 A、B 两点，取曲线上到直线 AB 距离最大的点，该点为 C 点，若 C 点到直线的距离小于设置的阈值，则可以把直线 AB 当做曲线的近似，若 C 点到直线的距离大于设置的阈值，那么曲线不能用直线 AB 来近似，而 AC 曲线可能用 AC 直线来代替、BC曲线可能用 BC 直线来代替。再通过阈值来判断是否可以代替。
+epsilon = 0.1 * cv.arcLength(cnt,True) # 周长的百分比，这里用 0.1 的周长作阈值
+approx = cv.approxPolyDP(cnt,epsilon,True) # 第二个参数为阈值
+draw_img = img.copy()
+res = cv.drawContours(draw_img,[approx],-1,(0,0,255),2)
+
+# 绘制轮廓外接矩形
+x,y,w,h = cv.boundingRect(cnt) # 得到矩形四个坐标点的相关信息
+img = cv.rectangle(img,(x,y),(x+w,y+h),(0,255),2)# 用对角坐标绘制矩形
+
+# 绘制轮廓外接圆
+draw_img = img.copy()
+(x,y),redius = cv.minEnclosingCircle(cnt) # 得到外接圆圆心和半径
+# 将数据转为整数
+center = (int(x),int(y))
+redius = int(redius)
+img = cv.circle(draw_img,center,redius,(0,255,0),2)# 绘制圆
+```
+
+![轮廓近似示意](http://imagebed.krins.cloud/api/image/N20LLPJ8.png)
+
+![轮廓近似阈值示意](http://imagebed.krins.cloud/api/image/0RRB0V6X.png)
 
 
 
