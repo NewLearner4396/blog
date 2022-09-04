@@ -75,6 +75,7 @@ categories:
 
     ```python
     # 只保留G通道
+    img = cv.imread('PATH')
     cp_img = img.copy()
     cp_img[:,:,1] = 0
     cp_img[:,:,2] = 0
@@ -88,7 +89,7 @@ categories:
 
  3. 图像二值化
 
-    img_bin = cv.threshold(img_gray,th1,th2,cv.THRESH_BINARY)
+    __,img_bin = cv.threshold(img_gray,th1,th2,cv.THRESH_BINARY)
 
     将img_gray中大于th1的值设为th2，小于设为0
 
@@ -97,80 +98,132 @@ categories:
  4. 图像运算
 
     1. img = cv.add(img1,img2)
-    
+
        两图像相加，大于255的值设为255
-    
+
        可用来混合图像、添加噪声
-    
+
     2. img = cv.addweighted(img1,alpha,img2,beta,gamma)
-    
+
        img = np.uint8(img1 * alpha + img2 * beta +gamma)
-    
+
     3. img = cv.subtract(img1,img2)
-    
+
        两图像相减
-    
+
        可用来消除背景、比较差异、运动跟踪
-    
+
     4. img = cv.multiply(img1,img2)
-    
+
        图像相乘，两图像的数据类型需保持一样
-    
+
        可用来增加蒙版
-    
+
     5. img = cv.divide(img1,img2)
-    
+
        图像相除
-    
+
        可用来比较差异、校正设备
-    
+
     6. img = cv.convertScaleAbs(img, alpha=,beta=)
-    
+
        线性变换
-    
+
        img = beta + np.uint8(img * alpha)
-    
+
        且元素小于0会自动设为0，大于255会自动设为255
-    
+
     7. img = alpha + np.log(img.astype(np.float64) + 1) / b
-    
+
        对数变换
-    
+
        先将img的dtype设为float64保证+1后不会由255变为0
-    
+
     8. img = np.power((img / 255), gamma) * 255
-    
+
        指数变换 
-    
+
  5. 边界填充
 
     0. 设置填充多少区域
-    
+
        top_size,bottom_size,left_size,right_size = (50,50,50,50)  
-    
+
     1. replicate = cv.copyMakeBorder(img,top_size,bottom_size,left_size,right_size,cv.BORDER_REPLICATE) 
-    
+
        复制法，复制最边缘像素
-    
+
     2. reflect = cv.copyMakeBorder(img,top_size,bottom_size,left_size,right_size,cv.BORDER_REFLECT)
-    
+
        反射法，对感兴趣的图像中的像素在两边进行复制例如：fedcba|abcdefgh|hgfedcb
-    
+
     3. reflect101 = cv.copyMakeBorder(img,top_size,bottom_size,left_size,right_size,cv.BORDER_REFLECT_101)      
-    
+
        反射法二，也就是以最边缘像素为轴，对称，不复制轴这个像素gfedcb|abcdefgh|gfedcba
-    
+
     4. wrap = cv.copyMakeBorder(img,top_size,bottom_size,left_size,right_size,cv.BORDER_WRAP)
 
        外包装法，从对侧开始填充cdefgh|abcdefgh|abcdefg
-    
+
     5. constant = cv.copyMakeBorder(img,top_size,bottom_size,left_size,right_size,cv.BORDER_CONSTANT,value=0)
-    
+
        常量法，常数值填充
        
        ![各填充法对比](http://imagebed.krins.cloud/api/image/0622464T.png)
-    
-    
+
+6. 图像平滑
+
+    1. cv.blur(img,(m,n))
+
+       均值滤波，(m,n)代表滑动卷积核的大小
+
+       相当于平均池化
+
+    2. cv.boxFilter(img,-1,(m,n),normalize=True)
+
+       方框滤波，基本和均值滤波一样
+
+       当normalize=False时，就只卷积不平均，大于255则强设为255，容易过曝
+
+    3. cv.GaussianBlur(img,(5,5),1)
+
+       高斯滤波
+
+       用满足高斯分布的值作为卷积核的数
+
+       1指高斯分布的标准差为1
+
+    4. cv.medianBlur(img,5)
+
+       中值滤波
+
+       取当前像素点机周围像素点排序后拿中值替代中间元素值的大小
+
+        ksize为卷积核大小，必须为比1大的奇数
+
+7. Canny边缘检测
+
+    1. 使用高斯滤波器，以平滑图像，滤除噪声
+
+       ![使用的高斯滤波器](http://imagebed.krins.cloud/api/image/0V8T4FJ6.png)
+
+    2. 计算图像中每个像素点的梯度强度和方向
+
+       ![梯度和方向](http://imagebed.krins.cloud/api/image/6T62NZ86.png)
+
+    3. 非极大值抑制，消除杂散边缘
+
+       ![判断是否为极大值](http://imagebed.krins.cloud/api/image/2B00820P.png)
+       
+       ![改进的判断方法](http://imagebed.krins.cloud/api/image/0PTL8JHF.png)
+
+    4. 双阈值检测确定真实的边缘
+
+       ![双阈值检测](http://imagebed.krins.cloud/api/image/24666XXF.png)
+
+​        **上述流程被封装成了一个函数：**`cv.Canny(img,minVal,maxVal)`,输入自己设置的阈值即可使用
+
+8. 
 
 ### 参考资料
 

@@ -14,6 +14,23 @@ import cv2 as cv
 ```
 
 ```python
+# 数据类型宏定义
+S = 有符号整型 U = 无符号整型 F = 浮点型
+
+CV_8U - 8位无符号整数（0…255）
+CV_8S - 8位有符号整数（-128…127）
+CV_16U - 16位无符号整数（0…65535）
+CV_16S - 16位有符号整数（-32768…32767）
+CV_32S - 32位有符号整数（-2147483648…2147483647）
+CV_32F - 32位浮点数（-FLT_MAX…FLT_MAX，INF，NAN）
+CV_64F - 64位浮点数（-DBL_MAX…DBL_MAX，INF，NAN）
+
+而C1、C2、C3是什么意思呢？
+这里的1、2、3代表的是通道数，比如RGB就是3通道，颜色表示最大为255,所以可以用CV_8UC3这个数据类型来表示;灰度图就是C1，只有一个通道；而带alph通道的PNG图像就是C4，是4通道图片。
+参考：<https://blog.csdn.net/ai_faker/article/details/118183702>
+```
+
+```python
 # 读取图片，以BGR格式存储
 cv.imread(path，[0/cv.IMREAD_GRAYSCALE]) # 为0则读取为灰度图
 ```
@@ -84,6 +101,140 @@ constant = cv.copyMakeBorder(img,top_size,bottom_size,left_size,right_size,cv.BO
 cv.resize(img,(n,m)) # 注意先输入列数再输入行数
 cv.resize(img,(0,0),fx=alpha,fy=beta) # 横向拉伸alpha倍，纵向拉伸beta倍
 ```
+
+```python
+# 设置图像阈值
+# ret, dst = cv.threshold(src, thresh, maxval, type)
+
+# src： 输入图，只能输入单通道图像，通常来说为灰度图
+# thresh： 阈值
+# dst： 输出图
+# ret： 设置阈值
+# maxval： 当像素值超过了阈值 ( 或者小于阈值，根据 type 来决定 )，所赋予的值
+# type：二值化操作的类型，包含以下5种类型：
+# cv2.THRESH_BINARY          超过阈值部分取maxval ( 最大值 )，否则取0
+# cv2.THRESH_BINARY_INV      THRESH_BINARY的反转
+# cv2.THRESH_TRUNC           大于阈值部分设为阈值，否则不变
+# cv2.THRESH_TOZERO          大于阈值部分不改变，否则设为0
+# cv2.THRESH_TOZERO_INV      THRESH_TOZERO的反转
+```
+
+![image-20220904095126260](http://imagebed.krins.cloud/api/image/8HNP8ND8.png#pic_center)
+
+```python
+# 图像滤波
+
+# 均值滤波
+# 简单的平均卷积操作，方框中的值相加，取平均
+blur = cv2.blur(img,(3,3)) # (3,3) 为核的大小，通常情况核都是奇数 3、5、7
+
+# 方框滤波
+# 选择归一化后基本和均值滤波一样。不归一化则卷积完不做平均，越界则强设为255，容易过曝
+# 在 Python 中 -1 表示自适应填充对应的值，这里的 -1 表示与颜色通道数自适应一样
+box = cv2.boxFilter(img,-1,(3,3),normalize=True)  
+# 方框滤波如果做归一化，得到的结果和均值滤波一模一样
+
+# 高斯滤波
+# 用满足高斯分布的值作为卷积核的数
+# 离中心值越近的，它的权重越大，离中心值越远的，它的权重越小。
+# 1指卷积核数值高斯分布的标准差取1
+aussian = cv2.GaussianBlur(img,(5,5),1)
+
+# 中值滤波
+# 取当前像素点机周围像素点排序后拿中值替代中间元素值的大小
+median = cv2.medianBlur(img,5) # ksize为卷积核大小，必须为比1大的奇数
+
+```
+
+```python
+# 形态学处理
+
+# 图像腐蚀
+# 通常是拿二值图像做腐蚀操作，去掉一些小毛刺
+# 只要框里有黑色，中心点的值就变为黑色，即原来的白色被黑色腐蚀掉
+# kernel是卷积核，iteration是迭代次数
+kernel = np.ones((5,5),np.uint8)
+erosion = cv.erode(img,kernel,iterations=1)
+
+# 图像膨胀
+# 图像腐蚀的逆操作
+# 先腐蚀 后膨胀，简单修复腐蚀造成的损害
+kernel = np.ones((5,5),np.uint8)
+erosion = cv.dilate(img,kernel,iterations=1)
+
+# 开运算：先腐蚀再膨胀
+kernel = np.ones((5,5),np.uint8)
+opening = cv.morphologyEx(img,cv.MORPH_OPEN,kernel)
+
+# 闭运算：先膨胀后腐蚀
+kernel = np.ones((5,5),np.unit8)
+closing = cv.morphologyEx(img,cv.MORPH_CLOSE,kernel)
+
+# 梯度运算：膨胀-腐蚀
+# 获取图像的边界信息
+kernel = np.ones((5,5),np.unit8)
+gradient = cv.morphologyEx(img,cv.MORPH_GRADIENT,kernel)
+
+# 礼帽：原始输入-开运算结果
+# 获取毛刺部分
+kernel = np.ones((5,5),np.unit8)
+tophat = cv.morphologyEx(img,cv.MORPH_TOPHAT,kernel)
+
+# 黑帽：闭运算-原始输入
+# 获取图像轮廓
+kernel = np.ones((5,5),np.unit8)
+blackhat = cv.morphologyEx(img,cv.MORPH_BLACKHAT,kernel)
+```
+
+```python
+# Sobel算子
+cv2.Sobel(src, ddepth, dx, dy, ksize)
+# 返回Sobel算子处理后的图像
+# ddepth：图像的深度
+# dx 和 dy 分别表示水平和竖直方向
+# ksize 是 Sobel 算子的大小
+
+sobelx = cv.Sobel(img,cv.CV_64F,1,0,ksize=3) 
+# 1,0 表示只算水平方向梯度
+# 用cv.CV_64F表示图像深度为1的同时，将图像转为浮点数，避免返回值将负数截断为0
+# 白到黑是正数，黑到白是负数了，所有的负数不作处理会被截断成 0，所以要取绝对值
+sobelx = cv.convertScaleAbs(sobelx) 
+
+# 不建议一起计算dx、dy,容易出现重影
+sobelxy = cv2.Sobel(pie,cv2.CV_64F,1,1,ksize=3)
+sobelxy = cv2.convertScaleAbs(sobelxy)
+
+# 可以分别计算dx和dy后，再求和
+sobelxy = cv2.addWeighted(sobelx,0.5,sobely,0.5,0)
+
+# Scharr算子
+cv.Scharr(src, ddepth, dx, dy, ksize)
+# 加大了边缘的权重，对纹理的识别更敏感一些
+# 整体使用和Sobel算子差不多，没有ksize这个参数
+
+# Laplacian算子
+cv.Laplacian(img,ddepth)
+# 直接与邻近值比较，没有dx，dy的选项
+# 对噪音点更敏感，与其他方法配合使用
+# 如果中心点是边界，它与周围像素点差异的幅度会较大，Laplacian算子根据此特点可以把边界识别出来
+```
+
+![尺寸为3的Sobel算子](http://imagebed.krins.cloud/api/image/ND4XBDR8.png)
+
+![Scharr算子](http://imagebed.krins.cloud/api/image/2PTTP0T2.png)
+
+![Laplacian算子](http://imagebed.krins.cloud/api/image/TN8X4ZH2.png)
+
+![三种算子边缘识别效果对比](http://imagebed.krins.cloud/api/image/HPXZ0BD0.png)
+
+```python
+# canny边缘检测
+cv.Canny(img,minVal,maxVal)
+# 阈值整体设的小，检测出的边缘更细致
+# 阈值整体设的大，检测出的边缘更干净
+```
+
+
 
 ### 参考资料
 
