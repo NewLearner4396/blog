@@ -267,26 +267,53 @@ categories:
 
    有些线条纹理也可以被当作边缘，但轮廓是一系列可作为整体的边缘
 
-   1. cv.findContours(img,mode,method)
+   cv.findContours(img,mode,method)
 
-      为了更高的准确率，图像一般选择二值图像
+   为了更高的准确率，图像一般选择二值图像
 
-      mode：轮廓检索模式
+   mode：轮廓检索模式
 
-      - RETR_EXTERNAL ：只检索最外面的轮廓。
-      - RETR_LIST：检索所有的轮廓，并将其保存到一条链表当中。
-      - RETR_CCOMP：检索所有的轮廓，并将他们组织为两层：顶层是各部分的外部边界，第二层是空洞的边界。
-      - RETR_TREE：检索所有的轮廓，并重构嵌套轮廓的整个层次。( 最常用 )
+   - RETR_EXTERNAL ：只检索最外面的轮廓。
+   - RETR_LIST：检索所有的轮廓，并将其保存到一条链表当中。
+   - RETR_CCOMP：检索所有的轮廓，并将他们组织为两层：顶层是各部分的外部边界，第二层是空洞的边界。
+   - RETR_TREE：检索所有的轮廓，并重构嵌套轮廓的整个层次。( 最常用 )
 
-      method：轮廓逼近方法
+   method：轮廓逼近方法
 
-      - CHAIN_APPROX_NONE：以Freeman链码的方式输出轮廓，如下图左所示。所有其他方法输出多边形 ( 顶点的序列 )，如下图右所示。
+   - CHAIN_APPROX_NONE：以Freeman链码的方式输出轮廓，如下图左所示。所有其他方法输出多边形 ( 顶点的序列 )，如下图右所示。
 
-      - CHAIN_APPROX_SIMPLE：压缩水平的、垂直的和斜的部分，也就是，函数只保留他们的终点部分，如下图右所示。
+   - CHAIN_APPROX_SIMPLE：压缩水平的、垂直的和斜的部分，也就是，函数只保留他们的终点部分，如下图右所示。
 
-        ![不同轮廓逼近方法](http://imagebed.krins.cloud/api/image/408220ZR.png)
+     ![不同轮廓逼近方法](http://imagebed.krins.cloud/api/image/408220ZR.png)
 
-        
+10. 模板匹配
+
+       - 计算A图每个区域与B图(模板)的相关性
+
+       - 模板在原图像上从原点开始滑动，计算模板与（图像被模板覆盖的地方）的差别程度(例如值127与值190的区别)，这个差别程度的计算方法在opencv里有6种，然后将每次计算的结果放入一个矩阵里，作为结果输出。
+
+       - 假如原图形是AxB大小，而模板是axb大小，则输出结果的矩阵是(A-a+1)x(B-b+1)
+
+         dct = cv.matchTemplate(img,template,methods)
+
+         模板匹配计算方式6种方式 ( 用归一化后的方式更好一些 )：
+
+         - TM_SQDIFF：计算平方不同，计算出来的值越小，越相关。
+
+         - TM_CCORR：计算相关性，计算出来的值越大，越相关。
+
+         - TM_CCOEFF：计算相关系数，计算出来的值越大，越相关。
+
+         - TM_SQDIFF_NORMED：计算归一化平方不同，计算出来的值越接近0，越相关。
+
+         - TM_CCORR_NORMED：计算归一化相关性，计算出来的值越接近1，越相关。
+
+         - TM_CCOEFF_NORMED：计算归一化相关系数，计算出来的值越接近1，越相关。
+
+           各方式计算公式链接：<https://docs.opencv.org/3.3.1/df/dfb/group__imgproc__object.html#ga3a7850640f1fe1f58fe91a2d7583695d>
+
+
+
 
 ### 参考资料
 

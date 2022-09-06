@@ -219,13 +219,13 @@ cv.Laplacian(img,ddepth)
 # 如果中心点是边界，它与周围像素点差异的幅度会较大，Laplacian算子根据此特点可以把边界识别出来
 ```
 
-![尺寸为3的Sobel算子](http://imagebed.krins.cloud/api/image/ND4XBDR8.png)
+![尺寸为3的Sobel算子](http://imagebed.krins.cloud/api/image/ND4XBDR8.png#pic_center)
 
 ![Scharr算子](http://imagebed.krins.cloud/api/image/2PTTP0T2.png)
 
-![Laplacian算子](http://imagebed.krins.cloud/api/image/TN8X4ZH2.png)
+![Laplacian算子](http://imagebed.krins.cloud/api/image/TN8X4ZH2.png#pic_center)
 
-![三种算子边缘识别效果对比](http://imagebed.krins.cloud/api/image/HPXZ0BD0.png)
+![三种算子边缘识别效果对比](http://imagebed.krins.cloud/api/image/HPXZ0BD0.png#pic_center)
 
 ```python
 # canny边缘检测
@@ -303,11 +303,166 @@ redius = int(redius)
 img = cv.circle(draw_img,center,redius,(0,255,0),2)# 绘制圆
 ```
 
-![轮廓近似示意](http://imagebed.krins.cloud/api/image/N20LLPJ8.png)
+![轮廓近似示意](http://imagebed.krins.cloud/api/image/N20LLPJ8.png#pic_center)
 
-![轮廓近似阈值示意](http://imagebed.krins.cloud/api/image/0RRB0V6X.png)
+![轮廓近似阈值示意](http://imagebed.krins.cloud/api/image/0RRB0V6X.png#pic_center)
+
+```python
+# 模板匹配
+dct = cv.matchTemplate(img,template,methods)
+# 计算A图每个区域与B图(模板)的相关性
+# 模板在原图像上从原点开始滑动，计算模板与（图像被模板覆盖的地方）的差别程度(例如值127与值190的区别)，这个差别程度的计算方法在opencv里有6种，然后将每次计算的结果放入一个矩阵里，作为结果输出。
+# 假如原图形是AxB大小，而模板是axb大小，则输出结果的矩阵是(A-a+1)x(B-b+1)。
+
+# 模板匹配计算方式6种方式 ( 用归一化后的方式更好一些 )：
+
+# TM_SQDIFF：计算平方不同，计算出来的值越小，越相关。
+# TM_CCORR：计算相关性，计算出来的值越大，越相关。
+# TM_CCOEFF：计算相关系数，计算出来的值越大，越相关。
+# TM_SQDIFF_NORMED：计算归一化平方不同，计算出来的值越接近0，越相关。
+# TM_CCORR_NORMED：计算归一化相关性，计算出来的值越接近1，越相关。
+# TM_CCOEFF_NORMED：计算归一化相关系数，计算出来的值越接近1，越相关。
+# 具体公式链接：https://docs.opencv.org/3.3.1/df/dfb/group__imgproc__object.html#ga3a7850640f1fe1f58fe91a2d7583695d
+
+min_val, max_val, min_loc, max_loc = cv.minMaxLoc(img)
+# 寻找图像最大最小值及其坐标
+
+h, w = template.shape[:2] # 获得模板的宽和高
+methods = ['cv.TM_CCOEFF','cv.TM_CCOEFF_NORMED','cv.TM_CCORR',      'cv.TM_CCORR_NORMED','cv.TM_SQDIFF','cv.TM_SQDIFF_NORMED']
+#匹配单个对象
+for meth in methods:
+    img2 = img.copy()
+    # 匹配方法的真值
+    method = eval(meth) # 提取字符串中的内容，不能用字符串的形式
+    print(method)
+    res = cv.matchTemplate(img,template,method)
+    min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
+    
+    # 如果是平方差匹配 TM_SQDIFF 或归一化平方差匹配 TM_SQDIFF_NORMED,取最小值
+    if method in [cv.TM_SQDIFF,cv.TM_SQDIFF_NORMED]:
+        top_left = min_loc
+    else:
+        top_left = max_loc
+    bottom_right = (top_left[0]+w,top_left[1]+h)
+    
+    # 画矩形
+    cv2.rectangle(img2,top_left,bottom_right,(0,0,255),2)
+    
+    plt.subplot(121), plt.imshow(res, cmap='gray')
+    plt.xticks([]), plt.yticks([]) # 隐藏坐标轴
+    plt.subplot(122),plt.imshow(img2,cmap='gray')
+    plt.xticks([]),plt.yticks([])
+    plt.suptitle(meth)
+    plt.show()
+    
+# 匹配多个对象
+res = cv.matchTemplate(img_gray, template, cv.TM_CCOEFF_NORMED) # res 是返回每一个小块窗口得到的结果值,选用相关系数方式进行匹配
+threshold = 0.8 #设置匹配度阈值为0.8，大于0.8的认为匹配成功
+# 取匹配程度大于 80% 的坐标
+loc = np.where(res >= threshold) # np.where 使得返回 res 矩阵中值大于 0.8 的索引，即坐标
+img_rgb = img.copy()
+i = 0
+# zip函数为打包为元组的列表，例 a = [1,2,3] b = [4,5,6] zip(a,b) 为 [(1, 4), (2, 5), (3, 6)]    
+for pt in zip(*loc[::-1]): # 当用 *b 作为传入参数时, b 可以为列表、元组、集合，zip使得元组中两个 numpy.array 进行配对   
+    bottom_right = (pt[0] + w, pt[1] + h)
+    cv.rectangle(img_rgb, pt, bottom_right, (0,0,255),2)
+    i = i + 1
+
+cv.imshow('img_rgb',img_rgb)
+cv.waitKey(0)
+```
 
 
+
+![各方法单个对象匹配效果](http://imagebed.krins.cloud/api/image/608N0B20.png)
+
+![匹配多个对象效果](http://imagebed.krins.cloud/api/image/8DLN6080.png)
+
+``` python
+# 图像直方图
+cv.calcHist(img,channels,mask,histSize,ranges)
+# images：原图像的图像格式为 uint8 或 ﬂoat32。当传入函数时应该用中括号 [] 括来传入，例如[img]
+# channels：同样用中括号来传入，它会告诉函数统幅的哪幅灰度图的直方图。如果传入的图像是灰度图它的值就是 [0]，如果是彩色图像，那么传入的参数可以是 [0]、[1]、[2]，它们分别对应着 B、G、R 通道，每个通道的图像都是灰度图。
+# mask：掩模图像。统计整幅图像的直方图时就把它设为 None。但是如果你想统计图像的某一部分区域的直方图的，你就制作一个掩模图像并使用它。
+# histSize：BIN 的数目。也应用中括号括起来。
+# ranges: 统计的像素值范围，常为 [0-256]。
+
+# 对于灰度图可以直接用pyplot的hist函数
+img = cv.imread('PATH',0) # 0 表示灰度图
+plt.hist(img.ravel(),bins=256) # img.ravel()将 img 拉成一维数组
+plt.show()
+
+# 查看彩色图像各通道的直方图
+img = cv.imread('PATH')
+color = ['b','g','r']
+for i,col in enumerate(color):
+    # enumerate() 函数用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标，一般用在 for 循环当中。
+    histr = cv.calcHist([img],[i],None,[256],[0,256])
+    plt.plot(histr,color=col)
+    plt.xlim([0,256])
+    
+# 创建掩膜
+mask = np.zeros(img.shape[:2],np.uint8)
+mask[100:300,100:400] = 255
+# 掩膜与原图进行与操作
+masked_img = cv.bitwise_and(img,img,mask = mask)
+hist_mask = cv.calcHist([img],mask,[256],[0,256])
+
+# 直方图均衡化
+# 直方图均衡化：一般可以用来提升图片的色彩和亮度
+# 直方图均衡前是一个瘦高的统计图，直方图均衡后是一个矮胖的统计图
+equ = cv.equalizeHist(img)
+
+# 自适应直方图均衡化
+# 可能由于直方图均衡导致丢失一些细节。所以可能切分成几个小块，局部做直方图均衡化，会比较好。
+# 切分成几个小块之后，可能会导致一个现象，每个格子都会产生一个边界，opencv是对每个格子的边界进行线性插值处理。
+cv.createCLAHE(clipLimit,tileGridSize)
+# clipLimit 颜色对比度的阈值。
+# titleGridSize 进行像素均衡化的网格大小，即在多少网格下进行直方图的均衡化操作。
+clahe = cv.createCLAHE(clipLimit=2.0,tileGridSize=(8,8))# 生成自适应均衡化方法
+img_clahe = clahe.apply(img)# 将方法应用到图像
+# 该函数一次只能处理一个通道，要处理彩色图像需先拆开分别处理再合并
+```
+
+![灰度图的直方图](http://imagebed.krins.cloud/api/image/BF0D02TD.png)
+
+![彩色图的直方图](http://imagebed.krins.cloud/api/image/644XLJD2.png)
+
+![直方图均衡化](http://imagebed.krins.cloud/api/image/NTD6B0X8.png)
+
+```python
+# 图像傅里叶变换
+
+# 频谱图上的点和原图像上的点并不是一一对应的关系，频谱图上的每个点都代表了原图像的全局信息，频谱图上的点反映的是原图像中具有该灰度变化快慢规律的图像区域(可能不止一个)及其灰度峰值（亮暗）信息。
+
+# 高频：变化剧烈的分量，增强高频使细节更明显
+# 低频：变化缓慢的分量，增强低频使边界模糊
+
+# opencv 中主要就是 cv2.dft() 执行傅里叶变换到频域中 和 cv2.idft() 执行逆傅里叶变换，输入图像需要先转换成 np.float32 格式。
+# 得到的结果中频率为 0 的部分会在左上角，通常要转换到中心位置，可以通过 shift 变换来实现。
+# cv2.dft() 返回的结果是双通道的 ( 实部，虚部 )，通常还需要转换成图像格式才能展示(0,255)像素值。
+
+img_float = np.float32(img)
+dft = cv.dft(img_float, flags = cv.DFT_COMPLEX_OUTPUT)# 输出两个通道，分别为实部和虚部
+dft_shift = np.fft.fftshift(dft)
+magnitude_spectrum = 20 * np.log(cv.magnitude(dft_shift[:,:,0],dft_shift[:,:,1]))#cv.magnitude用来计算二维矢量的幅值，相当于求模，取20倍log进行缩小
+
+rows,cols = img.shape
+crow,ccol = int(rows/2),int(cols/2) # 获得图像中心位置方便制作滤波器
+
+# 高通滤波
+mask = np.ones((rows,cols,2),np.uint8)
+mask[crow-30:crow+30,ccol-30:ccol+30] = 0 #低频部分置0，去除掉
+
+# IDFT 
+# 滤波后将频谱移回原来的位置后逆傅里叶变换，得到的还是实部和虚部，再次求模
+hp_shift = dft_shift * mask
+hp_ishift = np.fft.ifftshift(hp_shift)
+img_back = cv.idft(hp_ishift)
+img_back = cv.magnitude(img_back[:,:,0],[:,:,1])
+```
+
+![高通滤波](http://imagebed.krins.cloud/api/image/JPH2468F.png#pic_center)
 
 ### 参考资料
 
