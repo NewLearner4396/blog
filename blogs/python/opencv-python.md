@@ -8,10 +8,16 @@ categories:
 ---
 ## openCV-python库的使用
 
+#### 库的导入
+
 ```python
 # 库的导入
 import cv2 as cv
+import numpy as np
+import matplotlib.pyplot as plt
 ```
+
+#### 数据类型宏定义
 
 ```python
 # 数据类型宏定义
@@ -30,15 +36,21 @@ CV_64F - 64位浮点数（-DBL_MAX…DBL_MAX，INF，NAN）
 参考：<https://blog.csdn.net/ai_faker/article/details/118183702>
 ```
 
+#### 图片读取
+
 ```python
 # 读取图片，以BGR格式存储
 cv.imread(path，[0/cv.IMREAD_GRAYSCALE]) # 为0则读取为灰度图
 ```
 
+#### 图片保存
+
 ```python
 # 写入图片
 cv.imwrite(path,obj)
 ```
+
+#### 图片显示
 
 ```python
 # 显示图片
@@ -46,6 +58,8 @@ cv.imshow('windowsname',obj)
 cv.waitKey(0) #等待按键响应，为0则一直等待,否则该窗口会很快关掉
 cv.destroyAllWindows()/cv.destroyWindow('windowsname') # 关闭图像窗口
 ```
+
+#### 视频读取
 
 ```python
 # 读取视频
@@ -74,6 +88,8 @@ vedio.release() # 释放vedio的内存
 cv.destroyAllWindows()# 关闭所有窗口
 ```
 
+#### 图片边界填充
+
 ```python
 #边界填充
 
@@ -96,11 +112,15 @@ constant = cv.copyMakeBorder(img,top_size,bottom_size,left_size,right_size,cv.BO
 
 ![各填充法对比](http://imagebed.krins.cloud/api/image/D0T2B28R.png#pic_center)
 
+#### 修改图片大小
+
 ```python
 # 修改图片大小
 cv.resize(img,(n,m)) # 注意先输入列数再输入行数
 cv.resize(img,(0,0),fx=alpha,fy=beta) # 横向拉伸alpha倍，纵向拉伸beta倍
 ```
+
+#### 图像二值化
 
 ```python
 # 设置图像阈值
@@ -120,6 +140,8 @@ cv.resize(img,(0,0),fx=alpha,fy=beta) # 横向拉伸alpha倍，纵向拉伸beta�
 ```
 
 ![image-20220904095126260](http://imagebed.krins.cloud/api/image/8HNP8ND8.png#pic_center)
+
+#### 图像滤波
 
 ```python
 # 图像滤波
@@ -143,8 +165,9 @@ aussian = cv2.GaussianBlur(img,(5,5),1)
 # 中值滤波
 # 取当前像素点机周围像素点排序后拿中值替代中间元素值的大小
 median = cv2.medianBlur(img,5) # ksize为卷积核大小，必须为比1大的奇数
-
 ```
+
+#### 形态学处理
 
 ```python
 # 形态学处理
@@ -186,6 +209,8 @@ kernel = np.ones((5,5),np.unit8)
 blackhat = cv.morphologyEx(img,cv.MORPH_BLACKHAT,kernel)
 ```
 
+#### 图像梯度
+
 ```python
 # Sobel算子
 cv2.Sobel(src, ddepth, dx, dy, ksize)
@@ -219,13 +244,23 @@ cv.Laplacian(img,ddepth)
 # 如果中心点是边界，它与周围像素点差异的幅度会较大，Laplacian算子根据此特点可以把边界识别出来
 ```
 
+Sobel算子
+
 ![尺寸为3的Sobel算子](http://imagebed.krins.cloud/api/image/ND4XBDR8.png#pic_center)
+
+Scharr算子
 
 ![Scharr算子](http://imagebed.krins.cloud/api/image/2PTTP0T2.png)
 
+Laplacian算子
+
 ![Laplacian算子](http://imagebed.krins.cloud/api/image/TN8X4ZH2.png#pic_center)
 
+各算子效果对比
+
 ![三种算子边缘识别效果对比](http://imagebed.krins.cloud/api/image/HPXZ0BD0.png#pic_center)
+
+#### canny边缘检测
 
 ```python
 # canny边缘检测
@@ -233,6 +268,8 @@ cv.Canny(img,minVal,maxVal)
 # 阈值整体设的小，检测出的边缘更细致
 # 阈值整体设的大，检测出的边缘更干净
 ```
+
+#### 图像重采样
 
 ```python
 # 上采样
@@ -245,6 +282,8 @@ cv.pyrUp(img, dstsize=None, borderType=None)
 # 操作一次一个 MxN 的图像就变成了一个 M/2xN/2 的图像
 cv.pyrDown(img, dstsize=None, borderType=None)
 ```
+
+#### 轮廓检测
 
 ```python
 # 轮廓检测
@@ -266,8 +305,7 @@ gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 ret, thresh = cv.threshold(gray, 127, 255, cv.THRESH_BINARY)
 
 # 检测轮廓
-binary, contours, hierarchy = cv.findContours(thresh,cv.RETR_TREE, cv.CHAIN_APPOX_NONE)
-# binary返回原图像
+contours, hierarchy = cv.findContours(thresh,cv.RETR_TREE, cv.CHAIN_APPOX_NONE)
 # contours返回轮廓点信息
 # hierarchy返回轮廓层级结构
 
@@ -303,9 +341,15 @@ redius = int(redius)
 img = cv.circle(draw_img,center,redius,(0,255,0),2)# 绘制圆
 ```
 
+轮廓是否近似对比
+
 ![轮廓近似示意](http://imagebed.krins.cloud/api/image/N20LLPJ8.png#pic_center)
 
+轮廓近似示意图
+
 ![轮廓近似阈值示意](http://imagebed.krins.cloud/api/image/0RRB0V6X.png#pic_center)
+
+#### 图像匹配
 
 ```python
 # 模板匹配
@@ -372,11 +416,15 @@ cv.imshow('img_rgb',img_rgb)
 cv.waitKey(0)
 ```
 
-
+各匹配方法对比
 
 ![各方法单个对象匹配效果](http://imagebed.krins.cloud/api/image/608N0B20.png)
 
+单图匹配多个模板效果
+
 ![匹配多个对象效果](http://imagebed.krins.cloud/api/image/8DLN6080.png)
+
+#### 图像直方图
 
 ``` python
 # 图像直方图
@@ -430,6 +478,8 @@ img_clahe = clahe.apply(img)# 将方法应用到图像
 
 ![直方图均衡化](http://imagebed.krins.cloud/api/image/NTD6B0X8.png)
 
+#### 图像傅里叶变换
+
 ```python
 # 图像傅里叶变换
 
@@ -445,7 +495,8 @@ img_clahe = clahe.apply(img)# 将方法应用到图像
 img_float = np.float32(img)
 dft = cv.dft(img_float, flags = cv.DFT_COMPLEX_OUTPUT)# 输出两个通道，分别为实部和虚部
 dft_shift = np.fft.fftshift(dft)
-magnitude_spectrum = 20 * np.log(cv.magnitude(dft_shift[:,:,0],dft_shift[:,:,1]))#cv.magnitude用来计算二维矢量的幅值，相当于求模，取20倍log进行缩小
+magnitude_spectrum = 20 * np.log(cv.magnitude(dft_shift[:,:,0],dft_shift[:,:,1]))
+#cv.magnitude用来计算二维矢量的幅值，相当于求模，取20倍log进行缩小
 
 rows,cols = img.shape
 crow,ccol = int(rows/2),int(cols/2) # 获得图像中心位置方便制作滤波器
@@ -460,9 +511,159 @@ hp_shift = dft_shift * mask
 hp_ishift = np.fft.ifftshift(hp_shift)
 img_back = cv.idft(hp_ishift)
 img_back = cv.magnitude(img_back[:,:,0],[:,:,1])
+
+# 高通滤波后也能获得轮廓信息
 ```
 
 ![高通滤波](http://imagebed.krins.cloud/api/image/JPH2468F.png#pic_center)
+
+#### 项目1：简单数字识别
+
+```python
+# 简单数字OCR
+# 需要提前准备好数字匹配的模板
+template = cv.imread('PATH',0)
+template_binary = cv.threshold(template,0,255,cv.THRESH_BINARY_INV)[1] # 将模板转为二值图像
+
+# 将模板中的数字抠出来
+refCnts,hierarchy = cv.findContours(template_binary.copy(),cv.RETR_EXTERNAL,cv.CHAIN_APPROX_SIMPLE) # 边缘检测，只检测外边缘，只保留边缘终点值
+boundingBoxes = [cv.boundingRect(c) for c in refCnts] 
+(refCnts,boundingBoxes) = zip(*sorted(zip(refCnts,boundingBoxes),key=lambda b:b[1][0]))
+# 将每个轮廓从左到右编上序号
+
+# 将数字与序号对应上
+dict_num={}
+for (i,c) in enumerate(boundingBoxes):
+    (x,y,w,h) = cv.boundingRect(c) # 获得各轮廓的起点以及宽高
+    roi = ref[y:y+h,x:x+w]
+    roi = cv.resize(roi,(58,88)) # 将图像调整到合适大小
+    dict_num[i] = roi
+
+# 设置卷积核
+rectKernel = cv.getStructuringElement(cv.MORPH_RECT,(9,3))
+sqKernel = cv.getStructuringElement(cv.MORPH_RECT,(5,5))
+# cv.getStructuringElement还可以生成椭圆形(cv.MORPH_ELLIPSE)或十字形(cv.MORPH_CROSS)的卷积核
+
+img = cv.imread('PATH',0) # 读取OCR图像
+
+tophat = cv.morphologyEx(img,cv.MORPH_TOPHAT,rectKernal)# 用礼帽操作突出图像更亮的区域
+#计算图像梯度并归一化进行边缘检测
+gradX = cv.Sobel(tophat,ddepth=cv.CV_32F,dx=1,dy=0,ksize=3)
+gradX = np.absolute(gradX)
+minVal,maxVal = np.min(gradX),np.max(gradX)
+gradX = 255 * ((gradX - minVal) / (maxVal - minVal))
+gradY = cv.Sobel(tophat,ddepth=cv.CV_32F,dx=0,dy=1,ksize=3)
+gradY = np.absolute(gradY)
+minVal,maxVal = np.min(gradY),np.max(gradY)
+gradY = 255 * ((gradY - minVal) / (maxVal - minVal))
+gradXY = cv.addWeighted(gradX,0.5,gradY,0.5,0)
+gradXY = np.uint8(gradXY)
+# 闭操作（先膨胀，再腐蚀），将要识别的数字区域连在一起
+img_close = cv.morphologyEx(gradXY,cv.MORPH_CLOSE,rectKernel)
+# THRESH_OTSU会自动寻找合适的阈值，适合双峰型图像，需把阈值参数设为0
+gradXY_thresh = cv.threshold(gradXY,0,255,cv.THRESH_OTSU)[1]
+# 再做一次闭操作把区域内的东西涂掉
+img_close = cv.morpholohyEx(gradXY_thresh,cv.MORPH_CLOSE,rectKernel)
+# 计算轮廓
+imgCnts,hierarchy = cv.findContours(img_close.copy(),cv.RETR_EXTERNAL,cv.CHAIN_APPROX_SIMPLE)
+
+cur_img = img.copy()
+cv.drawContours(cur_img,imgCnts,-1,(0,0,255),2)
+
+# 遍历轮廓，把无关轮廓清掉
+locs=[]
+for (i,c) in enumerate(imgCnts):
+    (x,y,w,h) = cv.boundingRect(c)
+    r = w / h
+    if r > 2.5 and r < 4:
+        if (w > 40 and w <55) and (h > 10 and h < 20)
+        	locs.append((x,y,w,h)) # 符合条件的留下
+locs = sorted(locs,key=lambda x:x[0]) # 将轮廓从左到右排序
+
+# 开始OCR
+output = []
+# 提取每个框
+for (i,(Gx,Gy,Gw,Gh)) in enumerate(locs):
+    groupOutput = []
+    detect = img[Gy-5：Gy+Gh+5,Gx-5:Gx+Gw+5] # 提取每组数据
+    detect = cv.threshold(detect,0,255,cv.THRESH_OTSU)[1]
+    detectCnts,hierarchy = cv.findContours(detect.copy(),cv.RETR_EXTERNAL,cv.CHAIN_APPROX_SIMPLE)
+    boundingBoxes_detect = [cv.boundingRect(c) for c in detectCnts]
+    (detectCnts,boundingBoxes_detect) = zip(*sorted(zip(detectCnts,boundingBoxes_detect),key = lambda x :x[1][0]))
+    # 匹配每个框内的数字
+    for c in detectCnts:
+        (x,y,w,h) = cv.boundingRect(c)
+        roi = detect[y:y+h,x:x+w]
+        roi = cv.resize(roi,(57,88))
+        # 将数字与模板一一匹配找到匹配度最高的
+        scores = []
+        for(num,num_ROI) in dict_num.item():
+            res = cv.matchTemplate(roi,num_ROI,cv.TM_CCOEFF_NORMED)
+            # scores[num] = max(res)
+            (_,score,_,_) = cv.minMaxLoc(res)
+            scores.append(score)
+        groupOutput.append[str(np.argmax(scores))]
+    
+    cv.rectangle(img,(Gx-5,Gy-5),(Gx+Gw+5,Gy+Gh+5),(0,0,255),2)
+    cv.putText(img,"".join(groupOutput),(Gx,Gy-15),cv.FONT_HERSHEY_SIMPLEX,0.65,(0,0,255),2)
+    # cv.putText(img,text,origin(leftBottomCorner),fontFace,fontScale,color,thickness[,lineType=None])
+    output.extend(groupOutput)#用extend将结果合并到output的末尾
+```
+
+读取模板图像
+
+![模板](http://imagebed.krins.cloud/api/image/6J22D28L.png)
+
+图像二值化
+
+![模板二值化方便轮廓检测](http://imagebed.krins.cloud/api/image/NB46404L.png)
+
+检测轮廓
+
+![模板外轮廓](http://imagebed.krins.cloud/api/image/2HL42BN0.png)
+
+读取识别图像
+
+![检测图像](http://imagebed.krins.cloud/api/image/VFTNL682.png)
+
+将灰度图用礼帽操作简单提亮一下数字
+
+![礼帽操作提亮](http://imagebed.krins.cloud/api/image/RDZ8T648.png)
+
+计算梯度（图片是只算了X梯度）
+
+![计算梯度检测边缘](http://imagebed.krins.cloud/api/image/40PPRLNF.png)
+
+闭操作将数字连在一起
+
+![闭操作使数字连在一起](http://imagebed.krins.cloud/api/image/DVDD6026.png)
+
+二值化后再次闭操作将区域内的黑点涂掉
+
+![二值化后再次闭操作把区域内东西涂掉](http://imagebed.krins.cloud/api/image/N08D222H.png)
+
+检测图像的轮廓
+
+![检测到的轮廓](http://imagebed.krins.cloud/api/image/LTB6B68D.png)
+
+剃掉不识别的区域后逐个识别
+
+![OCR结果](http://imagebed.krins.cloud/api/image/FVVX0BB4.png)
+
+#### 项目2：复杂OCR
+
+1. 图像预处理
+2. 边缘检测
+3. 轮廓检测
+4. 轮廓近似
+5. 透视变换
+6. OCR识别
+7. 展示结果
+
+```python
+```
+
+
 
 ### 参考资料
 
