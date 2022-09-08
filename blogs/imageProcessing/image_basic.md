@@ -347,6 +347,32 @@ categories:
 
     ![图像傅里叶变换](http://imagebed.krins.cloud/api/image/BJN8LR64.png)
 
+13. 图像透视变换
+
+
+    1. 获得变换矩阵
+
+       M = cv.getPerspectiveTransform(coordinate_origin, coordinate_new)
+
+       coordinate_origin：原图坐标
+
+       coordinate_new：新图坐标
+
+    2. 透视变换
+
+       img_new = cv.warpPerspective(src,M,dsize=(width,height),flags=INTER_LINEAR,borderMode=BORDER_CONSTANT,borderValue=None)
+
+       
+
+       透视前
+
+       ![透视前](http://imagebed.krins.cloud/api/image/B64V8H88.png)
+
+       透视后
+
+       ![透视后](http://imagebed.krins.cloud/api/image/2L8LZR28.png)
+
+
 ### 参考资料
 
 1. [【2022B站最好的OpenCV课程推荐】OpenCV从入门到实战 全套课程（附带课程课件资料+课件笔记）图像处理|深度学习人工智能计算机视觉python+AI](https://www.bilibili.com/video/BV1PV411774y?p=9&spm_id_from=pageDriver&vd_source=f7fc0a964268b45e70067d58c7c397fc)
