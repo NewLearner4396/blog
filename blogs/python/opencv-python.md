@@ -116,8 +116,14 @@ constant = cv.copyMakeBorder(img,top_size,bottom_size,left_size,right_size,cv.BO
 
 ```python
 # 修改图片大小
-cv.resize(img,(n,m)) # 注意先输入列数再输入行数
+cv.resize(img,(width,height),fx,fy,interpolation) # 注意先输入列数再输入行数
 cv.resize(img,(0,0),fx=alpha,fy=beta) # 横向拉伸alpha倍，纵向拉伸beta倍
+"interpolation":
+    "INTER_NEAREST":最近邻插值
+    "INTER_LINEAR":双线性插值（默认）
+    "INTER_AREA":使用像素区域关系重采样
+    "INTER_CUBIC":4*4邻域的双三次插值
+    "INTER_LANCZOS4":8*8邻域的Lanczos插值
 ```
 
 #### 图像二值化
@@ -153,7 +159,7 @@ blur = cv2.blur(img,(3,3)) # (3,3) 为核的大小，通常情况核都是奇数
 # 方框滤波
 # 选择归一化后基本和均值滤波一样。不归一化则卷积完不做平均，越界则强设为255，容易过曝
 # 在 Python 中 -1 表示自适应填充对应的值，这里的 -1 表示与颜色通道数自适应一样
-box = cv2.boxFilter(img,-1,(3,3),normalize=True)  
+box = cv2.boxFilter(img,-1,(3,3),normalize=True) 
 # 方框滤波如果做归一化，得到的结果和均值滤波一模一样
 
 # 高斯滤波
@@ -226,7 +232,7 @@ sobelx = cv.Sobel(img,cv.CV_64F,1,0,ksize=3)
 sobelx = cv.convertScaleAbs(sobelx) 
 
 # 不建议一起计算dx、dy,容易出现重影
-sobelxy = cv2.Sobel(pie,cv2.CV_64F,1,1,ksize=3)
+sobelxy = cv2.Sobel(img,cv2.CV_64F,1,1,ksize=3)
 sobelxy = cv2.convertScaleAbs(sobelxy)
 
 # 可以分别计算dx和dy后，再求和
@@ -517,6 +523,19 @@ img_back = cv.magnitude(img_back[:,:,0],[:,:,1])
 
 ![高通滤波](http://imagebed.krins.cloud/api/image/JPH2468F.png#pic_center)
 
+#### 图像透视变换
+
+```python
+M = cv.getPerspectiveTransform(coordinate_origin, coordinate_new)
+# 获得变换矩阵
+# coordinate_origin：原图坐标
+# coordinate_new：新图坐标
+img_new = cv.warpPerspective(src,M,dsize=(width,height),flags=INTER_LINEAR,borderMode=BORDER_CONSTANT,borderValue=None)
+# dsize为必要项，若设置的比转换后的图小，会从转换后的图左上角开始裁切
+```
+
+
+
 #### 项目1：简单数字识别
 
 ```python
@@ -661,6 +680,194 @@ for (i,(Gx,Gy,Gw,Gh)) in enumerate(locs):
 7. 展示结果
 
 ```python
+import cv2 as cv
+import numpy as np
+import matplotlib.pyplot as plt
+import pytesseract
+
+
+def plt_show(image):
+    if image.ndim == 2:
+        plt.imshow(image, cmap='gray')
+    else:
+        plt.imshow(cv.cvtColor(image, cv.COLOR_BGR2RGB))
+    plt.show()
+
+
+def cv_show(image):
+    cv.imshow("img", image)
+    cv.waitKey(0)
+    cv.destroyAllWindows()
+
+
+# 将页面四个点从左上顺时针排序
+# 每个坐标求和，最小为左上，最大为右下
+# 每个坐标求差，最小为右上，最大为左下
+def orderPoints(cnts):
+    rect = np.zeros((4, 2), np.float32)
+    s = (screenCnt.sum(axis=1)).sum(axis=1)
+    rect[0] = cnts[np.argmin(s)]
+    rect[2] = cnts[np.argmax(s)]
+    d = np.diff(cnts)
+    rect[1] = cnts[np.argmin(d)]
+    rect[3] = cnts[np.argmax(d)]
+    return rect
+
+
+# 透视变换函数
+def perspectiveTransform(img, cnts):
+    # 获取要变换的坐标
+    (tl, tr, br, bl) = cnts
+
+    # 计算输入的w和h
+    widthA = np.sqrt(((br[0] - bl[0]) ** 2) + ((br[1] - bl[1]) ** 2))
+    widthB = np.sqrt(((tr[0] - tl[0]) ** 2) + ((tr[1] - tl[1]) ** 2))
+    maxWidth = max(int(widthA), int(widthB))
+
+    heightA = np.sqrt(((tr[0] - br[0]) ** 2) + ((tr[1] - br[1]) ** 2))
+    heightB = np.sqrt(((tl[0] - bl[0]) ** 2) + ((tl[1] - bl[1]) ** 2))
+    maxHeight = max(int(heightA), int(heightB))
+
+    dst = np.array([
+        [0, 0],
+        [maxWidth - 1, 0],
+        [maxWidth - 1, maxHeight - 1],
+        [0, maxHeight - 1]
+    ], dtype='float32')
+
+    # 计算变换矩阵
+    M = cv.getPerspectiveTransform(cnts, dst)
+    warped = cv.warpPerspective(img, M, (maxWidth, maxHeight))
+
+    return warped
+
+
+img = cv.imread('./test.jpg')
+
+# 变形
+origin = img.copy()
+h, w = img.shape[0], img.shape[1]
+height = 500
+ratio = h / height
+img_re = cv.resize(origin, (int(w / ratio), height), interpolation=cv.INTER_AREA)  # 等比例放缩
+cv_show(img_re)
+
+# 计算梯度方便检测边缘
+img_gray = cv.cvtColor(img_re, cv.COLOR_BGR2GRAY)
+b, g, r = cv.split(img_re)
+img_gray = b  # 经过测试，灰度图纸张边缘梯度不明显，换成蓝色通道效果最好
+
+# 经过测试，在梯度不明显情况下，Scharr比Sobel捕捉边缘效果更好
+scharrX = cv.Scharr(img_gray, cv.CV_64F, 1, 0)
+scharrX = cv.convertScaleAbs(scharrX)
+scharrY = cv.Scharr(img_gray, cv.CV_64F, 0, 1)
+scharrY = cv.convertScaleAbs(scharrY)
+img_gray = cv.addWeighted(scharrX, 0.5, scharrY, 0.5, 0)
+cv_show(img_gray)
+
+# 滤波，将一些细碎的梯度滤掉，中值滤波比box效果好
+img_gray = cv.medianBlur(img_gray, 3)
+cv_show(img_gray)
+
+# 检测边缘
+img_edged = cv.Canny(img_gray, 150, 250)
+cv_show(img_edged)
+
+# 检测轮廓
+imgCnts, hierarchy = cv.findContours(img_edged, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_NONE)
+# 将轮廓按面积排序，方便定位要OCR的页面
+imgCnts = sorted(imgCnts, key=cv.contourArea, reverse=True)[:10]
+img_re_cp = img_re.copy()
+cv.drawContours(img_re_cp, imgCnts, -1, (0, 0, 255), 2)
+cv_show(img_re_cp)
+
+# 将轮廓近似，能近似成四点的即为要定位的页面
+for (i, c) in enumerate(imgCnts):
+    # area = cv.contourArea(c)
+    # print(i,area)
+    peri = cv.arcLength(c, False)
+    # print(i,peri)
+    approx = cv.approxPolyDP(c, 0.02 * peri, True)
+    if len(approx) == 4:
+        screenCnt = approx
+        break
+    else:
+        screenCnt = imgCnts[0]
+# print("screenCnt:",screenCnt,"\r\n","shape:",screenCnt.shape)
+
+# 绘制找到的轮廓
+# 之前找轮廓只保留了边角点，用[]括起来可以使轮廓按顺序连接
+cv.drawContours(img_re, [screenCnt], -1, (0, 0, 255), 2)
+cv_show(img_re)
+
+# 透视变换
+screenCnt = orderPoints(screenCnt)
+warped = perspectiveTransform(origin, screenCnt * ratio)
+plt_show(warped)
+
+# # 二值处理
+warped = cv.cvtColor(warped, cv.COLOR_BGR2GRAY)
+warped = cv.threshold(warped, 100, 255, cv.THRESH_BINARY)[1]
+
+# OCR识别
+text = pytesseract.image_to_string(warped)
+print(text)
+
+```
+
+放缩后图像
+
+![放缩后图像](http://imagebed.krins.cloud/api/image/N8FHDZ28.png)
+
+Scharr算子计算梯度
+
+![计算梯度](http://imagebed.krins.cloud/api/image/8600XZ00.png)
+
+检测边缘
+
+![检测边缘](http://imagebed.krins.cloud/api/image/L8TXT48Z.png)
+
+![绘制面积前10大的轮廓](http://imagebed.krins.cloud/api/image/JX4BZ62Z.png)
+
+检测要识别的区域
+
+![要识别的区域](http://imagebed.krins.cloud/api/image/0XXDJPPV.png)
+
+透视变换效果
+
+![透视变换](http://imagebed.krins.cloud/api/image/JJJ60F02.png)
+
+文字识别效果部分展示
+
+```text
+1-7281-6212-6/20/$3 1.06 ©2020 [EFF | DOF 10.1199/1ROS45743 2020.9341117
+2020 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) | 978
+2020 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)
+October 25-29, 2020, Las Vegas, NV, USA (Virtual)
+An Approach to Reduce Communication for Multi-agent Mapping
+Applications
+Michael E. Kepler! and Daniel J. Stilwell?
+Abstract— In the context of a multi-agent system that uses a
+Gaussian process to estimate a spatial field of interest, we pro-
+pose an approach that enables an agent to reduce the amount of
+data it shares with other agents. The main idea of the strategy
+is to rigorously assign a novelty metric to each measurement
+as it is collected, and only measurements that are sufficiently
+novel are communicated. We consider the ideal scenario where
+an agent can instantly share novel measurements, and we also
+consider the more practical scenario in which communication
+suffers from low bandwidth and is range-limited. For this
+scenario, an agent can only broadcast an informative subset
+of the novel measurements when the agent encounters other
+agents. We explore three different informative criteria for
+subset selection, namely entropy, mutual information, and a new
+criterion that reflects the value of a measurement. We apply
+our approach to three real-world datasets relevant to robotic
+mapping. The empirical findings show that an agent can reduce
+the amount of communicated measurements by two orders of
+magnitude and that the new criterion for subset selection yields
+superior predictive performance relative to entropy and mutual
+information.
 ```
 
 

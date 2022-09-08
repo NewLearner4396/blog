@@ -313,7 +313,39 @@ categories:
            各方式计算公式链接：<https://docs.opencv.org/3.3.1/df/dfb/group__imgproc__object.html#ga3a7850640f1fe1f58fe91a2d7583695d>
 
 
+11. 图像直方图
 
+    直方图可以看各种亮度的点有多少
+
+    cv.calcHist([img],[channels],[mask],[histSize],[ranges])
+
+    输入参数都用中括号括起来
+
+    histr = cv.calcHist([img],[i],None,[256],[0,256]) 该函数常用用法
+
+    ![灰度图的直方图](http://imagebed.krins.cloud/api/image/R6228NH2.png)
+
+12. 图像傅里叶变换
+
+    频谱图上的点和原图像上的点并不是一一对应的关系，频谱图上的每个点都代表了原图像的全局信息，频谱图上的点反映的是原图像中具有该灰度变化快慢规律的图像区域(可能不止一个)及其灰度峰值（亮暗）信息。
+
+    高频：变化剧烈的分量，增强高频使细节更明显
+
+    低频：变化缓慢的分量，增强低频使边界模糊
+
+    cv2.dft() 执行傅里叶变换到频域中  
+
+    cv2.idft() 执行逆傅里叶变换
+
+    输入图像需要先转换成 np.float32 格式
+
+    得到的结果中频率为 0 的部分会在左上角，通常要转换到中心位置，可以通过 np.fft.shift 变换来实现
+
+    返回的结果是双通道的 ( 实部，虚部 )，通常还需要用20 * np.log(cv.magnitude(dft_shift[:,:,0],dft_shift[:,:,1]))转换成图像格式才能展示(0,255)像素值
+
+    
+
+    ![图像傅里叶变换](http://imagebed.krins.cloud/api/image/BJN8LR64.png)
 
 ### 参考资料
 
