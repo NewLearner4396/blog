@@ -349,29 +349,69 @@ categories:
 
 13. 图像透视变换
 
-
     1. 获得变换矩阵
 
        M = cv.getPerspectiveTransform(coordinate_origin, coordinate_new)
-
        coordinate_origin：原图坐标
-
        coordinate_new：新图坐标
 
     2. 透视变换
 
        img_new = cv.warpPerspective(src,M,dsize=(width,height),flags=INTER_LINEAR,borderMode=BORDER_CONSTANT,borderValue=None)
 
-       
-
        透视前
-
        ![透视前](http://imagebed.krins.cloud/api/image/B64V8H88.png)
 
        透视后
-
        ![透视后](http://imagebed.krins.cloud/api/image/2L8LZR28.png)
 
+14. 角点检测
+
+    - x,y方向都有大梯度变化的是角点
+
+    - x或y方向有大梯度变化的是边界
+
+    - 否则是平面
+
+      计算图像平移（dx，dy）后的相似性：$c(x,y;{\Delta}x,{\Delta}y)={\sum\limits_{(u,v) \in W(x,y)}}w(u,v)(I(u,v)-I(u+\Delta x,v+\Delta y))^2$
+
+      ![w](http://imagebed.krins.cloud/api/image/8822H4TF.png)
+
+      基于泰勒展开对$I(u+\Delta x,v+\Delta y)$进行一阶近似：
+      $$
+      I(u+\Delta x,v+\Delta y)=I(u,v)+I_x(u,v)\Delta x+I_y(u,v)\Delta y+O(\Delta x^2,\Delta y^2)\approx I(u,v)+I_x(u,v)\Delta x+I_y(u,v)\Delta y \nonumber
+      $$
+      其中，$I_x$、$I_y$是$I(x,y)$的偏导数
+
+      于是$c(x,y;\Delta x,\Delta y)$可近似为：
+      $$
+      \sum\limits_w(I_x(u,v) \Delta x + I_y(u,v) \Delta y)^2 = \begin{bmatrix}\Delta x , \Delta y \end{bmatrix} M(x,y) \begin{bmatrix}\Delta x \\ \Delta y \end{bmatrix}\nonumber
+      $$
+      其中$M(x,y)$为:
+      $$
+      M(x,y)=\begin{bmatrix}{\sum\limits_w I_x(x,y)^2} \quad {\sum\limits_w I_x(x,y)I_y(x,y)} \\ {\sum\limits_w I_x(x,y)I_y(x,y)} \quad {\sum\limits_w I_y(x,y)^2}\end{bmatrix} = \begin{bmatrix}A \quad C \\ C  \quad B\end{bmatrix}
+      $$
+      计算$M(x,y)$的特征值$\lambda_1,\lambda_2$,并且计算R值($R=\lambda_1\lambda_2-k(\lambda_1+\lambda_2)^2$)判断是否为角点：
+
+      - R>0 ——> 角点
+
+      - R≈0 ——> 平面
+
+      - R<0 ——> 边界
+
+        ![特征值的含义](http://imagebed.krins.cloud/api/image/T2J4282R.png)
+
+    	函数：cv.cornerHarris(img,blockSize,ksize,k)
+
+        - img：数据类型为 ﬂoat32 的入图像。
+      - blockSize：角点检测中指定区域的大小。
+      - ksize：Sobel求导中使用的窗口大小。常用 3。
+      - k：取值参数为 [0.04,0.06]。常用 0.04。
+      
+
+15. SIFT尺度不变特征转换
+
+    
 
 ### 参考资料
 

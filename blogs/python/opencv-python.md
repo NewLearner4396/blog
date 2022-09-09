@@ -827,6 +827,8 @@ Scharr算子计算梯度
 
 ![检测边缘](http://imagebed.krins.cloud/api/image/L8TXT48Z.png)
 
+绘制较大轮廓
+
 ![绘制面积前10大的轮廓](http://imagebed.krins.cloud/api/image/JX4BZ62Z.png)
 
 检测要识别的区域
@@ -870,7 +872,26 @@ superior predictive performance relative to entropy and mutual
 information.
 ```
 
+#### Harris角点检测
 
+```python
+# x,y方向都有大梯度变化的是角点
+# x或y方向有大梯度变化的是边界
+# 否则是平面
+
+dst = cv.cornerHarris(img,blockSize,ksize,k)
+# img：数据类型为 ﬂoat32 的入图像。
+# blockSize：角点检测中指定区域的大小。
+# ksize：Sobel求导中使用的窗口大小。常用 3。
+# k：计算R值时的系数，取值参数为 [0.04,0.06]。常用 0.04。
+
+# dst大于最大值的1%即可判断为角点
+# 绘制角点
+img[dst>0.01*dst.max()] = [0, 0, 255]
+show(img)
+```
+
+#### 图像特征点检测(SIFT)
 
 ### 参考资料
 
