@@ -891,6 +891,16 @@ img[dst>0.01*dst.max()] = [0, 0, 255]
 show(img)
 ```
 
+#### SIFT
+
+```python
+sift = cv2.xfeatures2d.SIFT_create()  # 将 SIFT 算法实例化出来
+kp = sift.detect(img, None) # 把灰度图传进去，得到特征点、关键点
+kp, des = sift.compute(gray, kp) # 计算特征向量
+# 也可以直接找关键点并计算特征向量
+kp, des = sift.detectAndCompute(gray,img)
+```
+
 #### 图像特征点检测(SIFT)
 
 ### 参考资料

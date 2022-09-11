@@ -16,8 +16,6 @@ import jieba
 import wordcloud
 ```
 
-
-
 ### 获取分词字符串
 
 ```python
@@ -26,8 +24,6 @@ f = open("path/filename.txt", "r")
 t = f.read()
 f.close()
 ```
-
-
 
 ### 去除常见标点
 
@@ -40,8 +36,6 @@ def popPunctuation(strings):
     return strings
 ```
 
-
-
 ### 创建停用词
 
 ```python
@@ -52,9 +46,7 @@ def stopwordslist(filepath):
 
 停用词下载链接：<https://github.com/goto456/stopwords>
 
-
-
-### 分词
+###  词
 
 ```python
 def seg(strings):
@@ -81,8 +73,6 @@ s = jieba.cut_for_search(strings,True)
 # 用于搜索引擎构建倒排索引的分词，粒度比较细
 # True/False选择是否选择HMM模型
 ```
-
-
 
 ### 制作词云
 
