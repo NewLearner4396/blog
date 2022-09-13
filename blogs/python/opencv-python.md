@@ -610,6 +610,33 @@ img = cv.drawMatchKnn(img1,kp1,img2,kp2,good,None,flags=2)
 # 其是针对大规模高维数据集进行快速最近邻搜索的优化算法库.
 ```
 
+#### 混合高斯模型识别运动前景
+
+```python
+fgbg = cv2.createBackgroundSubtractorMOG2() # 混合高斯模型实例化对象
+fgmask = fgbg.apply(frame)    # 将图像应用到混合高斯模型中进行判断
+# 该方法会拿前200帧作为背景训练
+# 该方法需保证镜头稳定、背景不变
+```
+
+#### 光流估计
+
+```python
+nextPts,status,err = cv2.calcOpticalFlowPyrLK(preImage,nextImage,prevPts,winSize,maxLevel)
+# prevPts 待跟踪的特征点向量
+# winSize 搜索窗口的大小
+# maxLevel 最大的金字塔层数（平衡效率与精确度）
+# nextPts 输出跟踪特征点向量
+# status 特征点是否找到，找到的状态为1，未找到的状态为0
+
+p0 = cv2.goodFeaturesToTrack(old_gray, mask = None, maxCorners, qualityLevel, minDistance)
+# 如果不限制角点最大数量，速度就会有些慢，达不到实时的效果
+# 品质因子会筛选角点，品质因子设置的越大，角点的特征值越大，得到的角点越少
+# 距离指在角点邻域继续检测，有比这个角点强的，就不要这个弱的了
+```
+
+
+
 #### 项目1：简单数字识别
 
 ```python
@@ -1078,6 +1105,118 @@ cv.destroyAllWindows()
 ![result](http://imagebed.krins.cloud/api/image/60846FLJ.png)
 
 ![KeypointMatches](http://imagebed.krins.cloud/api/image/0628BPXH.png)
+
+#### 项目4：运动对象检测
+
+1. 混合高斯模型
+
+```python
+import numpy as np
+import cv2
+
+# 测试视频
+cap = cv2.VideoCapture('path')
+
+# 形态学操作需要使用
+kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(3,3))
+# 创建混合高斯模型用于背景建模
+fgbg = cv2.createBackgroundSubtractorMOG2() # 混合高斯模型实例化对象
+while(True):    
+    ret,frame = cap.read()    
+    fgmask = fgbg.apply(frame)    # 每一帧应用到混合高斯模型中
+    # 形态学开运算去噪点
+    fgmask = cv2.morphologyEx(fgmask,cv2.MORPH_OPEN,kernel)
+    # 寻找视频中的轮廓
+    contours, hierarchy = cv2.findContours(fgmask, cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)    
+    
+    for c in contours:
+        # 计算各轮廓的周长
+        perimeter = cv2.arcLength(c,True)
+        
+        if perimeter > 188:
+            # 找到一个直矩形 
+            x, y, w, h = cv2.boundingRect(c)
+            # 画出这个矩形
+            cv2.rectangle(frame,(x,y),(x+w,y+h),(0,255,0),2)
+            
+    cv2.imshow('frame',frame)
+    cv2.imshow('fgmask',fgmask)
+    cv2.waitKey(150)
+    if 0xff == 27:# 表示按退出键 ESC
+        break
+
+cap.release()
+cv2.destroyAllWindows()
+
+```
+
+2. 光流估计
+
+   ```python
+   import numpy as np
+   import cv2
+   
+   cap = cv2.VideoCapture('path')
+   
+   # 角点检测所需参数
+   # 如果不限制角点最大数量，速度就会有些慢，达不到实时的效果
+   # 品质因子会筛选角点，品质因子设置的越大，得到的角点越少                
+   feature_params = dict( maxCorners = 100,
+                          qualityLevel = 0.3,
+                          minDistance = 7 )
+   
+   # lucas-kanada参数
+   # winSize：窗口大小 maxLevel：金字塔层数
+   lk_params = dict( winSize = (15,15), 
+                     maxLevel = 2 )
+   
+   # 随机颜色条
+   color = np.random.randint(0,255,(100,3))
+   
+   # 拿到第一帧图像
+   ret, old_frame = cap.read()
+   old_gray = cv2.cvtColor(old_frame, cv2.COLOR_BGR2GRAY)
+   
+   # cv2.goodFeaturesToTrack函数返回所有检测特征点，需要输入：图像，角点最大数量(效率)，品质因子(特征值越大的越好来筛选)                                  
+   # 距离相当于这区间有比这个角点强的，就不要这个弱的了
+   # **变量 作为传入参数，是用来传入不定长的变量
+   p0 = cv2.goodFeaturesToTrack(old_gray, mask = None, **feature_params)  # 拿到第一帧的角点，后面视频中是对第一帧的角点进行追踪     
+   
+   # 创建一个 mask
+   mask = np.zeros_like(old_frame) # 创建同维度的全0矩阵
+   
+   while(True):
+       ret, frame = cap.read()
+       frame_gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)                       
+       
+       # 需要传入前一帧和当前图像以及前一帧检测到的角点
+       p1, st, err = cv2.calcOpticalFlowPyrLK(old_gray, frame_gray, p0, None, **lk_params)                         
+       
+       # st=1 表示
+       good_new = p1[st==1]  # st==1 表示找到的特征点，没找到的特征点就不要了
+       good_old = p0[st==1]
+       
+       for i, (new,old) in enumerate(zip(good_new,good_old)):
+           a,b = new.ravel()
+           c,d = old.ravel()
+           mask = cv2.line(mask,(a,b),(c,d),color[i].tolist(),2)               # np.tolist将矩阵转为列表          
+           frame = cv2.circle(frame,(a,b),5,color[i].tolist(),-1)
+           # -1表示画实心圆 
+       img = cv2.add(frame,mask)
+       
+       cv2.imshow('frame',img)
+       cv2.waitKey(150)
+       if 0xff == 27:
+           break
+           
+       # 更新
+       old_gray = frame_gray.copy()
+       p0 = good_new.reshape(-1,1,2)
+       
+   cv2.destroyAllWindows()
+   cap.release()
+   
+   ```
 
 ### 参考资料
 
