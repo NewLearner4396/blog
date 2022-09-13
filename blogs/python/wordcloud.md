@@ -46,7 +46,7 @@ def stopwordslist(filepath):
 
 停用词下载链接：<https://github.com/goto456/stopwords>
 
-###  词
+###  分词
 
 ```python
 def seg(strings):

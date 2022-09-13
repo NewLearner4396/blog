@@ -4,7 +4,7 @@ date: 2022-09-03
 tags:
  - image_basic
 categories:
- -  imageProcessing
+ -  Image
 ---
 
 ## 图像处理的基础知识
@@ -412,15 +412,15 @@ categories:
 15. SIFT尺度不变特征转换
 
     1. 尺度空间
-    
+
        尺度空间就是试图在图像领域中模拟人眼观察物体的概念与方法。例如：观察一棵树，关键在于我们想要观察的是树叶子还是整棵树：如果是一整棵树（相当于大尺度情况下观察），那么就应该去除图像的细节部分。如果是树叶（小尺度情况下观察），那么就应该观察局部细节特征。
-    
+
        - 尺度空间的获取通常使用高斯模糊来实现。
-    
+
        - 不同 σ 的高斯函数决定了对图像的平滑程度，越大的 σ 值对应的图像越模糊，对应的尺度也越大。
-    
+
        ![高斯卷积核](http://imagebed.krins.cloud/api/image/VBJVF88N.png)
-    
+
        ![不同σ的模糊效果](http://imagebed.krins.cloud/api/image/ZL64N0F8.png)
 
        2. 高斯金字塔
@@ -522,11 +522,76 @@ categories:
        
           ```python
           sift = cv2.xfeatures2d.SIFT_create()  # 将 SIFT 算法实例化出来
-          kp = sift.detect(img, None) # 把灰度图传进去，得到特征点、关键点
-          kp, des = sift.compute(gray, kp) # 计算特征向量
+          kp = sift.detect(img, None) # 把图传进去，得到特征点、关键点
+          kp, des = sift.compute(img, kp) # 计算特征向量
           # 也可以直接找关键点并计算特征向量
-          kp, des = sift.detectAndCompute(gray,img)
+          kp, des = sift.detectAndCompute(img,mask=None)
+          # 画出关键点
+          outImg = cv2.drawKeypoints(img, kp, outImage,color=None,flags)
+          # flags
+          # DRAW_MATCHES_FLAGS_DEFAULT：
+          # 只绘制特征点的坐标点，显示在图像上就是一个个小圆点，每个小圆点的圆心坐标都是特征点的坐标。
+          # DRAW_MATCHES_FLAGS_DRAW_OVER_OUTIMG：
+          # 函数不创建输出的图像，而是直接在输出图像变量空间绘制，要求本身输出图像变量就是一个初始化好了的，size与type都是已经初始化好的变量。
+          # DRAW_MATCHES_FLAGS_NOT_DRAW_SINGLE_POINTS ：
+          # 单点的特征点不被绘制。
+          # DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS：
+          # 绘制特征点的时候绘制的是一个个带有方向的圆，这种方法同时显示图像的坐标，size和方向，是最能显示特征的一种绘制方式。
           ```
+
+16. 图像匹配与拼接
+
+    1. Brute-Force Matcher，BFMatch暴力匹配。从集合A中选择一个特征的描述子，然后与集合B中所有的其他特征计算某种相似度，进行匹配，并返回最接近的项.
+
+       首先使用 `cv2.BFMatcher()`创建 BFMatcher 实例，其包含两个可选参数：`normType` 归一化类型和 `crossCheck`交叉检查.
+
+       normType：如 NORM_L1, NORM_L2, NORM_HAMMING, NORM_HAMMING2.             NORM_L1 和 NORM_L2 更适用于 SIFT 和 SURF 描述子; 
+       NORM_HAMMING 和 ORB、BRISK、BRIEF 一起使用；
+       NORM_HAMMING2 用于 WTA_K==3或4 的 ORB 描述子.        
+
+       crossCheck：默认为 False，其寻找每个查询描述子的 k 个最近邻. 
+       若值为 True，则 knnMatch() 算法 k=1，仅返回(i, j)的匹配结果，
+       即集合A中的第 i 个描述子在集合B中的第 j 个描述子是最佳匹配. 
+       也就是说，两个集合中的两个描述子特征是互相匹配的. 
+       其提供连续的结果. 
+       当有足够的匹配项时，其往往能够找到最佳的匹配结果.
+
+       实例化 BFMatcher 后，两个重要的方法是 `BFMatcher.match(feature1,feature2)` 和 `BFMatcher.knnMatch(feature1,feature2,k)`. 
+       前者仅返回最佳匹配结果，后者返回 k 个最佳匹配结果.
+       后者常常还需要在过滤一次匹配结果
+
+       ```
+       # BFMatcher with default params
+       bf = cv2.BFMatcher()
+       matches = bf.knnMatch(des1,des2, k=2)
+       
+       # Apply ratio test
+       matches = []
+       for m,n in matches:
+           if m.distance < 0.75*n.distance:
+               matches.append([m])
+       ```
+
+       类似于 `cv2.drawKeypoints()` 画出关键点；`cv2.drawMatches(img1,kp1,img2,kp2,matches,None,flags=2)` 能够画出匹配结果. 其水平的堆叠两幅图像，并画出第一张图像到第二张图像的点连线，以表征最佳匹配. `cv2.drawMatchKnn(img1,kp1,img2,kp2,good,None,flags=2)`能够画出 k 个最佳匹配.
+
+       **如果需要更快速完成操作，可以尝试使用 cv2.FlannBasedMatcher。**
+       其是针对大规模高维数据集进行快速最近邻搜索的优化算法库.
+
+    2. 随机抽样一致算法(Random sample consensus,RANSAC)
+
+       ![RANSAC效果](http://imagebed.krins.cloud/api/image/FB6Z8TD0.png)
+
+       1. 选择初始样本点进行拟合，给定一个容忍范围，不断进行迭代。
+
+          ![迭代示例](http://imagebed.krins.cloud/api/image/28LN0844.png)
+
+       2. 每一次拟合后，容差范围内都有对应的数据点数，找出数据点个数最多的情况，就是最终的拟合结果。
+
+          ![拟合示例](http://imagebed.krins.cloud/api/image/B2NZF822.png)
+
+17. 背景建模
+
+    
 
 ### 参考资料
 

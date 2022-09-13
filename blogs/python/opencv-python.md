@@ -535,6 +535,80 @@ img_new = cv.warpPerspective(src,M,dsize=(width,height),flags=INTER_LINEAR,borde
 ```
 
 
+#### Harris角点检测
+
+```python
+# x,y方向都有大梯度变化的是角点
+# x或y方向有大梯度变化的是边界
+# 否则是平面
+
+dst = cv.cornerHarris(img,blockSize,ksize,k)
+# img：数据类型为 ﬂoat32 的入图像。
+# blockSize：角点检测中指定区域的大小。
+# ksize：Sobel求导中使用的窗口大小。常用 3。
+# k：计算R值时的系数，取值参数为 [0.04,0.06]。常用 0.04。
+
+# dst大于最大值的1%即可判断为角点
+# 绘制角点
+img[dst>0.01*dst.max()] = [0, 0, 255]
+show(img)
+```
+
+#### SIFT
+
+```python
+sift = cv2.xfeatures2d.SIFT_create()  # 将 SIFT 算法实例化出来
+kp = sift.detect(img, None) # 把图传进去，得到特征点、关键点
+kp, des = sift.compute(img, kp) # 计算特征向量
+# 也可以直接找关键点并计算特征向量
+kp, des = sift.detectAndCompute(img,mask=None)
+# 画出关键点
+outImg = cv2.drawKeypoints(img, kp, outImage,color=None,flags)
+# flags
+# DRAW_MATCHES_FLAGS_DEFAULT：
+# 只绘制特征点的坐标点，显示在图像上就是一个个小圆点，每个小圆点的圆心坐标都是特征点的坐标。
+# DRAW_MATCHES_FLAGS_DRAW_OVER_OUTIMG：
+# 函数不创建输出的图像，而是直接在输出图像变量空间绘制，要求本身输出图像变量就是一个初始化好了的，size与type都是已经初始化好的变量。
+# DRAW_MATCHES_FLAGS_NOT_DRAW_SINGLE_POINTS ：
+# 单点的特征点不被绘制。
+# DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS：
+# 绘制特征点的时候绘制的是一个个带有方向的圆，这种方法同时显示图像的坐标，size和方向，是最能显示特征的一种绘制方式。
+```
+
+#### 特征点匹配
+
+```python
+BFMatcher = cv.BFMatcher(normType,crossCheck) # 实例化匹配方法
+# normType：如 NORM_L1, NORM_L2, NORM_HAMMING, NORM_HAMMING2.           # NORM_L1 和 NORM_L2 更适用于 SIFT 和 SURF 描述子; 
+# NORM_HAMMING 和 ORB、BRISK、BRIEF 一起使用；
+# NORM_HAMMING2 用于 WTA_K==3或4 的 ORB 描述子.        
+# crossCheck：默认为 False，其寻找每个查询描述子的 k 个最近邻. 
+# 若值为 True，则 knnMatch() 算法 k=1，仅返回(i, j)的匹配结果，
+# 即集合A中的第 i 个描述子在集合B中的第 j 个描述子是最佳匹配. 
+# 也就是说，两个集合中的两个描述子特征是互相匹配的. 
+# 其提供连续的结果. 
+# 当有足够的匹配项时，其往往能够找到最佳的匹配结果.
+
+matches = BFMatcher.match(feature1,feature2) # 一对一配对
+
+matches = BFMatcher.knnMatch(feature1,feature2,k) # 一对k配对
+# 一对k配对还需过滤一下
+# 用比值判定，距离相差太远的不要
+matches = []
+for m,n in matches:
+    if m.distance < 0.75*n.distance:
+        matches.append([m])
+        
+# 画出匹配特征
+img = cv.drawMatches(img1,kp1,img2,kp2,matches,None,flags=2)
+# 画出匹配结果. 其水平的堆叠两幅图像，并画出第一张图像到第二张图像的点连线，以表征最佳匹配. 
+
+img = cv.drawMatchKnn(img1,kp1,img2,kp2,good,None,flags=2)
+# 画出 k 个最佳匹配.
+
+# 如果需要更快速完成操作，可以尝试使用 cv2.FlannBasedMatcher。
+# 其是针对大规模高维数据集进行快速最近邻搜索的优化算法库.
+```
 
 #### 项目1：简单数字识别
 
@@ -872,36 +946,138 @@ superior predictive performance relative to entropy and mutual
 information.
 ```
 
-#### Harris角点检测
+#### 项目3：全景拼接
 
 ```python
-# x,y方向都有大梯度变化的是角点
-# x或y方向有大梯度变化的是边界
-# 否则是平面
+class Stitcher:
 
-dst = cv.cornerHarris(img,blockSize,ksize,k)
-# img：数据类型为 ﬂoat32 的入图像。
-# blockSize：角点检测中指定区域的大小。
-# ksize：Sobel求导中使用的窗口大小。常用 3。
-# k：计算R值时的系数，取值参数为 [0.04,0.06]。常用 0.04。
+    #拼接函数
+    def stitch(self, images, ratio=0.75, reprojThresh=4.0,showMatches=False):
+        #获取输入图片
+        (imageB, imageA) = images
+        #检测 A、B 图片的 SIFT 关键特征点，并计算特征描述子
+        (kpsA, featuresA) = self.detectAndDescribe(imageA)
+        (kpsB, featuresB) = self.detectAndDescribe(imageB)
 
-# dst大于最大值的1%即可判断为角点
-# 绘制角点
-img[dst>0.01*dst.max()] = [0, 0, 255]
-show(img)
+        # 匹配两张图片的所有特征点，返回匹配结果
+        M = self.matchKeypoints(kpsA, kpsB, featuresA, featuresB, ratio, reprojThresh)           
+
+        # 如果返回结果为空，没有匹配成功的特征点，退出算法
+        if M is None:
+            return None
+
+        # 否则，提取匹配结果
+        # H是3x3视角变换矩阵      
+        (matches, H, status) = M
+        # 将图片A进行视角变换，result是变换后图片
+        result = cv.warpPerspective(imageA, H, (imageA.shape[1] + imageB.shape[1], imageA.shape[0]))
+        self.cv_show('result', result)
+        # 将图片B传入result图片最左端
+        result[0:imageB.shape[0], 0:imageB.shape[1]] = imageB
+        self.cv_show('result', result)
+        # 检测是否需要显示图片匹配
+        if showMatches:
+            # 生成匹配图片
+            vis = self.drawMatches(imageA, imageB, kpsA, kpsB, matches, status)
+            # 返回结果
+            return (result, vis)
+
+        # 返回匹配结果
+        return result
+    
+    def cv_show(self,name,img):
+        cv.imshow(name, img)
+        cv.waitKey(0)
+        cv.destroyAllWindows()
+
+    def detectAndDescribe(self, image):
+        # 将彩色图片转换成灰度图
+        gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
+
+        # 建立 SIFT 生成器
+        descriptor = cv.xfeatures2d.SIFT_create()
+        # 检测 SIFT 特征点，并计算描述子
+        (kps, features) = descriptor.detectAndCompute(image, None)
+
+        # 将结果转换成 NumPy 数组
+        kps = np.float32([kp.pt for kp in kps])
+
+        # 返回特征点集，及对应的描述特征
+        return (kps, features)
+
+    def matchKeypoints(self, kpsA, kpsB, featuresA, featuresB, ratio, reprojThresh):
+        # 建立暴力匹配器
+        matcher = cv.BFMatcher()
+  
+        # 使用 KNN 检测来自 A、B 图的SIFT特征匹配对，K=2
+        rawMatches = matcher.knnMatch(featuresA, featuresB, 2)
+
+        matches = []
+        for m in rawMatches:
+            # 当最近距离跟次近距离的比值小于 ratio 值时，保留此匹配对
+            if len(m) == 2 and m[0].distance < m[1].distance * ratio:
+            # 存储两个点在 featuresA, featuresB 中的索引值
+                matches.append((m[0].trainIdx, m[0].queryIdx))
+
+        # 当筛选后的匹配对大于 4 时，计算视角变换矩阵
+        if len(matches) > 4:
+            # 获取匹配对的点坐标
+            ptsA = np.float32([kpsA[i] for (_, i) in matches])
+            ptsB = np.float32([kpsB[i] for (i, _) in matches])
+
+            # 计算视角变换矩阵
+            (H, status) = cv.findHomography(ptsA, ptsB, cv.RANSAC, reprojThresh)
+
+            # 返回结果
+            return (matches, H, status)
+
+        # 如果匹配对小于4时，返回None
+        return None
+
+    def drawMatches(self, imageA, imageB, kpsA, kpsB, matches, status):
+        # 初始化可视化图片，将A、B图左右连接到一起
+        (hA, wA) = imageA.shape[:2]
+        (hB, wB) = imageB.shape[:2]
+        vis = np.zeros((max(hA, hB), wA + wB, 3), dtype="uint8")
+        vis[0:hA, 0:wA] = imageA
+        vis[0:hB, wA:] = imageB
+
+        # 联合遍历，画出匹配对
+        for ((trainIdx, queryIdx), s) in zip(matches, status):
+            # 当点对匹配成功时，画到可视化图上
+            if s == 1:
+                # 画出匹配对
+                ptA = (int(kpsA[queryIdx][0]), int(kpsA[queryIdx][1]))
+                ptB = (int(kpsB[trainIdx][0]) + wA, int(kpsB[trainIdx][1]))
+                cv.line(vis, ptA, ptB, (0, 255, 0), 1)
+
+        # 返回可视化结果
+        return vis
+    
+# 读取拼接图片
+imageA = cv.imread("./pic/21_Left_01.png")
+imageB = cv.imread("./pic/22_Right_01.png")
+
+# 把图片拼接成全景图
+stitcher = Stitcher()  # 实例化 Stitcher 对象
+(result, vis) = stitcher.stitch([imageA, imageB], showMatches=True)
+
+# 显示所有图片
+cv.imshow("Image A", imageA)
+cv.imshow("Image B", imageB)
+cv.imshow("Keypoint Matches", vis)
+cv.imshow("Result", result)
+cv.waitKey(0)
+cv.destroyAllWindows()
 ```
 
-#### SIFT
+![imageA](http://imagebed.krins.cloud/api/image/L40BL8P6.png)
 
-```python
-sift = cv2.xfeatures2d.SIFT_create()  # 将 SIFT 算法实例化出来
-kp = sift.detect(img, None) # 把灰度图传进去，得到特征点、关键点
-kp, des = sift.compute(gray, kp) # 计算特征向量
-# 也可以直接找关键点并计算特征向量
-kp, des = sift.detectAndCompute(gray,img)
-```
+![imageB](http://imagebed.krins.cloud/api/image/T8J6XDN2.png)
 
-#### 图像特征点检测(SIFT)
+![result](http://imagebed.krins.cloud/api/image/60846FLJ.png)
+
+![KeypointMatches](http://imagebed.krins.cloud/api/image/0628BPXH.png)
 
 ### 参考资料
 
