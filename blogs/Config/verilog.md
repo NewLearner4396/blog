@@ -3,8 +3,9 @@ title: VSCode编写Verilog的相关配置
 date: 2022-8-15
 tags:
  - Verilog
+ - VSCode
 categories:
- -  VSCode配置
+ -  Config
 ---
 
 ## 配置VSCode，愉快编写Verilog小工程
