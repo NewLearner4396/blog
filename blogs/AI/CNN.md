@@ -12,7 +12,7 @@ categories:
 
 #### 完整代码
 
-`CNN.py`
+##### CNN.py
 
 ```python
 import numpy as np
@@ -22,7 +22,7 @@ import matplotlib.pyplot as plt
 class Conv:
     def __init__(self, measure, num):
         """
-        卷积
+        卷积初始化
 
         :param measure: 卷积核的尺寸
         :param num: 卷积核的个数
@@ -52,13 +52,13 @@ class Conv:
         h, w = image.shape
 
         padded_image = np.pad(image, ((self.edge, self.edge), (self.edge, self.edge)),
-                              'constant', constant_values=(0, 0))  # TODO:np.pad
+                              'constant', constant_values=(0, 0))
 
         for i in range(h):
             for j in range(w):
                 iter_image = padded_image[i:(i + self.measure), j:(j + self.measure)]
 
-                yield iter_image, i, j  # 返回需要卷积的图像和左上角坐标 # TODO:yield
+                yield iter_image, i, j  # 返回需要卷积的图像和左上角坐标
 
     def conv(self, input_image):
         """
@@ -75,16 +75,15 @@ class Conv:
 
         # 卷积运算
         for iter_image, i, j in self.sliding(input_image):
-            output_image[i, j] = np.sum(iter_image * self.filters, axis=(1, 2))  # TODO:axis=(1, 2)
+            output_image[i, j] = np.sum(iter_image * self.filters, axis=(1, 2))
 
         return output_image
 
     def feedback(self, out, learn_rate):
         """
 
-        :param out:
-        :param learn_rate:
-        :return:
+        :param out:权重
+        :param learn_rate:学习率，梯度下降的步进
         """
 
         filters = np.zeros(self.filters.shape)
@@ -101,7 +100,7 @@ class Pooling:
 
     def __init__(self, pool_size):
         """
-        池化
+        池化，给数据降维
 
         :param pool_size: 池化的大小
         """
@@ -132,8 +131,8 @@ class Pooling:
         """
         最大池化
 
-        :param input_image:
-        :return:
+        :param input_image:卷积后的图像
+        :return:池化后的图像
         """
 
         # 输出图像大小为原图像//池化大小
@@ -143,7 +142,7 @@ class Pooling:
         output_image = np.zeros((h, w, n))
 
         for iter_image, i, j in self.sliding(input_image):
-            output_image[i, j] = np.amax(iter_image, axis=(0, 1))  # TODO:np.argmax, np.amax, mp.max
+            output_image[i, j] = np.amax(iter_image, axis=(0, 1))
 
         return output_image
 
@@ -257,16 +256,16 @@ class CNN:
         self.pool = Pooling(pool_size)
         h_s = image_size[0] // pool_size
         w_s = image_size[1] // pool_size
-        self.softmax = Softmax((h_s * w_s * channel), classes)  # TODO:*?
+        self.softmax = Softmax((h_s * w_s * channel), classes)
 
     def train_forward(self, images, target, wheel, learn_rate):
         """
 
-        :param images:
-        :param target:
-        :param wheel:
-        :param learn_rate:
-        :return:
+        :param images:测试图像
+        :param target:识别目标
+        :param wheel:训练轮数
+        :param learn_rate:学习率
+        :return:loss:损失
         """
 
         loss = []  # 记录损失
@@ -306,8 +305,8 @@ class CNN:
     def test(self, image):
         """
         正向传播测试
-        :param self:
-        :param image:
+
+        :param image:测试图像
         :return:
         """
 
@@ -319,7 +318,7 @@ class CNN:
 
 ```
 
-`main.py`
+##### main.py
 
 ```python
 import numpy as np

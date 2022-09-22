@@ -171,6 +171,8 @@ dtype 为数组元素的数据类型（默认为int32）
 
    1. a.max() 最大值
 
+      a.argmax()获得最大值索引
+
    2. a.min() 最小值
 
    3. a.mean() 平均值
@@ -200,6 +202,13 @@ dtype 为数组元素的数据类型（默认为int32）
    np.clip(a,min,max)
 
    a中元素小于min的设为min，大于max的设为max
+
+7. 图像相关
+
+   1. np.pad(array, ((before_1, after_1), (before_N, after_N)), mode=‘constant’,contant_values=(x, y)) 
+
+      边缘填充，用x前向填充，y后向填充
+
 
 ### 参考资料
 
