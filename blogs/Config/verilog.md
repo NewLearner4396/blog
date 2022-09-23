@@ -1,6 +1,6 @@
 ---
 title: VSCode编写Verilog的相关配置
-date: 2022-8-15
+date: 2022-08-15
 tags:
  - Verilog
  - VSCode
