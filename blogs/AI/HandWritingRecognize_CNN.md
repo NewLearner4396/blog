@@ -12,7 +12,7 @@ categories:
 
 ### 完整代码
 
-##### CNN.py
+#### CNN.py
 
 ```python
 import numpy as np
@@ -319,7 +319,7 @@ class CNN:
 
 ```
 
-##### main.py
+#### main.py
 
 ```python
 import numpy as np
@@ -374,8 +374,6 @@ for item in range(len(data2)):
 print("准确率为：", count / (len(data2)))
 print("average_loss：", item_loss / (len(data2)))
 ```
-
-
 
 #### 参考链接
 
