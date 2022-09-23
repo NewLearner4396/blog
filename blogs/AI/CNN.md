@@ -1,6 +1,6 @@
 ---
 title: 卷积神经网络CNN的组成
-date: 2022-9-22
+date: 2022-09-22
 tags:
  - CNN
  - DeepLearning
@@ -42,8 +42,6 @@ INPUT -> [[CONV]*N -> POOL?]*M -> [FC]*K
 
 也就是N个卷积层叠加，然后(可选)叠加一个Pooling层，重复这个结构M次，最后叠加K个全连接层。
 
-
-
 ### 卷积
 
 ### 池化
@@ -54,24 +52,20 @@ INPUT -> [[CONV]*N -> POOL?]*M -> [FC]*K
 
 最近几年卷积神经网络中，激活函数往往不选择sigmoid或tanh函数，而是选择relu函数。
 
-![Relu函数](http://imagebed.krins.cloud/api/image/HZHR046T.png)
+![Relu函数](http://imagebed.krins.cloud/api/image/HZHR046T.png#pic_center)
 
-![img](http://imagebed.krins.cloud/api/image/PH666B00.png)
+![img](http://imagebed.krins.cloud/api/image/PH666B00.png#pic_center)
 
 Relu函数作为激活函数，有下面几大优势：
 
 - **速度快** 和sigmoid函数需要计算指数和倒数相比，relu函数其实就是一个max(0,x)，计算代价小很多。
 - **减轻梯度消失问题** 回忆一下计算梯度的公式。其中，是sigmoid函数的导数。在使用反向传播算法进行梯度计算时，每经过一层sigmoid神经元，梯度就要乘上一个。从下图可以看出，函数最大值是1/4。因此，乘一个会导致梯度越来越小，这对于深层网络的训练是个很大的问题。而relu函数的导数是1，不会导致梯度变小。当然，激活函数仅仅是导致梯度减小的一个因素，但无论如何在这方面relu的表现强于sigmoid。使用relu激活函数可以让你训练更深的网络。
 
-![img](http://imagebed.krins.cloud/api/image/2JD4P2B2.png)
+![img](http://imagebed.krins.cloud/api/image/2JD4P2B2.png#pic_center)
 
 - **稀疏性** 通过对大脑的研究发现，大脑在工作的时候只有大约5%的神经元是激活的，而采用sigmoid激活函数的人工神经网络，其激活率大约是50%。有论文声称人工神经网络在15%-30%的激活率时是比较理想的。因为relu函数在输入小于0时是完全不激活的，因此可以获得一个更低的激活率。
 
-  
-
 ### 梯度反向传播
-
-
 
 ### 参考资料
 
