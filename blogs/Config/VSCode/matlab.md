@@ -23,17 +23,17 @@ categories:
 在`setting.JSON`中键入以下代码：
 
 ```json
-	// 指定Matlab路径，请将...替换成你的安装路径
-	"matlab.mlintpath": "...\\Matlab\\2021b\\bin\\win64\\mlint.exe",
+    // 指定Matlab路径，请将...替换成你的安装路径
+    "matlab.mlintpath": "...\\Matlab\\2021b\\bin\\win64\\mlint.exe",
     "matlab.matlabpath": "...\\Matlab\\2021b\\bin\\matlab.exe",
     // 避免报错信息显示乱码，指定成utf-8
-	"matlab.linterEncoding" : "utf-8",
+    "matlab.linterEncoding" : "utf-8",
     // 将文件后缀与程序关联起来，以便启动正确的插件
-	"files.associations": {
+    "files.associations": {
         "*.m": "matlab",
         "*.md": "markdown"
     },
-	// matlab程序默认使用的是gbk编码，为了避免中文乱码，VSCode也指定一下
+    // matlab程序默认使用的是gbk编码，为了避免中文乱码，VSCode也指定一下
     "[matlab]": {
         "files.encoding": "gbk"
     },
