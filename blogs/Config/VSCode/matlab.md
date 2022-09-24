@@ -85,3 +85,8 @@ categories:
 
 **安装完以上插件就可以一定程度上将VSCode当Matlab用啦**:happy:
 
+### 参考链接
+
+[VScode+MATLAB](https://zhuanlan.zhihu.com/p/166873048)
+
+[使用vscode编辑并运行matlab脚本](https://zhuanlan.zhihu.com/p/395486395)
