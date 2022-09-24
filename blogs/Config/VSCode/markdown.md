@@ -133,6 +133,24 @@ typora官网主题的CSS：<https://theme.typora.io/>
 
 该规范意使Markdown源文件简洁易读，如不喜欢可以不用。
 
+如果喜欢该规范可以在`settings.JSON`中加入：
+
+```json
+    "[markdown]":{
+        // 避免在打字符串和注释时出现建议输入
+        // 打开该设置可以使用‘markdown.json’中配置的用户代码块
+            "editor.quickSuggestions": {
+                "other": "on",
+                "comments": "off",
+                "strings": "off"
+            },
+        // 修改文件默认编码为utf8，因为一般网站使用的编码是这个
+            "files.encoding": "utf8",
+        // 修改Markdown的默认纠错器
+            "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+        },
+```
+
 规范文档：[官方Rules](https://github.com/DavidAnson/markdownlint/blob/v0.26.2/doc/Rules.md)
 
 ### Markdown常用语法
@@ -165,7 +183,7 @@ typora官网主题的CSS：<https://theme.typora.io/>
 
 还可以用`Win + .`调出系统的表情工具。
 
-还可以用markdown写流程图，但有可视化工具，用代码写有点不方便。
+markdown支持写流程图，但有其他可视化工具，用代码写有点不方便。
 
 ### 参考链接
 

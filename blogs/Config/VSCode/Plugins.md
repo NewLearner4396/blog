@@ -8,7 +8,7 @@ categories:
  -  Config
 ---
 
-## VSCode正使用的插件，亲测好用
+## 我正使用的VSCode插件，亲测好用
 
 ### 1. Chinese(Simplified)
 
