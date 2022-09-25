@@ -94,3 +94,17 @@ import  matplotlib.pyplot as plt
 
 7. plt.rcParams[‘axes.unicode_minus’] = False  # 解决保存图像时负号‘-’显示成方块的问题
 
+8. 配合seaborn库绘制热力图
+
+   ```python
+   import seaborn as sns
+   import matplotlib.pyplot as plt
+   
+   fig = sns.heatmap(DataFrame, vmax=1, vmin=-1, center=0, annot=True, square=True, fmt='.2g')
+   # annot=True 显示数据在块上
+   # square=True 画出方块
+   # fmt 格式化数据
+   # cmap 色卡
+   ```
+
+   
