@@ -2,9 +2,9 @@
 title: Matplotlib库的学习笔记
 date: 2022-09-02
 tags:
- - matplotlib
+ - Python
 categories:
- -  Python
+ -  Lang
 ---
 
 ## Matplotlib库的使用
@@ -59,9 +59,11 @@ import  matplotlib.pyplot as plt
 
    **标记字符：**'.' 点标记，',' 像素标记(极小点)，'o' 实心圈标记，'v' 倒三角标记，'^' 上三角标记，'>' 右三角标记，'<' 左三角标记...等等。
 
-   plt.xlabel(‘xlabel’) # 设置横轴标签
+   plt.title(“”) # 设置图片标题
 
-   plt.ylabel(‘ylabel’) # 设置纵轴标签
+   plt.xlabel(”xlabel“) # 设置横轴标签
+
+   plt.ylabel(“ylabel”) # 设置纵轴标签
 
    plt.legend() # 显示图例
 
@@ -77,4 +79,18 @@ import  matplotlib.pyplot as plt
 
    该函数统计array在bins的每个区间的元素个数，rwidth设置显示宽度
 
-4. 
+4. plt.figure(num=“”, figsise=(), dpi=, facecolor=, edgecolor=, clear=False)  # 设置窗口参数
+
+   - `num`:如果此参数没有提供，则一个新的figure对象将被创建，同时增加figure的计数数值，此数值被保存在figure对象的一个数字属性当中。如果有此参数，且存在对应id的figure对象，则激活对于id的figure对象。如果对应id的figur对象不存在，则创建它并返回它。如果num的值是字符串，则将窗口标题设置为此字符串。
+   - `figsize`:以英寸为单位的宽高，以元组的形式输入(1英寸等于2.54厘米)
+   - `dpi`:图形分辨率
+   - `facecolor`:背景色
+   - `edgecolor`:边框颜色
+   - `clear`:重建figure实例
+
+5. plt.savefig(figure, “”)  # 保存图像，输入figure对象及保存路径
+
+6. plt.rcParams[‘font.sans-serif’] = [‘SimHei’]  # 指定默认字体避免中文乱码
+
+7. plt.rcParams[‘axes.unicode_minus’] = False  # 解决保存图像时负号‘-’显示成方块的问题
+

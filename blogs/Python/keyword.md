@@ -2,9 +2,9 @@
 title: Python特殊关键字
 date: 2022-09-22
 tags:
- - usage
+ - Python
 categories:
- -  Python
+ -  Lang
 ---
 
 ## Python特殊方法学习笔记

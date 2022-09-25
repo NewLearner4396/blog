@@ -2,9 +2,9 @@
 title: openCV库的学习笔记
 date: 2022-09-03
 tags:
- - openCV
+ - Python
 categories:
- -  Python
+ -  Lang
 ---
 ## openCV-python库的使用
 

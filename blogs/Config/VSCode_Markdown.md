@@ -1,5 +1,5 @@
 ---
-title: VSCode编写markdown相关配置
+title: VSCode编写Markdown相关配置
 date: 2022-08-18
 tags:
  - markdown
@@ -8,7 +8,7 @@ categories:
  -  Config
 ---
 
-## 在VSCode用markdown愉快地记录笔记:blush:
+## 在VSCode用Markdown愉快地记录笔记:blush:
 
 ### 需要的插件
 

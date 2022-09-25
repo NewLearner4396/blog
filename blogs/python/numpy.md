@@ -2,9 +2,9 @@
 title: NumPy库的学习笔记
 date: 2022-09-01
 tags:
- - numpy
+ - Python
 categories:
- -  Python
+ -  Lang
 ---
 
 ## NumPy库的使用
