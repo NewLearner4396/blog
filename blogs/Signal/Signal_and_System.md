@@ -2,9 +2,9 @@
 title: 《信号与系统》的简单梳理
 date: 2022-09-25
 tags:
- - 信号与系统
+ - Signal
 categories:
- -  电子信息工程
+ -  Book
 ---
 
 ## 简单梳理一下《信号与系统》

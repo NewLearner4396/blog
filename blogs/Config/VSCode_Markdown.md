@@ -1,5 +1,5 @@
 ---
-title: VSCode编写Markdown相关配置
+title: VSCode编写Markdown的相关配置
 date: 2022-08-18
 tags:
  - markdown

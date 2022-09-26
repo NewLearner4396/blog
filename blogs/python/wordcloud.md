@@ -2,9 +2,9 @@
 title: 词云快速制作方法
 date: 2022-09-10
 tags:
- - 词云
+ - Python
 categories:
- -  Python
+ -  Lang
 ---
 
 ## 如何快速制作一张词云

@@ -1,5 +1,5 @@
 ---
-title: VSCode编写Matlab相关配置
+title: VSCode编写Matlab的相关配置
 date: 2022-08-18
 tags:
  - Matlab

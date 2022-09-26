@@ -1,6 +1,6 @@
 ---
 title: openpyxl库的学习笔记
-date: 2022-09-03
+date: 2022-09-10
 tags:
  - Python
 categories:
@@ -49,6 +49,32 @@ load_workbook 除了参数 filename外为还有一些有用的参数：
 - keep_links：是否保留外部链接
 
 ### 操作Sheet
+
+```python
+ws1 = wb.create_sheet("sheet")  #创建一个 sheet 名为 sheet
+ws1.title = "新表单"  # 设置 sheet 标题
+ws2 = wb.create_sheet("mysheet", 0) # 创建一个 sheet，插入到最前面 默认插在后面
+ws2.title = u"你好"  # 设置 sheet 标题
+
+ws1.sheet_properties.tabColor = "1072BA"  # 设置 sheet 标签背景色
+
+# 获取 sheet
+ws3 = wb.get_sheet_by_name(u"你好")
+# ws4 = wb['New Title']
+
+# 复制 sheet
+ws1_copy = wb.copy_worksheet(ws1)
+
+# 删除 sheet
+wb.remove(ws1)
+```
+
+- 每个 Workbook 中都有一个被激活的 sheet，一般都是第一个，可以通过 active 直接获取
+- 可以通过 sheet 名来获取 sheet 对象
+- 创建 sheet时需要提供 sheet 名称参数，如果该名称的 sheet 已经存在，则会在名称后添加 1，再有重复添加 2，以此类推
+- 获得 sheet 对象后，可以设置 名称（title），背景色等属性
+- 同一个 Workbook 对象中，可以复制 sheet，需要将源 sheet 对象作为参数，复制的新 sheet 会在最末尾
+- 可以删除一个 sheet，参数是目标 sheet 对象
 
 
 

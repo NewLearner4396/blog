@@ -107,4 +107,11 @@ import  matplotlib.pyplot as plt
    # cmap 色卡
    ```
 
+9. 单独修改标签等字体
+
+   ```python
+   my_font = font_manager.FontProperties(fname="FZXH1JW.TTF")  # 导入方正细黑简体
+   plt.xlabel(“时间”,fontproperties = my_font)  # 在中文标题的地方加
+   ```
+
    
