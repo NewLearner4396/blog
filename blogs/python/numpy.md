@@ -182,16 +182,12 @@ dtype 为数组元素的数据类型（默认为int32）
 4. #### 数学运算
 
    1. np.power(A,2) 幂函数，A的每个元素平方
-
    2. np.sqrt() 开根号
-
    3. np.log() 以e为底
-
    4. np.log2() 以2为底
-
    5. np.log10() 以10为底
-
    6. A.dot(B)/ A @ B A,B两矩阵相乘，A*B为对应数字相乘
+   7. np.linalg.inv(A) 求A矩阵的逆 np.linalg.pinv() 求广义逆
 
 5. #### 切片
 
