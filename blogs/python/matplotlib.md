@@ -47,7 +47,7 @@ Pyplot 包含一系列绘图函数的相关函数，每个函数会对当前的�
 import  matplotlib.pyplot as plt
 ```
 
-常用函数：
+#### 常用函数
 
 1. plt.show() # 显示图像窗口
 
@@ -88,6 +88,23 @@ import  matplotlib.pyplot as plt
    - `edgecolor`:边框颜色
    - `clear`:重建figure实例
 
+   1. plt.ion() # 进入交互模式
+
+      python可视化库matplotlib的显示模式默认为阻塞（block）模式。plt.show()之后，程序会暂停到那儿，并不会继续执行下去。如果需要继续执行程序，就要关闭图片。进入交互模式后，即使在脚本中遇到plt.show()，代码还是会继续执行。而且，在交互模式下，plt.plot(x)或plt.imshow(x)是直接出图像，不需要plt.show()。
+
+   2. plt.ioff() # 退出交互模式
+
+   3. plt.cla() # 清空当前子图
+
+   4. plt.clf() # 清空当前图形窗口，删除所有子图
+
+   5. plt.pause(internal) # 时间单位为s，运行GUI事件循环若干秒
+
+      如果当前有活动的图形，在`pause`函数运行前，图形将会更新并显示，在等待期间事件循环会一直运行，直到暂停时间`interval`秒后结束。
+      如果没有当前有活动的图形，将会调用`time.sleep`函数，休眠`interval`秒。
+
+   6. plt.close() # 关闭图形窗口
+
 5. plt.savefig(figure, “”)  # 保存图像，输入figure对象及保存路径
 
 6. plt.rcParams[‘font.sans-serif’] = [‘SimHei’]  # 指定默认字体避免中文乱码
@@ -114,4 +131,5 @@ import  matplotlib.pyplot as plt
    plt.xlabel(“时间”,fontproperties = my_font)  # 在中文标题的地方加
    ```
 
-   
+
+### Animation
