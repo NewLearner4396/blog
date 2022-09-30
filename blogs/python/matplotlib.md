@@ -232,6 +232,6 @@ import  matplotlib.pyplot as plt
     ax.plot(x,y,z)  # x,y,z的class可以是narray、list、Series，但不能是matrix
     ```
 
-    
+    可参考链接:[python （matplotlib）画三维图像](https://blog.csdn.net/Mr_Cat123/article/details/100054757)
 
 ### Animation
