@@ -227,8 +227,8 @@ import  matplotlib.pyplot as plt
     import matplotlib.pyplot as plt
     from mpl_toolkits.mplot3d import Axes3D
     
-    fig = plt.figure()
-    ax = Axes3D(fig)
+    ax = Axes3D(fig, auto_add_to_figure=False)
+    fig.add_axes(ax)
     ax.plot(x,y,z)  # x,y,z的class可以是narray、list、Series，但不能是matrix
     ```
 
