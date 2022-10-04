@@ -105,7 +105,7 @@ categories:
 
 ![我的自定义内容](http://imagebed.krins.cloud/api/image/ZBP82B42.png)
 
-该插件模认在右键菜单中设置了6个命令，我觉得我用不到这么多命令，而且太占空间，于是我修改了该插件的JSON文件，路径为：`C:\Users\Administrator\.vscode\extensions\yzane.markdown-pdf-1.4.4\package.json`
+该插件默认在右键菜单中设置了6个命令，我觉得我用不到这么多命令，而且太占空间，于是我修改了该插件的JSON文件，我的路径为：`C:\Users\Administrator\.vscode\extensions\yzane.markdown-pdf-1.4.4\package.json`
 
 只留下这两个大括号就好了，记得把`group`的序号改一下
 
@@ -133,7 +133,11 @@ typora官网主题的CSS：<https://theme.typora.io/>
 
 该规范意使Markdown源文件简洁易读，如不喜欢可以不用。
 
-如果喜欢该规范可以在`settings.JSON`中加入：
+规范文档：[官方Rules](https://github.com/DavidAnson/markdownlint/blob/v0.26.2/doc/Rules.md)
+
+---
+
+下面附上我个人关于Markdown在`settings.JSON`中的额外设置：
 
 ```json
     "[markdown]":{
@@ -151,7 +155,7 @@ typora官网主题的CSS：<https://theme.typora.io/>
         },
 ```
 
-规范文档：[官方Rules](https://github.com/DavidAnson/markdownlint/blob/v0.26.2/doc/Rules.md)
+
 
 ### Markdown常用语法
 
@@ -183,7 +187,7 @@ typora官网主题的CSS：<https://theme.typora.io/>
 
 还可以用`Win + .`调出系统的表情工具。
 
-markdown支持写流程图，但有其他可视化工具，用代码写有点不方便。
+markdown支持写流程图，但可以用其他可视化工具代替此功能，用代码写有点不方便。
 
 ### 参考链接
 

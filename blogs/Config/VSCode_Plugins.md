@@ -136,3 +136,10 @@ Github代码主题，我很喜欢`Github Dark Dimmed`。
 
 先新建一个后缀为`.drawio`的文件保存后打开即可使用此插件开始绘制流程图。
 
+### 9.IntelliCode
+
+![image-20221004193749413](http://imagebed.krins.cloud/api/image/2L08DLF6.png)
+
+自动补全插件
+
+比很多拓展内置的代码补全好用的多，尤其是Python的，功能强大！
