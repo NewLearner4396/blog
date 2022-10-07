@@ -201,37 +201,69 @@ import  matplotlib.pyplot as plt
 
     
 
-11. 配合seaborn库绘制热力图
+#### 配合seaborn库绘制热力图
 
-    ```python
-    import seaborn as sns
-    import matplotlib.pyplot as plt
-    
-    fig = sns.heatmap(DataFrame, vmax=1, vmin=-1, center=0, annot=True, square=True, fmt='.2g')
-    # annot=True 显示数据在块上
-    # square=True 画出方块
-    # fmt 格式化数据
-    # cmap 色卡
-    ```
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
 
-12. 单独修改标签等字体
+fig = sns.heatmap(DataFrame, vmax=1, vmin=-1, center=0, annot=True, square=True, fmt='.2g')
+# annot=True 显示数据在块上
+# square=True 画出方块
+# fmt 格式化数据
+# cmap 色卡
+```
 
-    ```python
-    my_font = font_manager.FontProperties(fname="FZXH1JW.TTF")  # 导入方正细黑简体
-    plt.xlabel(“时间”,fontproperties = my_font)  # 在中文标题的地方加
-    ```
+#### 单独修改标签等字体
 
-13. 绘制三维图像
+```python
+my_font = font_manager.FontProperties(fname="FZXH1JW.TTF")  # 导入方正细黑简体
+plt.xlabel(“时间”,fontproperties = my_font)  # 在中文标题的地方加
+```
 
-    ```python
-    import matplotlib.pyplot as plt
-    from mpl_toolkits.mplot3d import Axes3D
-    
-    ax = Axes3D(fig, auto_add_to_figure=False)
-    fig.add_axes(ax)
-    ax.plot(x,y,z)  # x,y,z的class可以是narray、list、Series，但不能是matrix
-    ```
+#### 绘制三维图像
 
-    可参考链接:[python （matplotlib）画三维图像](https://blog.csdn.net/Mr_Cat123/article/details/100054757)
+```python
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+ax = Axes3D(fig, auto_add_to_figure=False)
+fig.add_axes(ax)
+ax.plot(x,y,z)  # x,y,z的class可以是narray、list、Series，但不能是matrix
+```
+
+可参考链接:[python （matplotlib）画三维图像](https://blog.csdn.net/Mr_Cat123/article/details/100054757)
+
+#### 绘制gif
+
+gif的实质是先画出每个线条的完整图片，再将这些图片保存成一个数组，将这个数组的图片依次保存到gif的文件中，并在每张图片之间加入延时。
+
+```python
+import gif  # 该库依托与PIL，pip安装此库之前请先install pillow
+
+
+# @gif.frame是GIF库用来创建帧序列的装饰器，紧接着的def gm(n)函数的输出就是一个PIL类
+# 如果不定义装饰器将无法调用gif.save()
+@gif.frame  
+def plott(x,y):
+    plt.plot(x,y)
+   
+
+frames = []
+x1 = np.linspace(0, 20, 100)  # 创建数组
+for i in range(20):
+    plt.clf()  # 清空画布上的所有内容
+    y1 = np.sin(x1*i/100.0)
+    frame = plott(x1,y1)  # 将每个线条的完整图片分别画出来
+	frames.append(frame)  # 将每个线条的完整图片存入一个列表中
+gif.save(frames,'gif.gif',duration=100)  # 将列表中的图片依次存入gif文件中，并在每个图片之间加入延时。
+```
+
+可参考链接：[python 输出plot函数的动图，并保存为gif文件](https://blog.csdn.net/luzi0206/article/details/125866610)
 
 ### Animation
+
+```python
+import matplotlib.animation as ani
+```
+

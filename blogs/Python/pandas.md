@@ -127,7 +127,7 @@ categories:
 
 DataFrame 可以使用列索引（columns index）来完成数据的选取、添加和删除操作。
 
-1. 选取‘one’这一列`df ['one']`
+1. 选取‘one’这一列`df ['one']`/`df.one`
 
 2. 选取‘one’到’two’之间的列`df['one':'two']`
 
