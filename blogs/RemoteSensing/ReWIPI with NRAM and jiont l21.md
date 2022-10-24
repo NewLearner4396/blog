@@ -1,10 +1,10 @@
 ---
-title: 基于最小化非凸秩估计的红外小目标检测
-date: 2022-10-20
+title: 基于最小秩估计的红外小目标检测
+date: 2022-09-01
 tags:
- - Infrared
+ - RemoteSensing
 categories:
- -  RemoteSensing
+ -  Search
 ---
 
 ## 基于最小化联合l2,1范数的非凸秩估计的红外小目标检测
