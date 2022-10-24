@@ -246,7 +246,7 @@ Ctags和iVerilog安装完我们就要配置插件`Verilog-HDL/SystemVerilog/Blue
 
 ![打开vivado_Settings](http://imagebed.krins.cloud/api/image/4FR8NF40.png)
 
-选择`Text Editor`，下拉框选择`Customer Editor...`，点击旁边的三个点，在文本框中输入`VSCode.exe的绝对路径 [file name]:[line number]`
+选择`Text Editor`，下拉框选择`Customer Editor...`，点击旁边的三个点，在文本框中输入`Code.exe的绝对路径 [file name]:[line number]`
 
 ![调整编辑器到VSCode](http://imagebed.krins.cloud/api/image/0TZ8Z004.png)
 

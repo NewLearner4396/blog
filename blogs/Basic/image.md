@@ -659,6 +659,13 @@ categories:
     - nextPts 输出跟踪特征点向量
     - status 特征点是否找到，找到的状态为1，未找到的状态为0
 
+19. python滑动高斯卷积核滤波
+    
+    ```python
+      Gaussian_kernel = cv2.getGaussianKernel(size, 2) @ cv2.getGaussianKernel(3, 2).T
+      u = scipy.ndimage.convolve(pic, Gaussian_kernel) 
+    ```
+    
 ### 参考资料
 
 1. [【2022B站最好的OpenCV课程推荐】OpenCV从入门到实战 全套课程（附带课程课件资料+课件笔记）图像处理|深度学习人工智能计算机视觉python+AI](https://www.bilibili.com/video/BV1PV411774y?p=9&spm_id_from=pageDriver&vd_source=f7fc0a964268b45e70067d58c7c397fc)

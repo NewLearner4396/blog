@@ -147,6 +147,15 @@ cv.resize(img,(0,0),fx=alpha,fy=beta) # 横向拉伸alpha倍，纵向拉伸beta�
 
 ![image-20220904095126260](http://imagebed.krins.cloud/api/image/8HNP8ND8.png#pic_center)
 
+#### 图像归一化
+
+```python
+# 将tarImg放缩到0~1后提亮到原最大亮度
+maxV = np.max(tarImg)
+res = cv2.normalize(tarImg, None, 1, 0, cv2.NORM_MINMAX, dtype=cv2.CV_64F)*maxV
+res = res.astype(np.uint8)
+```
+
 #### 图像滤波
 
 ```python
