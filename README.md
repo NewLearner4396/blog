@@ -1,6 +1,6 @@
 ---
 home: true
-heroText: 碎境🙂
+heroText: 碎境
 tagline: 怕什么真理无穷，进一寸有一寸的欢喜
 # heroImage: /hero.png
 # heroImageStyle: {
