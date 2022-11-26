@@ -136,12 +136,16 @@ WSL Linux端静态IP 192.168.99.2
 在powershell中输入`vim $profile`
 
 ```bash
-$getIp = netsh.exe interface ip show addresses "vEthernet (WSL)" | findstr.exe /C:"192.168.99.1"
-if($getIP.SubString(37,12) -ne "192.168.99.1")
+$getIP = netsh.exe interface ip show addresses "vEthernet (WSL)" | findstr.exe /C:"192.168.99.1"
+if(!$getIP)
 {
     netsh interface ip add address "vEthernet (WSL)" address=192.168.99.1/24
 }
 ```
+
+刚开机打开powershell时会显示`文件名、目录名或卷标语法不正确。`
+因为wsl未启动，还未给其分配虚拟网卡，启动wsl后shell会自动给"vEthernet (WSL)"添加ip地址。
+所以不用担心这个报错。
 
 为避免wsl每次启动生成的ip将我们设置的ip覆盖掉，停用其服务
 
