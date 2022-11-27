@@ -114,7 +114,6 @@ win+R 输入mstsc打开微软的远程桌面连接工具
 ![输入ip](http://imagebed.krins.cloud/api/image/000X0VPN.png)
 输入用户名密码连接
 ![连接远程桌面](http://imagebed.krins.cloud/api/image/FJ6P6RFJ.png)
-TODO:图片
 
 喜欢折腾可以美化桌面教程：[美化你的Xfce桌面](https://blog.csdn.net/alfiy/article/details/126859106)
 
@@ -191,7 +190,7 @@ if [ `hostname -I` != "192.168.99.2" ]; then
 fi
 ```
 
-这种方法会将你的用户密码暴露在文件中，有些危险，但我目前暂时没有更好的解决办法，又不想直接进入就是root用户。以后有更好的办法再更新。
+这种方法**会将你的用户密码暴露在文件中**，有些危险，但我目前暂时没有更好的解决办法，又不想直接进入就是root用户。以后有更好的办法再更新。
 
 ![添加网络互通](http://imagebed.krins.cloud/api/image/ZJ84JFFT.png)
 
@@ -237,6 +236,8 @@ fi
 要在 PowerShell 或 Windows 命令提示符下运行特定的 WSL 发行版而不更改默认发行版，请使用命令 wsl -d <DistributionName>，将 <DistributionName> 替换为要使用的发行版的名称。
 
 wsl --set-version <DistributionName> version(1/2)命令可用于从 WSL 2 降级到 WSL 1，或将以前安装的 Linux 发行版从 WSL 1 更新到 WSL 2。
+
+wsl --shutdown 命令用于将关闭wsl服务，释放其内存缓存。普通的exit只是注销，要过几分钟系统才会关闭其服务。
 
 [WSL 的基本命令](https://learn.microsoft.com/zh-cn/windows/wsl/basic-commands)
 [安装WSL](https://learn.microsoft.com/zh-cn/windows/wsl/install#upgrade-version-from-wsl-1-to-wsl-2)
