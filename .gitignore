@@ -9,3 +9,4 @@ yarn-error.log
 *.pdf
 .vscode/
 .history/
+blogs.code-workspace
