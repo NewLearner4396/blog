@@ -110,6 +110,7 @@ end
 
 ### 转义符
 
+字符串输出时会用到转义符
 '' Single quotation mark
 %% Percent character
 \\ Backslash

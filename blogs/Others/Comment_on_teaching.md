@@ -39,3 +39,4 @@ document.querySelector("#main > form > table > tbody > tr:nth-child(20) > td > i
 
 - 代码为旧版本，新版评教系统更新了`推荐星级`，要自己手动打星。
 - 新版系统还更新了`评语检测`，不能有重复的评语，需要自己更改一下。
+- 不发布
