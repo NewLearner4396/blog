@@ -58,8 +58,10 @@ set(ax,'XLim',[-10 10],'YLim',[-10,10],'ZLim',[0,30],'PlotBoxAspectRatio',[1,1,1
 lighting phong;shading interp;eval(ax.Tag)
 
 %% 绘制星星
-plot3(0,0,25.6,'p', 'MarkerSize',24,'MarkerFaceColor',[255,223,153]/255,'MarkerEdgeColor','none','LineWidth', 1);
-starLightHdl=scatter3(0,0,25.6,4500,'o','MarkerFaceColor','w','MarkerEdgeColor','none','MarkerEdgeAlpha',0,'MarkerFaceAlpha', 0.1);
+plot3(0,0,25.6,'p', 'MarkerSize',24,'MarkerFaceColor',[255,223,153]/255,...
+'MarkerEdgeColor','none','LineWidth', 1);
+starLightHdl=scatter3(0,0,25.6,4500,'o','MarkerFaceColor','w','MarkerEdgeColor','none',...
+'MarkerEdgeAlpha',0,'MarkerFaceAlpha', 0.1);
 
 %% 绘制圣诞树上的彩灯
 lightFuncX=@(h,r,a,z) (h-z)./h.*r.*cos(a.*z);

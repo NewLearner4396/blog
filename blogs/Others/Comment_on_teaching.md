@@ -5,7 +5,7 @@ tags:
  - Tips
 categories:
 -  Others
-publish:false
+publish: false
 ---
 
 ## 使用脚本快速评教
@@ -34,8 +34,6 @@ document.querySelector("#main > form > table > tbody > tr:nth-child(20) > td > i
 ![0](https://imagebed.krins.cloud/api/image/860086ZH.png)
 
 ![1](https://imagebed.krins.cloud/api/image/XPPXRT2H.png)
-
-
 
 **注意**！！！
 
