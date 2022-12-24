@@ -8,4 +8,6 @@ blogs/AI/temp.md
 yarn-error.log
 .vscode/
 .history/
+*.pdf
+*.xmind
 blogs.code-workspace
