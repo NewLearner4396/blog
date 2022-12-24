@@ -5,7 +5,6 @@ tags:
  - Tips
 categories:
 -  Others
-publish: false
 ---
 
 ## 使用脚本快速评教
