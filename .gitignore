@@ -9,5 +9,4 @@ yarn-error.log
 .vscode/
 .history/
 *.pdf
-*.xmind
 blogs.code-workspace
