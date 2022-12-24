@@ -120,7 +120,9 @@ win+R 输入mstsc打开微软的远程桌面连接工具
 ### Windows Terminal
 
 [什么是 Windows 终端？](https://learn.microsoft.com/zh-cn/windows/terminal/)
+
 [Windows Terminal完整指南](https://zhuanlan.zhihu.com/p/272082726#:~:text=Windows%20Terminal%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97%201%20%E5%8D%95%E5%87%BB%E5%85%B6%E5%BC%80%E5%A7%8B%E8%8F%9C%E5%8D%95%E5%9B%BE%E6%A0%87%202%20%E5%9C%A8Powershell%E6%88%96%E5%91%BD%E4%BB%A4%E6%8F%90%E7%A4%BA%E7%AC%A6%E4%B8%8B%E8%BE%93%E5%85%A5%20wsl%20%E6%88%96,Terminal%3A%20Select%20Default%20Shell%20%EF%BC%8C%E7%84%B6%E5%90%8E%E9%80%89%E6%8B%A9%20WSL%20Bash%20%E3%80%82)
+
 [美化 Windows Terminal(iTerm2-Color-Schemes)](https://blog.csdn.net/Jioho_chen/article/details/100624029)
 
 ### 固定ip
@@ -216,9 +218,13 @@ fi
 之后要git之类的就能很方便
 
 [wsl2能否固定ip地址?](https://www.zhihu.com/question/387747506/answer/2579596278)
+
 [用 echo 管道命令给sudo自动输入密码](https://blog.csdn.net/xushx_bigbear/article/details/12966625)
+
 [Linux默认以root或管理员权限启动程序的三种方式](https://blog.csdn.net/shihoongbo/article/details/122290472)
+
 [WSL2-CentOS7固定IP](https://www.1024sou.com/article/977402.html#:~:text=WSL2%20%E9%87%87%E7%94%A8%20Hyper-V%20%E7%9A%84%20Internal%20Virtual,Switch%EF%BC%8C%E8%BF%99%E4%B8%AA%E8%99%9A%E6%8B%9F%E4%BA%A4%E6%8D%A2%E6%9C%BA%E6%9C%AC%E8%BA%AB%E6%98%AF%E5%8F%AF%E4%BB%A5%E8%AE%BE%E7%BD%AE%E9%9D%99%E6%80%81%20IP%20%E5%9C%B0%E5%9D%80%E7%9A%84%EF%BC%8C%E4%BD%86%E6%98%AF%20WSL2%20%E5%8D%B4%E8%87%AA%E4%BD%9C%E8%81%AA%E6%98%8E%EF%BC%8C%E5%9C%A8%E6%AF%8F%E6%AC%A1%E5%85%A8%E6%96%B0%E5%90%AF%E5%8A%A8%E7%9A%84%E6%97%B6%E5%80%99%E5%B0%86%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E6%81%A2%E5%A4%8D%E6%88%90%20DHCP%EF%BC%8C%E8%BF%99%E5%B0%B1%E5%AF%BC%E8%87%B4WSL2%E6%AF%8F%E6%AC%A1%E5%85%A8%E6%96%B0%E5%90%AF%E5%8A%A8%E5%90%8E%E7%9A%84IP%E9%83%BD%E4%B8%8D%E5%9B%BA%E5%AE%9A%EF%BC%8C%E5%A6%82%E6%9E%9C%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E5%9B%BA%E5%AE%9A%E7%9A%84IP%EF%BC%8C%E9%9C%80%E8%A6%81%E5%81%9A%E4%B8%80%E4%BA%9B%E8%AE%BE%E7%BD%AE%E3%80%82)
+
 [wsl2配置使用windows网络代理](https://blog.csdn.net/nick_young_qu/article/details/113709768)
 
 ### 使用CUDA
@@ -240,6 +246,7 @@ wsl --set-version <DistributionName> version(1/2)命令可用于从 WSL 2 降级
 wsl --shutdown 命令用于将关闭wsl服务，释放其内存缓存。普通的exit只是注销，要过几分钟系统才会关闭其服务。
 
 [WSL 的基本命令](https://learn.microsoft.com/zh-cn/windows/wsl/basic-commands)
+
 [安装WSL](https://learn.microsoft.com/zh-cn/windows/wsl/install#upgrade-version-from-wsl-1-to-wsl-2)
 
 参考链接：

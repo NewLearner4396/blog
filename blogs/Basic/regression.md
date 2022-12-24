@@ -169,4 +169,3 @@ W_计算出的残差： 1727.6436919042164 W计算出的残差： 1727.664471310
 [3分钟带你掌握标量对矩阵求导方法](https://mp.weixin.qq.com/s/txRNKUXMVKv3nm0jftqjRg)
 
 [矩阵求导术（上）](https://zhuanlan.zhihu.com/p/24709748)
-

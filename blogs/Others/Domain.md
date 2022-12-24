@@ -5,6 +5,7 @@ tags:
  - web
 categories:
 -  Others
+sticky: 1
 ---
 ## 此网站的各种别名😝  
 
