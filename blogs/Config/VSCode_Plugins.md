@@ -8,7 +8,7 @@ categories:
  -  Config
 ---
 
-## 我正使用的VSCode插件，亲测好用
+## 我正使用的VSCode通用插件，亲测好用
 
 ### 1. Chinese(Simplified)
 
@@ -26,6 +26,8 @@ categories:
 
 ![不同颜色括号](http://imagebed.krins.cloud/api/image/0ZXFRJ08.png)
 
+由于该插件功能被VSCode内置，该插件已不再单独更新维护
+
 VScode也有内置类似的插件：`Bracket Pair Colorizer 2`
 
 在`settings.json`插入以下代码使能此插件：
@@ -37,7 +39,9 @@ VScode也有内置类似的插件：`Bracket Pair Colorizer 2`
 }
 ```
 
-### 3. carbon-now-sh
+有一说一，内置插件这个默认括号对比配色真不好看
+
+### 3.1 carbon-now-sh
 
 ![代码截图工具](http://imagebed.krins.cloud/api/image/L66ZFTRN.png)
 
@@ -54,13 +58,25 @@ VScode也有内置类似的插件：`Bracket Pair Colorizer 2`
 5. 可复制到剪贴板中方便插入
 6. 可导出为文件保存
 
+有时会遇到bug，代码过长粘贴出来会换行，和复制前设置的不一样，不知道怎么回事
+
+### 3.2 CodeSnap
+
+![CodeSnap](https://imagebed.krins.cloud/api/image/H020B88B.png)
+
+也可将代码转为图片
+
+优点是不用跳转到网页操作
+
+缺点是没有carbon-now-sh可选项那么多
+
 ### 4. Code Runner
 
 ![代码运行插件](http://imagebed.krins.cloud/api/image/8060PHV0.png)
 
 代码运行插件
 
-不需要调试，不想配置`launch`、`task`文件就能运行代码进行测试，方便快捷，支持多种语言。
+不同于调试，不需要配置`launch`、`task`文件就能运行代码进行测试，方便快捷，支持多种语言。
 
 快捷键:
 
@@ -128,6 +144,8 @@ Github代码主题，我很喜欢`Github Dark Dimmed`。
 
 下载：`Shift + Alt + D`
 
+该插件功能也已被VSCode内置，将VSCode账户绑定自己github账户即可同步
+
 ### 8. Draw.io Integration
 
 ![DrawIO](http://imagebed.krins.cloud/api/image/N860VV8H.png)
@@ -143,3 +161,9 @@ Github代码主题，我很喜欢`Github Dark Dimmed`。
 自动补全插件
 
 比很多拓展内置的代码补全好用的多，尤其是Python的，功能强大！
+
+### 10.GitHub Copilot
+
+![GitHub Copilot](https://imagebed.krins.cloud/api/image/N2P4F226.png)
+
+AI代码机器人，实时提供代码建议，用起来挺方便的

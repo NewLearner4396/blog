@@ -1,5 +1,5 @@
 ---
-title: 《通信原理》的简单梳理
+title: 梳理学习《通信原理》
 date: 2022-09-25
 tags:
  - Signal
@@ -7,7 +7,7 @@ categories:
  -  Book
 ---
 
-## 简单梳理一下《通信原理》
+## 根据邵老师讲义梳理《通信原理》
 
 还在学习，慢慢补完！
 
@@ -55,6 +55,10 @@ $$
 
 ![信道模型框图](https://imagebed.krins.cloud/api/image/6XRJB2T4.png)
 
+---
+
+---
+
 #### 路径传播损耗
 
 > 通信工程通常涉及数量级的变化，为方便计算使用dBm作为常用单位。
@@ -87,6 +91,10 @@ $$
 >>
 >> 模型：阴影衰落效应，大量测试结果表明，平均功率的统计模型服从对数正态分布。
 
+---
+
+---
+
 #### 加性噪声
 
 主要讨论内部噪声，也叫“热噪声”，产生原因是收发机的电路(放大器、滤波器、混频器、AD/DA等电子元器件)由电子热运动引起的随机扰动效应，在时域和频域普遍存在，一般不可避免。
@@ -108,6 +116,10 @@ $$
 >通信工程中，带宽$B_s$内的热噪声功率计算方法为：$P_n=N_0B_s=kTB_s(W)$
 >
 >20ºC，带宽为1Hz的热噪声功率为-174dBm
+
+---
+
+---
 
 #### 乘性衰落
 
@@ -141,3 +153,74 @@ $$
 多普勒频率变化量为：$f_d=\frac{v}{\lambda}cos\theta$
 
 ![多普勒对接收信号的影响](https://imagebed.krins.cloud/api/image/J20N0002.png)
+
+### 调制与解调的数学原理
+
+#### 通信信号的调制
+
+一个物理可实现的信号的数学表达式:
+$$
+s(t)=A(t)cos(2\pi f_c t+\theta (t)) \nonumber
+$$
+
+从**时域**看：
+
+幅度、频率、附加相位将发射信号决定，调制的过程就是将信息**调谐控制**到电磁波上，也可以理解成把一个低频信号搬移到高频载波上
+
+![模拟调制常用框图](C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20230315130355050.png)
+
+从**频域**看：
+
+从频谱法规、信道环境匹配考虑，一般情况下，发射信号被设计成一个带通信号(带宽为W且W<<$f_c$)
+
+由于 s(t) 是实信号，因此其频谱 S(f) 是共轭对称的，幅度谱是偶函数，相位谱是奇函数。单边谱就决定了信号的全部特征。
+
+![低通等效的推导](https://imagebed.krins.cloud/api/image/0V422XVF.png)
+
+基带信号与带通信号有相同的幅度和相位信息，可以通过分析基带信号从而得到带通信号的等效性质，且基带信号分析的方法和手段相对方便复杂度低。
+
+复基带信号被复载波搬移成实带通信号
+
+![带通与基带信号的频域关系](https://imagebed.krins.cloud/api/image/FJL60N08.png)
+
+![image-20230315133428464](https://imagebed.krins.cloud/api/image/86H8P6F2.png)
+
+![image-20230315133411753](https://imagebed.krins.cloud/api/image/FRVL008H.png)
+
+![坐标表示](https://imagebed.krins.cloud/api/image/XVT68X8B.png)
+
+信号调制就是设计基带坐标值，${A(t),\theta(t)}或{s_I(t),s_Q(t)}$
+
+两种坐标体系，本质是一样的，对应了两种发射机的实现架构,根据设计方便来选择。
+
+工程上，模拟信源更多使用极坐标，数字信源采用直角坐标。
+
+![调制信号框图](https://imagebed.krins.cloud/api/image/6ZVF2JVT.png)
+
+![信息调制框图](https://imagebed.krins.cloud/api/image/NJ6H66VH.png)
+
+![幅度调制](https://imagebed.krins.cloud/api/image/46LR4P86.png)
+
+---
+
+![接收信号数学模型](https://imagebed.krins.cloud/api/image/Z260P462.png)
+
+![image-20230315161557296](https://imagebed.krins.cloud/api/image/J080X28P.png)
+
+![image-20230315161636521](https://imagebed.krins.cloud/api/image/2N688ZP4.png)
+
+**积分器可用低通滤波器等效**
+
+![image-20230315161843524](https://imagebed.krins.cloud/api/image/P22F060F.png)
+
+第一步：下变频(去载波)。出于带通和基带信号等价原理，且基带信号处理方便易实现的优势，首先把接收信号下变频到基带。
+
+第二步：基带解调。根据下变频得到的I和Q路信号，考虑到噪声的影响，需要根据某种优化准则，来解调恢复调制信号 m(t)。解调后的信号与原始发射信号越接近越好，误差越小越好！
+
+**基带解调本质上是一个随机信号的估计优化**
+
+> ![等效基带与带通实信号功率关系](https://imagebed.krins.cloud/api/image/2ZHZ2J4L.png)
+>
+> ![通过等效低通计算带通信号功率](https://imagebed.krins.cloud/api/image/8BZ8T82R.png)
+
+![实信号与等效低通的对比](https://imagebed.krins.cloud/api/image/F64B6N2Z.png)

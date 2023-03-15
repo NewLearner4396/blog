@@ -47,6 +47,7 @@ TeX Live安装可自行阅读此篇教程：[Visual Studio Code (vscode)配置La
 	"latex-workshop.message.error.show": true,
     "latex-workshop.message.warning.show": false,
     // 设置编译工具，“%DOCFILE%”使得支持编译中文名称文件
+	// "-output-directory=%OUTDIR%"设置输出位置
 	"latex-workshop.latex.tools": [
         {
             "name": "xelatex",
@@ -55,6 +56,7 @@ TeX Live安装可自行阅读此篇教程：[Visual Studio Code (vscode)配置La
                 "-synctex=1",
                 "-interaction=nonstopmode",
                 "-file-line-error",
+                "-output-directory=%OUTDIR%",
                 "%DOCFILE%"
             ]
         },
@@ -162,6 +164,8 @@ TeX Live安装可自行阅读此篇教程：[Visual Studio Code (vscode)配置La
     "latex-workshop.view.pdf.internal.synctex.keybinding": "ctrl-click",
     // 不使用外部PDF编辑器进行预览，这一项选择"tab"，如需外部的选择"external"
 	"latex-workshop.view.pdf.viewer": "tab",
+	// 设置输出目录为当前文件夹以编译文件命名的输出目录
+	"latex-workshop.latex.outDir": "%DIR%/%DOCFILE%_out",
 ```
 
 如需使用外部PDF编辑器添加以下代码(先将上文提到的`"latex-workshop.view.pdf.viewer": "tab",`指令删除)：
@@ -184,6 +188,9 @@ TeX Live安装可自行阅读此篇教程：[Visual Studio Code (vscode)配置La
 ```
 
 **不要清理生成的名字中带 synctex 的文件，否则就不能进行正向和反向搜索；**
+
+- 正向同步（tex → pdf）：`Ctrl + Alt + j`
+- 反向同步（pdf → tex）：`double click`
 
 ### 测试
 
