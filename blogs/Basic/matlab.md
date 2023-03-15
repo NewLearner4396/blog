@@ -111,15 +111,21 @@ end
 ### 转义符
 
 字符串输出时会用到转义符
-'' Single quotation mark
-%% Percent character
-\\ Backslash
-\a Alarm
-\b Backspace
-\f Form feed
-\n New line
-\r Carriage return
-\t Horizontal tab
-\v Vertical tab
-\xN Hexadecimal number, N
-\N Octal number, N
+
+
+|符号|效果|
+| --- | --- |
+|'' |Single quotation mark|
+|%% |Percent character|
+|\\ |Backslash|
+|\a |Alarm|
+|\b |Backspace|
+|\f |Form feed|
+|\n |New line|
+|\r |Carriage return|
+|\t |Horizontal tab|
+|\v |Vertical tab|
+|\xN |Hexadecimal number, N|
+|\N |Octal number, N|
+
+

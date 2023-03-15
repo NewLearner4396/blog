@@ -2,7 +2,7 @@
 title: 线性回归的推导
 date: 2022-09-29
 tags:
- - Regress
+ - Math
 categories:
  -  Basic
 ---
