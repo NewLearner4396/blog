@@ -203,15 +203,17 @@ $$
 
 ---
 
+#### 通信信号的接收
+
 ![接收信号数学模型](https://imagebed.krins.cloud/api/image/Z260P462.png)
 
-![image-20230315161557296](https://imagebed.krins.cloud/api/image/J080X28P.png)
+![接收机的数学思想](https://imagebed.krins.cloud/api/image/J080X28P.png)
 
-![image-20230315161636521](https://imagebed.krins.cloud/api/image/2N688ZP4.png)
+![接收机的处理框图](https://imagebed.krins.cloud/api/image/2N688ZP4.png)
 
 **积分器可用低通滤波器等效**
 
-![image-20230315161843524](https://imagebed.krins.cloud/api/image/P22F060F.png)
+![接收框图](https://imagebed.krins.cloud/api/image/P22F060F.png)
 
 第一步：下变频(去载波)。出于带通和基带信号等价原理，且基带信号处理方便易实现的优势，首先把接收信号下变频到基带。
 
@@ -224,3 +226,19 @@ $$
 > ![通过等效低通计算带通信号功率](https://imagebed.krins.cloud/api/image/8BZ8T82R.png)
 
 ![实信号与等效低通的对比](https://imagebed.krins.cloud/api/image/F64B6N2Z.png)
+
+### 模拟信号调制
+
+![模拟发射机初步认识](https://imagebed.krins.cloud/api/image/6DVXXPF4.png)
+
+![模拟接收机常用框图](https://imagebed.krins.cloud/api/image/4BT84042.png)
+
+#### 调幅
+
+![常规调幅](https://imagebed.krins.cloud/api/image/P44T4FL0.png)
+
+![AM时域](https://imagebed.krins.cloud/api/image/4646XF4X.png)
+
+![AM频域](https://imagebed.krins.cloud/api/image/40BNJ4P8.png)
+
+![AM接收](https://imagebed.krins.cloud/api/image/V60600P8.png)

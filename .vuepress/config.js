@@ -22,7 +22,7 @@ module.exports = {
 
 
       /**
-       * 资源下载(电子书籍等)
+       * 资源下载
       */
       { text: 'Resources', 
         icon: 'reco-message',

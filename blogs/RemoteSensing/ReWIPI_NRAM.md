@@ -246,6 +246,10 @@ $\gamma$趋近0是B的秩，趋于无穷是B的核范数。
 
 ![image-20221017140951106](http://imagebed.krins.cloud/api/image/N88B22XN.png)
 
+
+
+复杂背景下的强边缘会在目标图像中留下残余。为了解决这个问题，并考虑到目标图像中留下的强边缘相对于整个图像来说是线性结构的稀疏性，我们引入了联合2,1范数来有效地去除强边缘
+
 联合2,1范数
 
 ![image-20221017141000213](http://imagebed.krins.cloud/api/image/HRXDPZBJ.png)

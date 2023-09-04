@@ -4,7 +4,7 @@ date: 2022-11-30
 tags:
  - matlab
 categories:
--  Basic
+-  Lang
 ---
 
 ## matlab常用方法
@@ -127,5 +127,4 @@ end
 |\v |Vertical tab|
 |\xN |Hexadecimal number, N|
 |\N |Octal number, N|
-
 
