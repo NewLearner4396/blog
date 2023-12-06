@@ -223,7 +223,6 @@ class Softmax:
             exp_t_s = np.sum(exp_t)
 
             # 反馈的数值
-            # TODO:理解公式
             out_back = -exp_t[i] * exp_t / (exp_t_s ** 2)
             out_back[i] = exp_t[i] * (exp_t_s - exp_t[i]) / (exp_t_s ** 2)
 

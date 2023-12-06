@@ -83,3 +83,13 @@ git config http.proxy http://127.0.0.1:4780
 就能正常push了。
 
 参考资料链接：[git clone出现 fatal: unable to access 'https://github.com/...'的解决办法(亲测有效)](https://blog.csdn.net/dashi_lu/article/details/89641778)
+
+
+
+#### 3. github copilot chat in VSCode Internet connection
+
+如果拿到了chat的使用权限，但问问题后一直是思考中，那么可能是网络代理有些问题。
+
+（前提是git设置好了全局代理，git上传没有问题）
+
+cmd键入`curl --verbose -x http://你的代理地址:端口号 -i -L https://copilot-proxy.githubusercontent.com/_ping `，若是成功，则有`HTTP/1.1 200 Connection established`提示，则成功建立连接。
