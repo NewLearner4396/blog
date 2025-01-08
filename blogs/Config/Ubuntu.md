@@ -65,7 +65,7 @@ deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted unive
  deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
  deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
  deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
- ```
+```
 
  ```bash
  #  中科大源
@@ -79,7 +79,7 @@ deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe
 deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
 deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
 deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
-```
+ ```
 
 之后再更新一下相关索引
 
@@ -316,8 +316,8 @@ APT的底层包是dpkg, 而dpkg 安装Package时, 会将 *.deb 放在 /var/cache
   - 所有者(owner)
   - 同组者(group)
   - 其他(other)
-在Linux命令行中执行 `ls -l` ，就可以看到一个文件的三种属者对该文件所拥有的权限
-执行`ls-l`命令后，可以看到最前有10个字符
+  在Linux命令行中执行 `ls -l` ，就可以看到一个文件的三种属者对该文件所拥有的权限
+  执行`ls-l`命令后，可以看到最前有10个字符
 
 - 第1个字符，d-代表该文件是一个目录，-表示普通文件
 - 第2-4个字符，代表文件所有者owner的权限
@@ -389,3 +389,5 @@ chmod命令可以使用八进制数来指定权限。文件或目录的权限位
 参考链接：
 
 1. [如何在linux中执行一个脚本](https://www.cnblogs.com/domestique/p/6682995.html#:~:text=%E5%A6%82%E6%9E%9C%E6%98%AF,%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%20%E5%90%8E%E8%87%AA%E5%8A%A8%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%B0%86%E8%84%9A%E6%9C%AC%E5%86%99%E5%88%B0%E7%9B%B8%E5%BA%94%E7%9A%84%E7%94%A8%E6%88%B7%E7%9B%AE%E5%BD%95%E4%B8%8B%E2%80%9C%EF%BD%9E%2F.bash_profile%E2%80%9D%EF%BC%8C%E8%8B%A5%E8%84%9A%E6%9C%AC%E2%80%9C%EF%BD%9E%2F.bash_profile%E2%80%9D%E4%B8%8D%E5%AD%98%E5%9C%A8%EF%BC%8C%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E6%8B%B7%E8%B4%9D%E2%80%9C%2Fetc%2Fprofile%E2%80%9D%E5%91%BD%E5%90%8D%E4%B8%BA%E2%80%9C%EF%BD%9E%2F.bash_profile%E2%80%9D%EF%BC%9B)
+
+   

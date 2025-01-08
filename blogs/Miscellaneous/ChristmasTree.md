@@ -4,7 +4,7 @@ date: 2022-12-24
 tags:
  - matlab
 categories:
--  Basic
+-  Miscellaneous
 ---
 
 ## 使用matlab绘制圣诞树

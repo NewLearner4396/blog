@@ -88,6 +88,15 @@ TeX Live安装可自行阅读此篇教程：[Visual Studio Code (vscode)配置La
             "args": [
                 "%DOCFILE%"
             ]
+        },
+        {
+            "name": "biber",// 用于biblatex宏包的编译
+              "command": "biber",
+              "args": [
+                "--input-directory=%OUTDIR%",
+                "--output-directory=%OUTDIR%",
+                  "%DOCFILE%"
+              ]
         }
     ],
 	// 设置编译链
@@ -130,6 +139,15 @@ TeX Live安装可自行阅读此篇教程：[Visual Studio Code (vscode)配置La
             "tools": [
                 "pdflatex",
                 "bibtex",
+                "pdflatex",
+                "pdflatex"
+            ]
+        },
+        {
+            "name": "pdflatex -> biber -> pdflatex*2",
+            "tools": [
+                "pdflatex",
+                "biber",
                 "pdflatex",
                 "pdflatex"
             ]

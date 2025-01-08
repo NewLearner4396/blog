@@ -4,7 +4,7 @@ date: 2023-03-15
 tags:
  - Math
 categories:
--  Basic
+-  Miscellaneous
 ---
 
 ## FFT学习

@@ -4,7 +4,7 @@ date: 2022-09-03
 tags:
  - Image
 categories:
- -  Basic
+ -  Miscellaneous
 ---
 
 ## 图像处理的基础知识

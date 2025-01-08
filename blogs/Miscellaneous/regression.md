@@ -4,7 +4,7 @@ date: 2022-09-29
 tags:
  - Math
 categories:
- -  Basic
+ -  Miscellaneous
 ---
 
 ## 线性回归内的数学

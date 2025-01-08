@@ -4,7 +4,7 @@ date: 2022-11-28
 tags:
  - 时间序列
 categories:
- -  Basic
+ -  Miscellaneous
 ---
 
 ## Stata处理时间序列数据
