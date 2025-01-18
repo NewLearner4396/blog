@@ -2,9 +2,9 @@
 title: 《数字信号处理》的简单梳理
 date: 2022-09-25
 tags:
- - Signal
+ - Digital
 categories:
- -  Book
+ -  Signal
 ---
 
 ## 简单梳理一下《数字信号处理》
