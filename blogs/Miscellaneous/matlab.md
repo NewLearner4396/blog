@@ -4,7 +4,7 @@ date: 2022-11-30
 tags:
  - matlab
 categories:
--  Lang
+-  Miscellaneous
 ---
 
 ## matlab常用方法

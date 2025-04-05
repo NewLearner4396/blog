@@ -2,7 +2,7 @@
 title: 时间序列处理的stata
 date: 2022-11-28
 tags:
- - 时间序列
+ - Time Series
 categories:
  -  Miscellaneous
 ---
