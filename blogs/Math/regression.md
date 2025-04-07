@@ -4,7 +4,7 @@ date: 2022-09-29
 tags:
  - Regression
 categories:
- -  Math
+ - Math
 ---
 
 ## 线性回归内的数学

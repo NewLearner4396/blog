@@ -2,11 +2,11 @@
 title: FOC和SVPWM的作用
 date:2025-03-31
 tags:
-  - motor
-  - FOC
-  - SVPWM
+ - motor
+ - FOC
+ - SVPWM
 categories:
-  - Math
+ - Math
 ---
 
 ## 从零开始驱动BLDC
