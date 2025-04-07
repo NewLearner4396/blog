@@ -5,7 +5,7 @@ tags:
  - STM32
  - HAL库
 categories:
- -  STM32
+ -  C
 ---
 ## 不使用微库的串口printf及串口接收的多种处理
 
@@ -39,6 +39,11 @@ int fputc(int ch, FILE *f)
 {
   HAL_UART_Transmit(&huart2, (uint8_t *)&ch, 1, 0xffff);// 修改为自己使用的串口
   return ch;
+}
+int __io_putchar(int ch)
+{
+  HAL_UART_Transmit(&huart2, (uint8_t *)&ch, 1, 0xffff);// 修改为自己使用的串口
+  return ch;  
 }
 ```
 ---
@@ -271,5 +276,43 @@ int main(void)
 }
 ```
 
+#### 使用DMA空闲中断
+
+**半满中断、全满中断实现乒乓缓存**
+
+DMA设置成`circular`模式， DMA 接收只用开启一次，缓冲区满后 DMA 会自动重置到缓冲区起始位置，不再需要每次接收完成后重新开启 DMA。
+
+![image-20250402102827038](https://image.krins.cloud/image-20250402102827038.png)
+
+![image-20250402102905313](https://image.krins.cloud/image-20250402102905313.png)
+
+开启串口接收
+
+```c
+#define RX_BUF_SIZE 20
+uint8_t USART1_Rx_buf[RX_BUF_SIZE];
+HAL_UARTEx_ReceiveToIdle_DMA(&huart1, USART1_Rx_buf, RX_BUF_SIZE);
+```
+
+串口回调函数
+
+```c
+void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
+{
+    static uint8_t Rx_buf_pos;	//本次回调接收的数据在缓冲区的起点
+    static uint8_t Rx_length;	//本次回调接收数据的长度
+    Rx_length = Size - Rx_buf_pos;
+    fifo_s_puts(&uart_rx_fifo, &USART1_Rx_buf[Rx_buf_pos], Rx_length);	//数据填入 FIFO
+    Rx_buf_pos += Rx_length;
+    if (Rx_buf_pos >= RX_BUF_SIZE) Rx_buf_pos = 0;	//缓冲区用完后，返回 0 处重新开始
+}
+```
+
+由于串口寄存器只能储存一个字节，所以开启直接模式的 DMA 每个字节都要搬运一次数据到内存缓冲区中。而 DMA 的 FIFO 实际效果简单来说就是攒一批数据一起发送出去，可以减少软件开销和 AHB 总线上数据传输的次数，适合数据连续不断且系统中还有其他开销较大的任务这种场景使用。不过也是由于 DMA 的 FIFO 必须攒一批才能发送，攒不够就不发了，所以也有一些局限性。**此处没有使用 DMA 的 FIFO**，而是使用直接模式。
+
+
+
 参考链接：[小记stm32实现串口接收的四种方法（hal库）](https://blog.csdn.net/qq_19655649/article/details/114390717)
+
+[STM32 HAL 库实现乒乓缓存加空闲中断的串口 DMA 收发机制，轻松跑上 2M 波特率](https://blog.csdn.net/wanglei_11/article/details/131576165)
 

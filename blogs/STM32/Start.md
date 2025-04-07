@@ -5,7 +5,7 @@ tags:
  - STM32
  - HAL库
 categories:
- -  STM32
+ -  C
 ---
 
 ## 1.VS Code
@@ -43,3 +43,5 @@ categories:
 8. 设置相关参数后即可烧录程序
 
    ![image-20211202214823086](https://s2.loli.net/2021/12/19/kfVAibhdtBnX3Zz.png)
+
+**注：现可使用CMake构建方式，更好用方便；使用openocd烧录与调试也更方便**

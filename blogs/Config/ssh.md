@@ -109,7 +109,7 @@ ssh-add $env:USERPROFILE\.ssh\id_ecdsa
 
 添加之后备份好私钥文件就可以在本地删除它了。
 
-开动脑瓜将`id_ecdsa.pub`中的内容加到服务端的`AuthorizedKeysFile`中，首次的话要自己在`./.ssh`文件夹中新建一个`authorized_keys`，注意这个文件的读写权限应限制为用户本人，不能有`Everyone`等出现。私钥同理。
+开动脑瓜将`id_ecdsa.pub`中的内容加到服务端的`AuthorizedKeysFile`中，首次的话要自己在`./.ssh`文件夹中新建一个`authorized_keys`，同时注意这个文件的读写权限应限制为用户本人，不能有`Everyone`等出现。私钥的权限也一样要注意。
 
 ### 结
 
