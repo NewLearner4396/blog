@@ -2,9 +2,9 @@
 title: 梳理学习《通信原理》
 date: 2022-09-25
 tags:
- - Signal
+ - Communication
 categories:
- -  Book
+ -  Signal
 ---
 
 ## 根据邵老师讲义梳理《通信原理》

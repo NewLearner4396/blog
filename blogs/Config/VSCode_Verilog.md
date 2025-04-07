@@ -10,14 +10,7 @@ categories:
 
 ## 配置VSCode，愉快编写Verilog小工程
 
-- [配置VSCode，愉快编写Verilog小工程](#配置vscode愉快编写verilog小工程)
-  - [零、写在开头🧐](#零写在开头)
-  - [一、用VSCode写Verilog的原因🤣](#一用vscode写verilog的原因)
-  - [二、配置所需的VSCode插件😉](#二配置所需的vscode插件)
-  - [三、将vivado文本编辑器修改为VSCode😋](#三将vivado文本编辑器修改为vscode)
-  - [四、使用Iverilog+GtkWave进行简单的波形仿真🤗](#四使用iveriloggtkwave进行简单的波形仿真)
-  - [五、使用yosys进行综合🤨](#五使用yosys进行综合)
-  - [六、参考资料😆](#六参考资料)
+[TOC]
 
 ### 零、写在开头🧐
 

@@ -2,9 +2,9 @@
 title: 线性回归的推导
 date: 2022-09-29
 tags:
- - Math
+ - Regression
 categories:
- -  Miscellaneous
+ -  Math
 ---
 
 ## 线性回归内的数学

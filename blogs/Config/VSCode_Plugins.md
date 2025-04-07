@@ -10,6 +10,8 @@ categories:
 
 ## 我正使用的VSCode通用插件，亲测好用
 
+注意：排名不分先后！！！
+
 ### 1. Chinese(Simplified)
 
 ![VSCode中文插件](http://imagebed.krins.cloud/api/image/JJZ0082D.png)
@@ -18,7 +20,7 @@ categories:
 
 英文不好同学必备插件。
 
-### 2. Rainbow Brackets
+### 2. ~~Rainbow Brackets~~
 
 ![彩虹括号](http://imagebed.krins.cloud/api/image/D6N8P6T4.png)
 
@@ -108,6 +110,10 @@ Github代码主题，我很喜欢`Github Dark Dimmed`。
 
 注意commit后会弹出一个文件用来输入本次commit的描述，如果不写内容直接关掉的话会停止commit，请填写描述后保存再关闭文件。
 
+以及可用graph形式展示每次commit。
+
+还有可视化操作rebase功能。
+
 它还可以在编辑文件时显示何人何时修改过文件
 
 还有plus会员服务，但我不需要，可以在`settings.json`中输入以下代码来取消此服务的推广：
@@ -124,13 +130,56 @@ Github代码主题，我很喜欢`Github Dark Dimmed`。
 
 记录代办的插件
 
-搜索注释中的`TODO:，单列出个列表方便查找。
+搜索注释中的`TODO`等tag，单列出个列表方便查找。
 
 码代码时有什么代办事项可以记录下来，避免忘记。
 
 ![TODO查找](http://imagebed.krins.cloud/api/image/0RXRJ64L.png)
 
-### 7. Setting Sync
+我的配置如下：
+
+```JSON
+"todo-tree.highlights.defaultHighlight": {
+        "type": "text-and-comment",
+        "foreground": "#59ff00",
+        "gutterIcon": true,
+    },
+    "todo-tree.highlights.customHighlight": {
+        "TODO": {
+            "icon": "pin",
+            "foreground": "#fa903a",
+        },
+        "FIXME": {
+            "icon": "tools",
+            "foreground": "#ff3c00",
+        },
+        "HACK": {
+            "icon": "bell",
+            "foreground": "#ff00ee",
+        },
+        "NOTE": {
+            "icon": "note",
+            "foreground": "#00b7e4",
+        },
+        "BUG": {
+            "icon": "stop",
+            "foreground": "#ff0000",
+        },
+    },
+    "todo-tree.general.tags": [
+        "TODO",
+        "NOTE",
+        "HACK",
+        "BUG",
+        "FIXME",
+        "FLAG",
+        "XXX",
+        "[ ]",
+        "[x]",
+    ],
+```
+
+### 7. ~~Setting Sync~~
 
 ![配置同步](http://imagebed.krins.cloud/api/image/R48VVX0P.png)
 
@@ -167,3 +216,17 @@ Github代码主题，我很喜欢`Github Dark Dimmed`。
 ![GitHub Copilot](https://imagebed.krins.cloud/api/image/N2P4F226.png)
 
 AI代码机器人，实时提供代码建议，用起来挺方便的
+
+### 11. Error Lens
+
+将Problem展示在有问题的那一行，方便查看。
+
+### 12. Better Comments
+
+使用标识符将注释渲染成不同的颜色方便查看。
+
+### 13. commentTanslate
+
+当光标悬浮在英文注释上时，可以将其翻译成中文悬浮显示。
+
+搭配`tecentCloundTranslate`和`baiduTranslate`这两个插件，可以使用他们的API key获得翻译服务。

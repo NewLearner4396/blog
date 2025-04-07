@@ -4,7 +4,7 @@ date: 2025-01-06
 tags:
  - Git
 categories:
-- Others  
+- Miscellaneous  
 ---
 
 ## git的常见用法

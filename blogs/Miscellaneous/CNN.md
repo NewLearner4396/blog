@@ -5,7 +5,7 @@ tags:
  - CNN
  - DeepLearning
 categories:
- -  AI
+ -  Miscellaneous
 ---
 
 ## 卷积神经网络CNN

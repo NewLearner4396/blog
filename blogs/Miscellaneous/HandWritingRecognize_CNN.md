@@ -5,7 +5,7 @@ tags:
  - CNN
  - DeepLearning
 categories:
- -  AI
+ -  Miscellaneous
 ---
 
 ## 基于CNN的手写数字识别
