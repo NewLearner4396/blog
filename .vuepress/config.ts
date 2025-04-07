@@ -11,7 +11,7 @@ export default defineUserConfig({
   theme: recoTheme({
     logo: "/logo.png",
     author: "NewLearner4396",
-    authorAvatar: "/portait.jpg",
+    authorAvatar: "/portrait.jpg",
     docsRepo: "https://github.com/vuepress-reco/vuepress-theme-reco-next",
     docsBranch: "main",
     docsDir: "example",
@@ -31,13 +31,14 @@ export default defineUserConfig({
     },
     navbar: [
       { text: "Home", link: "/" },
+      { text: "TimeLine", link: "/timeline.html"},
       { text: "Categories", link: "/categories/reco/1.html" },
-      { text: "Tags", link: "/tags/tag1/1.html" },
+      { text: "Tags", link: "/tags/Tips/1.html" },
       {
         text: "Docs",
         children: [
           { text: "vuepress-reco", link: "/docs/theme-reco/theme" },
-          { text: "vuepress-theme-reco", link: "/blogs/other/guide" },
+          { text: "vuepress-theme-reco", link: "/blogs/Others/OriginGuide" },
         ],
       },
     ],
