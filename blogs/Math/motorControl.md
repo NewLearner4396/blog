@@ -1,7 +1,7 @@
 ---
 title: FOC和SVPWM的作用
 date:2025-03-31
-tag:
+tags:
   - motor
   - FOC
   - SVPWM
