@@ -27,7 +27,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           ACCESS_TOKEN: ${{ secrets.blog }}
-          REPOSITORY_NAME: NewLearner4396/blogs.git
+          REPOSITORY_NAME: NewLearner4396/blogs
           BRANCH: master
           FOLDER: .vuepress/dist
           #注意这里的 folder 是仓库根目录下的 文件夹，也就是 npm run build 生成静态资源的路径，比如有的人是 `docs/.vuepress/dist`
