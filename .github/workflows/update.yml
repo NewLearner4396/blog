@@ -22,9 +22,13 @@ jobs:
       - name: Build
         run: npm install && npm run build
 
+      # Add this step before deploy to check if files exist
+      - name: Check build output
+        run: ls -la .vuepress/dist
+
       # 2、部署到 GitHub Pages
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           ACCESS_TOKEN: ${{ secrets.BLOG_TOKEN }}
           REPOSITORY_NAME: NewLearner4396/blogs
