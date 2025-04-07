@@ -1,11 +1,8 @@
 .vuepress/.cache
 .vuepress/.temp
 node_modules
-blogs/AI/
-blogs/Config/
-blogs/Math/
-blogs/Miscellaneous/
-blogs/Note/
-blogs/Others/
-blogs/Signal/
-blogs/STM32/
+blogs/Miscellaneous/*
+blogs/Note/*
+blogs/Others/*
+blogs/Signal/*
+blogs/STM32/*
