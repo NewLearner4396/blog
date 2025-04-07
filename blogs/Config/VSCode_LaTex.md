@@ -28,7 +28,7 @@ TeX Live安装可自行阅读此篇教程：[Visual Studio Code (vscode)配置La
 
 ### 安装VSCode插件：LaTeX Workshop
 
-![安装LaTeX Workshop](C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20220924102855448.png)
+[安装LaTeX Workshop]**此处本是拓展的截图**
 
 ### 修改插件设置
 
