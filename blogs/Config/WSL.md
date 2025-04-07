@@ -90,7 +90,7 @@ max_bpp=128
 xserverbpp=128 # 这个原本是注释着的，不改也行
 
 #在bash下直接输入
-sudo echo xfce4-session > ~/.xsession
+sudo echo xfce4-session &gt; ~/.xsession
 
 #编辑/etc/xrdp/startwm.sh文件
 sudo vim /etc/xrdp/startwm.sh
@@ -166,7 +166,7 @@ sudo rm -f /etc/resolv.conf
 ```bash
 #!/bin/bash
 # ip设置为192.168.99.2
-ip addr show eth0 | grep -s "192.168.99.2/24" > /dev/null
+ip addr show eth0 | grep -s "192.168.99.2/24" &gt; /dev/null
 if [ $? == 1 ]; then
   ip addr add 192.168.99.2/24 broadcast 192.168.99.255 dev eth0 label eth0:1
 fi
@@ -198,7 +198,7 @@ fi
 
 - 新建防火墙入站规则
   - 打开控制面板\系统和安全\Windows Defender 防火墙
-  - 点击入站规则->新建规则
+  - 点击入站规则-&gt;新建规则
   - 规则类型：自定义
   - 程序：所有程序
   - 协议和端口：默认即可
@@ -235,13 +235,13 @@ fi
 
 可列出已安装的 Linux 发行版，并通过在 PowerShell 或 Windows 命令提示符中输入以下命令来检查每个发行版的 WSL 版本：wsl -l -v。
 
-要在安装新的 Linux 发行版时将默认版本设置为 WSL 1 或 WSL 2，请使用命令 wsl --set-default-version <Version#>，将 <Version#> 替换为 1 或 2。
+要在安装新的 Linux 发行版时将默认版本设置为 WSL 1 或 WSL 2，请使用命令 wsl --set-default-version &lt;Version#&gt;，将 &lt;Version#&gt; 替换为 1 或 2。
 
-要设置与 wsl 命令一起使用的默认 Linux 发行版，请输入 wsl -s <DistributionName> 或 wsl --setdefault <DistributionName>，将 <DistributionName> 替换为要使用的 Linux 发行版的名称。 例如，从 PowerShell/CMD 输入 wsl -s Debian，将默认发行版设置为 Debian
+要设置与 wsl 命令一起使用的默认 Linux 发行版，请输入 wsl -s &lt;DistributionName&gt; 或 wsl --setdefault &lt;DistributionName&gt;，将 &lt;DistributionName&gt; 替换为要使用的 Linux 发行版的名称。 例如，从 PowerShell/CMD 输入 wsl -s Debian，将默认发行版设置为 Debian
 
-要在 PowerShell 或 Windows 命令提示符下运行特定的 WSL 发行版而不更改默认发行版，请使用命令 wsl -d <DistributionName>，将 <DistributionName> 替换为要使用的发行版的名称。
+要在 PowerShell 或 Windows 命令提示符下运行特定的 WSL 发行版而不更改默认发行版，请使用命令 wsl -d &lt;DistributionName&gt;，将 &lt;DistributionName&gt; 替换为要使用的发行版的名称。
 
-wsl --set-version <DistributionName> version(1/2)命令可用于从 WSL 2 降级到 WSL 1，或将以前安装的 Linux 发行版从 WSL 1 更新到 WSL 2。
+wsl --set-version &lt;DistributionName&gt; version(1/2)命令可用于从 WSL 2 降级到 WSL 1，或将以前安装的 Linux 发行版从 WSL 1 更新到 WSL 2。
 
 wsl --shutdown 命令用于将关闭wsl服务，释放其内存缓存。普通的exit只是注销，要过几分钟系统才会关闭其服务。
 
