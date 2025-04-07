@@ -1,7 +1,6 @@
 .vuepress/.cache
 .vuepress/.temp
 node_modules
-blogs/Math/*
 blogs/Miscellaneous/*
 blogs/Note/*
 blogs/Others/*
