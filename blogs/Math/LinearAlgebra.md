@@ -1,9 +1,9 @@
 ---
 title: MIT Linear Algebra
 date: 2025-01-15
-tags:
+tags: 
  - Linear Algebra
-categories:
+categories: 
  - Math
 ---
 
