@@ -34,5 +34,5 @@ jobs:
           repository-name: NewLearner4396/blogs
           branch: gh-pages
           folder: .vuepress/dist
-          # action 会将dist文件覆盖到当前分支的根目录，弃用
           #注意这里的 folder 是仓库根目录下的 文件夹，也就是 npm run build 生成静态资源的路径，比如有的人是 `docs/.vuepress/dist`
+          # action 导入的页面没有css，暂时停用，需使用时将此文件放在`.github/workflows/` 目录下
