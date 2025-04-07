@@ -12,7 +12,7 @@ bannerBrand:
   tagline: Land of Fragment
   buttons:
     - { text: About Me, link: 'https://github.com/NewLearner4396' }
-    - { text: Default Style, link: '/docs/style-default-api/introduce', type: 'plain' }
+    - { text: 😉, link: '', type: 'plain' }
   socialLinks:
     - { icon: 'LogoGithub', link: 'https://github.com/vuepress-reco/vuepress-theme-reco' }
 blog:
