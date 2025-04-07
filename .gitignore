@@ -1,11 +1,3 @@
-node_modules/
-yarn.lock
-yarn.error
-update.py
-demo.md
-blogs/Basic/regression.pdf
-blogs/AI/temp.md
-yarn-error.log
-.vscode/
-.history/
-blogs.code-workspace
+.vuepress/.cache
+.vuepress/.temp
+node_modules
