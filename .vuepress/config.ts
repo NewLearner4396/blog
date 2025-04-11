@@ -17,8 +17,7 @@ export default defineUserConfig({
           margin-bottom: 12px;
         }
         > p {
-          font-size: 32px;
-          color: slategrey;
+          font-size: 30px;
           margin: 0 auto;
         }
       } 
@@ -56,6 +55,17 @@ export default defineUserConfig({
           { text: "vuepress-theme-reco", link: "/blogs/Others/OriginGuide" },
         ],
       },
+      { text: "friendlink", link: "/friendlink.html" },
+    ],
+    socialLinks: [
+      { icon: "/Redns.jpg", link: "https://github.com/Redns", },
+    ],
+    friendshipLinks: [
+      {
+        logo: "/Redns.jpg",
+        link: "https://github.com/Redns",
+        title: "Redns",
+      }
     ],
     // 告示牌 用法：https://theme-reco.vuejs.press/docs/theme/bulletin-popover.html#%E9%85%8D%E7%BD%AE
     // bulletin: {
