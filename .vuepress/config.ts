@@ -2,23 +2,26 @@ import { defineUserConfig } from "vuepress";
 import recoTheme from "vuepress-theme-reco";
 import { viteBundler } from '@vuepress/bundler-vite'
 // import { webpackBundler } from '@vuepress/bundler-webpack'
-import markdownItKatex from 'markdown-it-katex'
+import { markdownMathPlugin } from '@vuepress/plugin-markdown-math'
 
 
 export default defineUserConfig({
-  // plugins: [
-  //   // mdEnhancePlugin({
-  //   //   "plantuml": true,
-  //   //   "mermaid": true,
-  //   // }),
-  //   markdownMathPlugin({
-  //     output: "chtml"
-  //   }),
-  // ],
-
-  extendsMarkdown: (md) => {
-    md.use(markdownItKatex);
-  },
+  plugins: [
+    // 添加 MathJax 插件
+    markdownMathPlugin({
+      output: 'chtml',  // 或者 'svg'，取决于你的需求
+      chtml: {
+        scale: 1.1,         // 全局缩放公式
+        minScale: 0.5,      // 缩小屏幕时的最小缩放
+        matchFontHeight: true,
+        mtextInheritFont: true,
+        merrorInheritFont: true
+      },
+      tex: {
+        packages: ['base', 'ams', 'noundefined', 'newcommand', 'boldsymbol']
+      }
+    }),
+  ],
   head: [
     [`style`, {}, `
       .features__container .magic-card.features__item{

@@ -590,6 +590,38 @@
   resolved "https://registry.npmjs.org/@mdit-vue/types/-/types-2.1.0.tgz"
   integrity sha512-TMBB/BQWVvwtpBdWD75rkZx4ZphQ6MN0O4QB2Bc0oI5PC2uE57QerhNxdRZ7cvBHE2iY2C+BUNUziCfJbjIRRA==
 
+"@mdit/helper@0.16.0":
+  version "0.16.0"
+  resolved "https://registry.npmjs.org/@mdit/helper/-/helper-0.16.0.tgz"
+  integrity sha512-vUmLSZp+7UXJIYxOya9BkD0OgjgQ+6gpX+htEnc4SKaDPx4S1E7h5TE6Wy4E9Gm/JhkMHoD6TdeoQwrN/I9cLQ==
+  dependencies:
+    "@types/markdown-it" "^14.1.2"
+
+"@mdit/plugin-katex-slim@^0.16.2":
+  version "0.16.7"
+  resolved "https://registry.npmjs.org/@mdit/plugin-katex-slim/-/plugin-katex-slim-0.16.7.tgz"
+  integrity sha512-pHaaz0WVhBepyKLRNtk1GyZU+kf3oQ7qWoESOoLBEOkOakZJuVVT4oNfrFgbfW2obW983q3z9l4kHjMRx/bn5g==
+  dependencies:
+    "@mdit/helper" "0.16.0"
+    "@mdit/plugin-tex" "0.16.0"
+    "@types/markdown-it" "^14.1.2"
+
+"@mdit/plugin-mathjax-slim@^0.16.0":
+  version "0.16.0"
+  resolved "https://registry.npmjs.org/@mdit/plugin-mathjax-slim/-/plugin-mathjax-slim-0.16.0.tgz"
+  integrity sha512-bbo6HtNOFdNMGZH/pxc3X1vZOvOW1FF9RMiAW2pkmyk7sPnMziB8uwxm0Ra1RajEC/NDxJ3wcF7xynkLmS6PfA==
+  dependencies:
+    "@mdit/plugin-tex" "0.16.0"
+    "@types/markdown-it" "^14.1.2"
+    upath "^2.0.1"
+
+"@mdit/plugin-tex@0.16.0":
+  version "0.16.0"
+  resolved "https://registry.npmjs.org/@mdit/plugin-tex/-/plugin-tex-0.16.0.tgz"
+  integrity sha512-VWb5rJYP0eBRRjYhcaRE3r8UQkUaBXzu0l42ck7DOp+MSPsgXfS+bmk8/tyHG6/X/Mig9H92Lh1jzTqp3f5yKg==
+  dependencies:
+    "@types/markdown-it" "^14.1.2"
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.npmmirror.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz"
@@ -929,6 +961,11 @@
   resolved "https://registry.npmmirror.com/@types/web-bluetooth/-/web-bluetooth-0.0.20.tgz"
   integrity sha512-g9gZnnXVq7gM7v3tJCWV/qw7w+KeOlSHAhgF9RytFyifW6AF61hdT2ucrYhPq9hLs5JIryeupHV3qGk95dH9ow==
 
+"@types/web-bluetooth@^0.0.21":
+  version "0.0.21"
+  resolved "https://registry.npmjs.org/@types/web-bluetooth/-/web-bluetooth-0.0.21.tgz"
+  integrity sha512-oIQLCGWtcFZy2JW77j9k8nHzAOpqMHLQejDA48XXMWH6tjCQHz5RCFz1bzsmROyL6PUm+LLnUiI4BCn221inxA==
+
 "@types/webpack-env@^1.18.5":
   version "1.18.8"
   resolved "https://registry.npmjs.org/@types/webpack-env/-/webpack-env-1.18.8.tgz"
@@ -1072,7 +1109,7 @@
     "@vue/compiler-ssr" "3.5.13"
     "@vue/shared" "3.5.13"
 
-"@vue/shared@^3.5.11", "@vue/shared@^3.5.12", "@vue/shared@3.5.13":
+"@vue/shared@^3.5.11", "@vue/shared@^3.5.12", "@vue/shared@^3.5.13", "@vue/shared@3.5.13":
   version "3.5.13"
   resolved "https://registry.npmjs.org/@vue/shared/-/shared-3.5.13.tgz"
   integrity sha512-/hnE/qP5ZoGpol0a5mDi45bOd7t3tjYJBjsgCsivow7D48cJeV5l05RD82lPqi7gRiphZM37rnhW1l6ZoCNNnQ==
@@ -1356,6 +1393,18 @@
     gray-matter "^4.0.3"
     vue "^3.5.12"
 
+"@vuepress/helper@2.0.0-rc.70":
+  version "2.0.0-rc.70"
+  resolved "https://registry.npmjs.org/@vuepress/helper/-/helper-2.0.0-rc.70.tgz"
+  integrity sha512-3v8m0x9GyPY3TC+GFBJ8eNQ0Pa3qYLXfT5wK4HtZw+ti4dff6fNufqUtH63a2CgTKMI0BHrdUddw/lmI1LobPw==
+  dependencies:
+    "@vue/shared" "^3.5.13"
+    "@vueuse/core" "^12.4.0"
+    cheerio "1.0.0"
+    fflate "^0.8.2"
+    gray-matter "^4.0.3"
+    vue "^3.5.13"
+
 "@vuepress/highlighter-helper@2.0.0-rc.54":
   version "2.0.0-rc.54"
   resolved "https://registry.npmjs.org/@vuepress/highlighter-helper/-/highlighter-helper-2.0.0-rc.54.tgz"
@@ -1457,6 +1506,17 @@
   integrity sha512-Yy0elQlKt+2GbeUI+mZMGdbkvCsPXep+lBLaXYQqiIcHC4tXAwj+1FwB18LTICiv3oQDHUtx7ZZwTnYejXJ7sg==
   dependencies:
     execa "^9.4.0"
+
+"@vuepress/plugin-markdown-math@2.0.0-rc.70":
+  version "2.0.0-rc.70"
+  resolved "https://registry.npmjs.org/@vuepress/plugin-markdown-math/-/plugin-markdown-math-2.0.0-rc.70.tgz"
+  integrity sha512-PSqMqA7C5d6z5qfhIYbDgCZC3AL+P0644dIEgOMDG4Twg9S6LtDawkbILOshT0nb6RVLlA9gy/0ME5yIc/+zjw==
+  dependencies:
+    "@mdit/plugin-katex-slim" "^0.16.2"
+    "@mdit/plugin-mathjax-slim" "^0.16.0"
+    "@types/markdown-it" "^14.1.2"
+    "@vuepress/helper" "2.0.0-rc.70"
+    vue "^3.5.13"
 
 "@vuepress/plugin-medium-zoom@2.0.0-rc.55":
   version "2.0.0-rc.55"
@@ -1583,6 +1643,16 @@
     "@vueuse/shared" "11.3.0"
     vue-demi ">=0.14.10"
 
+"@vueuse/core@^12.4.0":
+  version "12.8.2"
+  resolved "https://registry.npmjs.org/@vueuse/core/-/core-12.8.2.tgz"
+  integrity sha512-HbvCmZdzAu3VGi/pWYm5Ut+Kd9mn1ZHnn4L5G8kOQTPs/IwIAmJoBrmYk2ckLArgMXZj0AW3n5CAejLUO+PhdQ==
+  dependencies:
+    "@types/web-bluetooth" "^0.0.21"
+    "@vueuse/metadata" "12.8.2"
+    "@vueuse/shared" "12.8.2"
+    vue "^3.5.13"
+
 "@vueuse/metadata@10.11.1":
   version "10.11.1"
   resolved "https://registry.npmjs.org/@vueuse/metadata/-/metadata-10.11.1.tgz"
@@ -1592,6 +1662,11 @@
   version "11.3.0"
   resolved "https://registry.npmjs.org/@vueuse/metadata/-/metadata-11.3.0.tgz"
   integrity sha512-pwDnDspTqtTo2HwfLw4Rp6yywuuBdYnPYDq+mO38ZYKGebCUQC/nVj/PXSiK9HX5otxLz8Fn7ECPbjiRz2CC3g==
+
+"@vueuse/metadata@12.8.2":
+  version "12.8.2"
+  resolved "https://registry.npmjs.org/@vueuse/metadata/-/metadata-12.8.2.tgz"
+  integrity sha512-rAyLGEuoBJ/Il5AmFHiziCPdQzRt88VxR+Y/A/QhJ1EWtWqPBBAxTAFaSkviwEuOEZNtW8pvkPgoCZQ+HxqW1A==
 
 "@vueuse/shared@10.11.1":
   version "10.11.1"
@@ -1606,6 +1681,13 @@
   integrity sha512-P8gSSWQeucH5821ek2mn/ciCk+MS/zoRKqdQIM3bHq6p7GXDAJLmnRRKmF5F65sAVJIfzQlwR3aDzwCn10s8hA==
   dependencies:
     vue-demi ">=0.14.10"
+
+"@vueuse/shared@12.8.2":
+  version "12.8.2"
+  resolved "https://registry.npmjs.org/@vueuse/shared/-/shared-12.8.2.tgz"
+  integrity sha512-dznP38YzxZoNloI0qpEfpkms8knDtaoQ6Y/sfS0L7Yki4zh40LFHEhur0odJC6xTHG5dxWVPiUWBXn+wCG2s5w==
+  dependencies:
+    vue "^3.5.13"
 
 "@waline/client@^2.15.8":
   version "2.15.8"
@@ -2315,6 +2397,11 @@ commander@^8.3.0:
   version "8.3.0"
   resolved "https://registry.npmmirror.com/commander/-/commander-8.3.0.tgz"
   integrity sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==
+
+commander@9.2.0:
+  version "9.2.0"
+  resolved "https://registry.npmjs.org/commander/-/commander-9.2.0.tgz"
+  integrity sha512-e2i4wANQiSXgnrBlIatyHtP1odfUp0BbV5Y5nEGbxtIrStkEOAAzCUirvLBNXHLr7kwLvJl6V+4V3XV9x7Wd9w==
 
 comment-regex@^1.0.0:
   version "1.0.1"
@@ -3026,6 +3113,11 @@ eslint-scope@5.1.1:
   dependencies:
     esrecurse "^4.3.0"
     estraverse "^4.1.1"
+
+esm@^3.2.25:
+  version "3.2.25"
+  resolved "https://registry.npmjs.org/esm/-/esm-3.2.25.tgz"
+  integrity sha512-U1suiZ2oDVWv4zPO56S0NcR5QriEahGtdN2OR6FiOG4WJvcjBVFB0qI4+eKoWFH483PKGuLuu6V8Z4T5g63UVA==
 
 esprima@^4.0.0:
   version "4.0.1"
@@ -3968,20 +4060,6 @@ jsonfile@^6.0.1:
   optionalDependencies:
     graceful-fs "^4.1.6"
 
-katex@^0.16.22:
-  version "0.16.22"
-  resolved "https://registry.npmjs.org/katex/-/katex-0.16.22.tgz"
-  integrity sha512-XCHRdUw4lf3SKBaJe4EvgqIuWwkPSo9XoeO8GjQW94Bp7TWv9hNhzZjZ+OH9yf1UmLygb7DIT5GSFQiyt16zYg==
-  dependencies:
-    commander "^8.3.0"
-
-katex@^0.6.0:
-  version "0.6.0"
-  resolved "https://registry.npmjs.org/katex/-/katex-0.6.0.tgz"
-  integrity sha512-rS4mY3SvHYg5LtQV6RBcK0if7ur6plyEukAOV+jGGPqFImuzu8fHL6M752iBmRGoUyF0bhZbAPoezehn7xYksA==
-  dependencies:
-    match-at "^0.1.0"
-
 kind-of@^6.0.0, kind-of@^6.0.2:
   version "6.0.3"
   resolved "https://registry.npmmirror.com/kind-of/-/kind-of-6.0.3.tgz"
@@ -4200,13 +4278,6 @@ markdown-it-emoji@^3.0.0:
   resolved "https://registry.npmjs.org/markdown-it-emoji/-/markdown-it-emoji-3.0.0.tgz"
   integrity sha512-+rUD93bXHubA4arpEZO3q80so0qgoFJEKRkRbjKX8RTdca89v2kfyF+xR3i2sQTwql9tpPZPOQN5B+PunspXRg==
 
-markdown-it-katex@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.npmjs.org/markdown-it-katex/-/markdown-it-katex-2.0.3.tgz"
-  integrity sha512-nUkkMtRWeg7OpdflamflE/Ho/pWl64Lk9wNBKOmaj33XkQdumhXAIYhI0WO03GeiycPCsxbmX536V5NEXpC3Ng==
-  dependencies:
-    katex "^0.6.0"
-
 markdown-it-task-lists@2.1.1:
   version "2.1.1"
   resolved "https://registry.npmjs.org/markdown-it-task-lists/-/markdown-it-task-lists-2.1.1.tgz"
@@ -4229,15 +4300,20 @@ marked@^4.0.8, marked@^4.3.0:
   resolved "https://registry.npmjs.org/marked/-/marked-4.3.0.tgz"
   integrity sha512-PRsaiG84bK+AMvxziE/lCFss8juXjNaWzVbN5tXAm4XjeaS9NAHhop+PjQxz2A9h8Q4M/xGmzP8vqNwy6JeK0A==
 
-match-at@^0.1.0:
-  version "0.1.1"
-  resolved "https://registry.npmjs.org/match-at/-/match-at-0.1.1.tgz"
-  integrity sha512-h4Yd392z9mST+dzc+yjuybOGFNOZjmXIPKWjxBd1Bb23r4SmDOsk2NYCU2BMUBGbSpZqwVsZYNq26QS3xfaT3Q==
-
 math-intrinsics@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/math-intrinsics/-/math-intrinsics-1.1.0.tgz"
   integrity sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==
+
+mathjax-full@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.npmjs.org/mathjax-full/-/mathjax-full-3.2.2.tgz"
+  integrity sha512-+LfG9Fik+OuI8SLwsiR02IVdjcnRCy5MufYLi0C3TdMT56L/pjB0alMVGgoWJF8pN9Rc7FESycZB9BMNWIid5w==
+  dependencies:
+    esm "^3.2.25"
+    mhchemparser "^4.1.0"
+    mj-context-menu "^0.6.1"
+    speech-rule-engine "^4.0.6"
 
 md5@^2.0.0:
   version "2.3.0"
@@ -4302,6 +4378,11 @@ methods@^1.1.1, methods@^1.1.2, methods@~1.1.2:
   version "1.1.2"
   resolved "https://registry.npmmirror.com/methods/-/methods-1.1.2.tgz"
   integrity sha512-iclAHeNqNm68zFtnZ0e+1L2yUIdvzNoauKU4WBA3VvH/vPFieF7qfRlwUZU+DA9P9bPXIS90ulxoUoCH23sV2w==
+
+mhchemparser@^4.1.0:
+  version "4.2.1"
+  resolved "https://registry.npmjs.org/mhchemparser/-/mhchemparser-4.2.1.tgz"
+  integrity sha512-kYmyrCirqJf3zZ9t/0wGgRZ4/ZJw//VwaRVGA75C4nhE60vtnIzhl9J9ndkX/h6hxSN7pjg/cE0VxbnNM+bnDQ==
 
 micromatch@^4.0.2, micromatch@^4.0.5, micromatch@^4.0.8:
   version "4.0.8"
@@ -4384,6 +4465,11 @@ mitt@^3.0.1:
   version "3.0.1"
   resolved "https://registry.npmjs.org/mitt/-/mitt-3.0.1.tgz"
   integrity sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==
+
+mj-context-menu@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.npmjs.org/mj-context-menu/-/mj-context-menu-0.6.1.tgz"
+  integrity sha512-7NO5s6n10TIV96d4g2uDpG7ZDpIhMh0QNfGdJw/W47JswFcosz457wqz/b5sAKvl12sxINGFCn80NZHKwxQEXA==
 
 ms@^2.1.1, ms@^2.1.3, ms@2.1.3:
   version "2.1.3"
@@ -5600,6 +5686,15 @@ speakingurl@^14.0.1:
   resolved "https://registry.npmjs.org/speakingurl/-/speakingurl-14.0.1.tgz"
   integrity sha512-1POYv7uv2gXoyGFpBCmpDVSNV74IfsWlDW216UPjbWufNf+bSU6GdbDsxdcxtfwb4xlI3yxzOTKClUosxARYrQ==
 
+speech-rule-engine@^4.0.6:
+  version "4.0.7"
+  resolved "https://registry.npmjs.org/speech-rule-engine/-/speech-rule-engine-4.0.7.tgz"
+  integrity sha512-sJrL3/wHzNwJRLBdf6CjJWIlxC04iYKkyXvYSVsWVOiC2DSkHmxsqOhEeMsBA9XK+CHuNcsdkbFDnoUfAsmp9g==
+  dependencies:
+    commander "9.2.0"
+    wicked-good-xpath "1.3.0"
+    xmldom-sre "0.1.31"
+
 sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.npmmirror.com/sprintf-js/-/sprintf-js-1.0.3.tgz"
@@ -6319,6 +6414,11 @@ which@^2.0.1:
   dependencies:
     isexe "^2.0.0"
 
+wicked-good-xpath@1.3.0:
+  version "1.3.0"
+  resolved "https://registry.npmjs.org/wicked-good-xpath/-/wicked-good-xpath-1.3.0.tgz"
+  integrity sha512-Gd9+TUn5nXdwj/hFsPVx5cuHHiF5Bwuc30jZ4+ronF1qHK5O7HD0sgmXWSEgwKquT3ClLoKPVbO6qGwVwLzvAw==
+
 wildcard@^2.0.1:
   version "2.0.1"
   resolved "https://registry.npmjs.org/wildcard/-/wildcard-2.0.1.tgz"
@@ -6371,6 +6471,11 @@ ws@^8.18.0:
   version "8.18.1"
   resolved "https://registry.npmjs.org/ws/-/ws-8.18.1.tgz"
   integrity sha512-RKW2aJZMXeMxVpnZ6bck+RswznaxmzdULiBr6KY7XkTnW8uvt0iT9H5DkHUChXrc+uurzwa0rVI16n/Xzjdz1w==
+
+xmldom-sre@0.1.31:
+  version "0.1.31"
+  resolved "https://registry.npmjs.org/xmldom-sre/-/xmldom-sre-0.1.31.tgz"
+  integrity sha512-f9s+fUkX04BxQf+7mMWAp5zk61pciie+fFLC9hX9UVvCeJQfNHRHXpeo5MPcR0EUf57PYLdt+ZO4f3Ipk2oZUw==
 
 xss@^1.0.6:
   version "1.0.15"
