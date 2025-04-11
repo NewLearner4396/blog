@@ -8,6 +8,22 @@ export default defineUserConfig({
   description: "My Knowledge Fragments",
   bundler: viteBundler(),
   // bundler: webpackBundler(),
+  head: [
+    [`style`, {}, `
+      .features__container .magic-card.features__item{
+        text-align: center;
+        > h4 {
+          font-size: 24px;
+          margin-bottom: 12px;
+        }
+        > p {
+          font-size: 32px;
+          color: slategrey;
+          margin: 0 auto;
+        }
+      } 
+    `]
+  ],
   theme: recoTheme({
     logo: "/logo.png",
     author: "NewLearner4396",
@@ -30,7 +46,7 @@ export default defineUserConfig({
     },
     navbar: [
       { text: "Home", link: "/" },
-      { text: "TimeLine", link: "/timeline.html"},
+      { text: "TimeLine", link: "/timeline.html" },
       { text: "Categories", link: "/categories/reco/1.html" },
       { text: "Tags", link: "/tags/Tips/1.html" },
       {
