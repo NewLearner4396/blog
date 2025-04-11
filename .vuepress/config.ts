@@ -1,28 +1,42 @@
+// Removed invalid import as 'output' is not exported from the specified module
+import { mathjax } from './../node_modules/mathjax-full/ts/mathjax';
 import { defineUserConfig } from "vuepress";
 import recoTheme from "vuepress-theme-reco";
 import { viteBundler } from '@vuepress/bundler-vite'
 import { webpackBundler } from '@vuepress/bundler-webpack'
+import { mdEnhancePlugin } from "vuepress-plugin-md-enhance"
+import { markdownMathPlugin } from '@vuepress/plugin-markdown-math'
 
 export default defineUserConfig({
-  title: "Land of Fragment",
-  description: "My Knowledge Fragments",
-  bundler: viteBundler(),
-  // bundler: webpackBundler(),
+  plugins: [
+    mdEnhancePlugin({
+      "plantuml": true,
+      "mermaid": true,
+    }),
+    markdownMathPlugin({
+      output: "chtml"
+    }),
+  ],
   head: [
     [`style`, {}, `
       .features__container .magic-card.features__item{
         text-align: center;
-        > h4 {
-          font-size: 24px;
-          margin-bottom: 12px;
-        }
-        > p {
-          font-size: 30px;
-          margin: 0 auto;
-        }
+        > h4 { font-size: 24px; }
+        > p { font-size: 30px; }
       } 
-    `]
+    `],
+    // 添加 MathJax 样式改进
+    [`style`, {}, `
+      .math-block {
+        overflow-x: auto; /* 对于长公式，允许水平滚动 */
+        margin: 1em 0;
+      }
+    `],
   ],
+  title: "Land of Fragment",
+  description: "My Knowledge Fragments",
+  bundler: viteBundler(),
+  // bundler: webpackBundler(),
   theme: recoTheme({
     logo: "/logo.png",
     author: "NewLearner4396",
