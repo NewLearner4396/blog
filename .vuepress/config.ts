@@ -1,22 +1,24 @@
-// Removed invalid import as 'output' is not exported from the specified module
-import { mathjax } from './../node_modules/mathjax-full/ts/mathjax';
 import { defineUserConfig } from "vuepress";
 import recoTheme from "vuepress-theme-reco";
 import { viteBundler } from '@vuepress/bundler-vite'
-import { webpackBundler } from '@vuepress/bundler-webpack'
-import { mdEnhancePlugin } from "vuepress-plugin-md-enhance"
-import { markdownMathPlugin } from '@vuepress/plugin-markdown-math'
+// import { webpackBundler } from '@vuepress/bundler-webpack'
+import markdownItKatex from 'markdown-it-katex'
+
 
 export default defineUserConfig({
-  plugins: [
-    mdEnhancePlugin({
-      "plantuml": true,
-      "mermaid": true,
-    }),
-    markdownMathPlugin({
-      output: "chtml"
-    }),
-  ],
+  // plugins: [
+  //   // mdEnhancePlugin({
+  //   //   "plantuml": true,
+  //   //   "mermaid": true,
+  //   // }),
+  //   markdownMathPlugin({
+  //     output: "chtml"
+  //   }),
+  // ],
+
+  extendsMarkdown: (md) => {
+    md.use(markdownItKatex);
+  },
   head: [
     [`style`, {}, `
       .features__container .magic-card.features__item{
