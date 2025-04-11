@@ -46,7 +46,7 @@ export default defineUserConfig({
     navbar: [
       { text: "Home", link: "/" },
       { text: "TimeLine", link: "/timeline.html" },
-      { text: "Categories", link: "/categories/reco/1.html" },
+      { text: "Categories", link: "/categories/Others/1.html" },
       { text: "Tags", link: "/tags/Tips/1.html" },
       {
         text: "Docs",
@@ -55,10 +55,7 @@ export default defineUserConfig({
           { text: "vuepress-theme-reco", link: "/blogs/Others/OriginGuide" },
         ],
       },
-      { text: "friendlink", link: "/friendlink.html" },
-    ],
-    socialLinks: [
-      { icon: "/Redns.jpg", link: "https://github.com/Redns", },
+      { text: "Link", link: "/friendship-link.html" },
     ],
     friendshipLinks: [
       {
