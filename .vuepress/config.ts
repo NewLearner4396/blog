@@ -3,6 +3,7 @@ import recoTheme from "vuepress-theme-reco";
 import { viteBundler } from '@vuepress/bundler-vite'
 // import { webpackBundler } from '@vuepress/bundler-webpack'
 import { markdownMathPlugin } from '@vuepress/plugin-markdown-math'
+import { markdownStylizePlugin } from '@vuepress/plugin-markdown-stylize'
 
 
 export default defineUserConfig({
@@ -20,6 +21,14 @@ export default defineUserConfig({
       tex: {
         packages: ['base', 'ams', 'noundefined', 'newcommand', 'boldsymbol']
       }
+    }),
+    markdownStylizePlugin({
+      sup: true,
+      sub: true,
+      mark: true,
+      align: true,
+      attrs: true,
+      spoiler: true,
     }),
   ],
   head: [

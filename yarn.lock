@@ -597,6 +597,29 @@
   dependencies:
     "@types/markdown-it" "^14.1.2"
 
+"@mdit/plugin-align@^0.16.0":
+  version "0.16.0"
+  resolved "https://registry.npmjs.org/@mdit/plugin-align/-/plugin-align-0.16.0.tgz"
+  integrity sha512-BJhOjX4Zobs+ZKEpDtxGrUCnppkFCTGIBLjXkCPmxeLf4Tsh7dqv5vVhbRueSOz/EIzc2RJzR0dlMLofsaCFeA==
+  dependencies:
+    "@mdit/plugin-container" "0.16.0"
+    "@types/markdown-it" "^14.1.2"
+
+"@mdit/plugin-attrs@^0.16.2":
+  version "0.16.7"
+  resolved "https://registry.npmjs.org/@mdit/plugin-attrs/-/plugin-attrs-0.16.7.tgz"
+  integrity sha512-N0zqyuDUO+VeM+vpmVCjujxAbuvE9DhYJoMV9GzLhzmJAP431JMsBBs/sRrJG9tvZrVFZbUMuq4uZz2CHAdkxQ==
+  dependencies:
+    "@mdit/helper" "0.16.0"
+    "@types/markdown-it" "^14.1.2"
+
+"@mdit/plugin-container@0.16.0":
+  version "0.16.0"
+  resolved "https://registry.npmjs.org/@mdit/plugin-container/-/plugin-container-0.16.0.tgz"
+  integrity sha512-NCsyEiOmoJvXSEVJSY6vaEcvbE11sciRSx5qXBvQQZxUYGYsB+ObYSFVZDFPezsEN35X3b07rurLx8P2Mi9DgQ==
+  dependencies:
+    "@types/markdown-it" "^14.1.2"
+
 "@mdit/plugin-katex-slim@^0.16.2":
   version "0.16.7"
   resolved "https://registry.npmjs.org/@mdit/plugin-katex-slim/-/plugin-katex-slim-0.16.7.tgz"
@@ -604,6 +627,13 @@
   dependencies:
     "@mdit/helper" "0.16.0"
     "@mdit/plugin-tex" "0.16.0"
+    "@types/markdown-it" "^14.1.2"
+
+"@mdit/plugin-mark@^0.16.0":
+  version "0.16.0"
+  resolved "https://registry.npmjs.org/@mdit/plugin-mark/-/plugin-mark-0.16.0.tgz"
+  integrity sha512-VY8HhLaNw6iO6E1pSZr3bG6MzyxcAdQmQ+S0r/l87S0EKHCBrUJusaUjxa9aTVHiBcgGUjg9aumribGrWfuitA==
+  dependencies:
     "@types/markdown-it" "^14.1.2"
 
 "@mdit/plugin-mathjax-slim@^0.16.0":
@@ -614,6 +644,36 @@
     "@mdit/plugin-tex" "0.16.0"
     "@types/markdown-it" "^14.1.2"
     upath "^2.0.1"
+
+"@mdit/plugin-spoiler@^0.16.0":
+  version "0.16.0"
+  resolved "https://registry.npmjs.org/@mdit/plugin-spoiler/-/plugin-spoiler-0.16.0.tgz"
+  integrity sha512-lm2lLx5H6649igzmbEe7KGsYfS6EOHn3Ps1ZdOHIFo0AY9eEh//gbjPOuJNJU58vtMnzLYzQHQKp/JqViYTIQQ==
+  dependencies:
+    "@types/markdown-it" "^14.1.2"
+
+"@mdit/plugin-stylize@^0.16.0":
+  version "0.16.0"
+  resolved "https://registry.npmjs.org/@mdit/plugin-stylize/-/plugin-stylize-0.16.0.tgz"
+  integrity sha512-uxM9aFdgS5YCXOSNSdYyC+uXyCnmqv1VUPRNAv0g/iOts0pUp63ZEUEO2sNlbXj1rGGEWylXyXqh3OU9rRngzg==
+  dependencies:
+    "@types/markdown-it" "^14.1.2"
+
+"@mdit/plugin-sub@^0.16.0":
+  version "0.16.0"
+  resolved "https://registry.npmjs.org/@mdit/plugin-sub/-/plugin-sub-0.16.0.tgz"
+  integrity sha512-XpGcZW11SAWuiWtx9aYugM67OLtQJSfN87Q/aZbEfm6ahgdbO5lAe/vBFTBmL9aDc2EVatytGeZL3kA7pfHlOA==
+  dependencies:
+    "@mdit/helper" "0.16.0"
+    "@types/markdown-it" "^14.1.2"
+
+"@mdit/plugin-sup@^0.16.0":
+  version "0.16.0"
+  resolved "https://registry.npmjs.org/@mdit/plugin-sup/-/plugin-sup-0.16.0.tgz"
+  integrity sha512-45Sws9TC9h9ZRB/IcXAae+uYXb+FkVr/rkr9eMYKMFKksjMBddN+WY3Gpl9O7LhaGPipqTkm68QZnRSS1jvFkw==
+  dependencies:
+    "@mdit/helper" "0.16.0"
+    "@types/markdown-it" "^14.1.2"
 
 "@mdit/plugin-tex@0.16.0":
   version "0.16.0"
@@ -1517,6 +1577,21 @@
     "@types/markdown-it" "^14.1.2"
     "@vuepress/helper" "2.0.0-rc.70"
     vue "^3.5.13"
+
+"@vuepress/plugin-markdown-stylize@^2.0.0-rc.70":
+  version "2.0.0-rc.70"
+  resolved "https://registry.npmjs.org/@vuepress/plugin-markdown-stylize/-/plugin-markdown-stylize-2.0.0-rc.70.tgz"
+  integrity sha512-Z0PTI+ePEXpA41llpOpXiBgCJsJvkU9HAJ0cjfeWODMHJ0wa6/Y9aA3w2aXPzg6qBGaHxSAXymRJz51a4H53EA==
+  dependencies:
+    "@mdit/plugin-align" "^0.16.0"
+    "@mdit/plugin-attrs" "^0.16.2"
+    "@mdit/plugin-mark" "^0.16.0"
+    "@mdit/plugin-spoiler" "^0.16.0"
+    "@mdit/plugin-stylize" "^0.16.0"
+    "@mdit/plugin-sub" "^0.16.0"
+    "@mdit/plugin-sup" "^0.16.0"
+    "@types/markdown-it" "^14.1.2"
+    "@vuepress/helper" "2.0.0-rc.70"
 
 "@vuepress/plugin-medium-zoom@2.0.0-rc.55":
   version "2.0.0-rc.55"
@@ -4305,7 +4380,7 @@ math-intrinsics@^1.1.0:
   resolved "https://registry.npmjs.org/math-intrinsics/-/math-intrinsics-1.1.0.tgz"
   integrity sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==
 
-mathjax-full@^3.2.2:
+mathjax-full@^3.2.2, mathjax-full@3.2.2:
   version "3.2.2"
   resolved "https://registry.npmjs.org/mathjax-full/-/mathjax-full-3.2.2.tgz"
   integrity sha512-+LfG9Fik+OuI8SLwsiR02IVdjcnRCy5MufYLi0C3TdMT56L/pjB0alMVGgoWJF8pN9Rc7FESycZB9BMNWIid5w==
