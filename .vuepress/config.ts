@@ -37,6 +37,8 @@ export default defineUserConfig({
         margin: 1em 0;
       }
     `],
+    // 添加 referrer policy，减轻防盗链限制
+    ['meta', { name: 'referrer', content: 'no-referrer' }],
   ],
   title: "Land of Fragment",
   description: "My Knowledge Fragments",
