@@ -73,11 +73,9 @@ git lfs --version
 git lfs install
 # 跟踪大文件并生成.gitattributes
 git lfs track "path_to_largefile"
-# 将文件添加到 Git 并提交更改以及推送
+# 将文件添加到 Git
 git add .gitattributes
 git add path_to_largefile
-git commit -m "Add large file with Git LFS"
-git push
 ```
 
 ### 从仓库的历史记录中删除文件
@@ -87,6 +85,7 @@ git push
 ```cmd
 # Stage our giant file for removal, but leave it on disk
 git rm --cached GIANT_FILE
+git rm --cached -r GIANT_Dir
 
 # Amend the previous commit with your change
 # Simply making a new commit won't work, as you need
