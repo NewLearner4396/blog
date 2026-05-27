@@ -19,7 +19,6 @@
     "vuepress-theme-reco": "2.0.0-rc.26"
   },
   "devDependencies": {
-    "@vuepress/plugin-markdown-chart": "^2.0.0-rc.109",
     "@vuepress/plugin-markdown-math": "2.0.0-rc.70",
     "@vuepress/plugin-markdown-stylize": "^2.0.0-rc.70",
     "mathjax-full": "3.2.2",
