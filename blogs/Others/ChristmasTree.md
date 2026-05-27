@@ -1,6 +1,6 @@
 ---
 title: 用matlab绘制一颗圣诞树
-date: 2022-12-24
+date: "2022-12-24"
 tags:
  - matlab
 categories:
@@ -177,3 +177,4 @@ end
 参考链接：
 [MATLAB | 一起来绘制有雪花飘落的圣诞树叭](https://zhuanlan.zhihu.com/p/591770510)
 [MATLAB | MATLAB配色不够用？全网最全的colormap补充包来啦！](https://zhuanlan.zhihu.com/p/580945672)
+

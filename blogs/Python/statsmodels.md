@@ -1,6 +1,6 @@
 ---
 title: statsmodels库的学习笔记
-date: 2022-10-08
+date: "2022-10-08"
 tags:
  - Python
 categories:
@@ -13,6 +13,8 @@ categories:
 import statsmodels.api as sm
 ```
 
+它通常接在 [Pandas](./pandas.md) 整理完数据之后使用，底层矩阵运算也离不开 [NumPy](./numpy.md)。
+
 ### OLS
 
 一般来讲我们先构造一个OLS类，然后去拟合数据（调用fit（）方法），从而得到线性回归的结果。
@@ -24,6 +26,8 @@ class statsmodels.regression.linear_model.OLS(endog, exog=None, missing='none', 
 输入有 (endog, exog, missing, hasconst) 四个，我们现在只考虑前两个。第一个输入 endog 是回归中的反应变量（也称因变量），是上面模型中的 y。第二个输入 exog 则是回归变量（也称自变量）的值，即模型中的x。
 
 这里有一个问题，statsmodels.OLS 不会假设回归模型有常数项，所以我们应该假设模型是 $Y_i=αX_0+βX_i$ ，其中$X_0$=1
+
+如果想知道 OLS 正规方程和最小二乘推导是怎么来的，可回看 [线性回归的推导](../Math/regression.md)。
 
 Statmodels 有直接解决这个问题的函数：sm.add_constant()，它会在一个 array 左侧加上一列 1。
 

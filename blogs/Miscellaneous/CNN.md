@@ -1,6 +1,6 @@
 ---
 title: 卷积神经网络CNN的组成
-date: 2022-09-22
+date: "2022-09-22"
 tags:
  - CNN
  - DeepLearning
@@ -70,3 +70,4 @@ Relu函数作为激活函数，有下面几大优势：
 ### 参考资料
 
 [零基础入门深度学习(4) - 卷积神经网络](https://www.zybuluo.com/hanbingtao/note/485480)
+

@@ -1,6 +1,6 @@
 ---
 title: VSCode编写LaTeX的相关配置
-date: 2022-08-18
+date: "2022-08-18"
 tags:
  - LaTeX
  - VSCode
@@ -240,3 +240,4 @@ TeX Live安装可自行阅读此篇教程：[Visual Studio Code (vscode)配置La
 [使用VSCode编写LaTeX](https://zhuanlan.zhihu.com/p/38178015)
 
 [Visual Studio Code (vscode)配置LaTeX](https://zhuanlan.zhihu.com/p/166523064)
+

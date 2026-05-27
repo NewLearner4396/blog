@@ -1,6 +1,6 @@
 ---
 title: Windows中使用ssh遇到的问题
-date: 2024-12-20
+date: "2024-12-20"
 tags:
  - ssh
 categories:
@@ -121,4 +121,5 @@ ssh-add $env:USERPROFILE\.ssh\id_ecdsa
 [【Windows】允许空密码连接Windows的OpenSSH Server](https://www.jianshu.com/p/1ec72a019bd9)
 
 [vscode通过ssh连接服务器实现免密登录+删除（吐血总结）](https://blog.csdn.net/Oxford1151/article/details/137228119)
+
 

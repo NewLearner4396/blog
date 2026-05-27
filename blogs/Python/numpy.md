@@ -1,6 +1,6 @@
 ---
 title: NumPy库的学习笔记
-date: 2022-09-01
+date: "2022-09-01"
 tags:
  - Python
 categories:
@@ -15,13 +15,15 @@ NumPy(Numerical Python) 是 Python 语言的一个扩展程序库，支持大量
 
 ### 应用
 
-NumPy 通常与 SciPy（Scientific Python）和 Matplotlib（绘图库）一起使用， 这种组合广泛用于替代 MatLab，是一个强大的科学计算环境，有助于我们通过 Python 学习数据科学或者机器学习。
+NumPy 通常与 SciPy（Scientific Python）、[Matplotlib](./matplotlib.md) 和 [Pandas](./pandas.md) 一起使用，这种组合广泛用于替代 MatLab，是一个强大的科学计算环境，有助于我们通过 Python 学习数据科学或者机器学习。
 
 SciPy 是一个开源的 Python 算法库和数学工具包。
 
 SciPy 包含的模块有最优化、线性代数、积分、插值、特殊函数、快速傅里叶变换、信号处理和图像处理、常微分方程求解和其他科学与工程中常用的计算。
 
 Matplotlib 是 Python 编程语言及其数值数学扩展包 NumPy 的可视化操作界面。它为利用通用的图形用户界面工具包，如 Tkinter, wxPython, Qt 或 GTK+ 向应用程序嵌入式绘图提供了应用程序接口（API）。
+
+如果你想看一个具体算法怎样落到数组操作，可以直接对照 [FFT代码实现](../Math/FFT.md)。
 
 #### 相关链接
 
@@ -202,6 +204,8 @@ dtype 为数组元素的数据类型（默认为int32）
 
       函数返回一个与A的转置矩阵A' 同型的矩阵X，并且满足：AXA=A,XAX=X.此时，称矩阵X为矩阵A的伪逆，也称为广义逆矩阵。
 
+      这个工具在线性回归里会直接用到，可对照 [线性回归的推导](../Math/regression.md) 和 [statsmodels库](./statsmodels.md) 里的最小二乘问题一起理解。
+
 5. #### 序列
 
    A[m:,n:]从第m行n列切到末尾
@@ -219,6 +223,8 @@ dtype 为数组元素的数据类型（默认为int32）
    1. np.pad(array, ((before_1, after_1), (before_N, after_N)), mode=‘constant’,contant_values=(x, y)) 
 
       边缘填充，用x前向填充，y后向填充
+
+      如果是在图像边界处理场景里比较不同填充策略，可一起看 [openCV库的学习笔记](./opencv-python.md)。
       
       
 

@@ -1,6 +1,6 @@
 ---
 title: Pandas库的学习笔记
-date: 2022-09-03
+date: "2022-09-03"
 tags:
  - Python
 categories:
@@ -10,6 +10,8 @@ categories:
 ## Pandas库的使用
 
 `import pandas as pd`
+
+Pandas 底层很多运算都建立在 [NumPy](./numpy.md) 数组之上；如果问题还停留在矩阵和向量层面，先看 NumPy 会更直接。
 
 ### DataFrame的创建
 
@@ -242,6 +244,8 @@ DataFrame 可以使用列索引（columns index）来完成数据的选取、添
 
 其他一目了然，特别的，对shift()进行说明
 
+实际工作里，Pandas 常用于把原始表格整理成建模输入，再交给 [statsmodels库](./statsmodels.md) 或 [线性回归的推导](../Math/regression.md) 里的矩阵形式；整理完成后的快速可视化通常又会接到 [Matplotlib](./matplotlib.md)。
+
 `DataFrame.shift(periods=1, freq=None, axis=0)  `
 
 | 参数名称   | 说明                                                         |
@@ -274,3 +278,4 @@ info.shift(periods=3)
 ### 参考链接
 
 [Pandas DataFrame入门教程（图解版）](http://c.biancheng.net/pandas/dataframe.html)
+

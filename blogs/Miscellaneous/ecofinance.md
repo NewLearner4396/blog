@@ -1,6 +1,6 @@
 ---
 title: 时间序列处理的stata
-date: 2022-11-28
+date: "2022-11-28"
 tags:
  - Time Series
 categories:
@@ -50,3 +50,4 @@ dfuller
 
 // estout
 ```
+

@@ -1,6 +1,6 @@
 ---
 title: 线性回归的推导
-date: 2022-09-29
+date: "2022-09-29"
 tags:
  - Regression
 categories:
@@ -8,6 +8,8 @@ categories:
 ---
 
 ## 线性回归内的数学
+
+如果矩阵记号还不够熟，先补 [线性代数](./LinearAlgebra.md)；如果更关心代码怎样落地，再对照 [NumPy库的学习笔记](../Python/numpy.md) 和 [statsmodels库](../Python/statsmodels.md)。
 
 ### 数学表达
 
@@ -122,6 +124,8 @@ while True:
 
 ```
 
+这里的数值计算和可视化分别落在 [NumPy库的学习笔记](../Python/numpy.md) 与 [Matplotlib库的学习笔记](../Python/matplotlib.md) 里；如果想直接调用现成回归接口，可继续看 [statsmodels库](../Python/statsmodels.md)。
+
 输出：
 
 ```bash
@@ -169,3 +173,4 @@ W_计算出的残差： 1727.6436919042164 W计算出的残差： 1727.664471310
 [3分钟带你掌握标量对矩阵求导方法](https://mp.weixin.qq.com/s/txRNKUXMVKv3nm0jftqjRg)
 
 [矩阵求导术（上）](https://zhuanlan.zhihu.com/p/24709748)
+

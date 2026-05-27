@@ -93,3 +93,4 @@ git config http.proxy http://127.0.0.1:4780
 （前提是git设置好了全局代理，git上传没有问题）
 
 cmd键入`curl --verbose -x http://你的代理地址:端口号 -i -L https://copilot-proxy.githubusercontent.com/_ping `，若是成功，则有`HTTP/1.1 200 Connection established`提示，则成功建立连接。
+

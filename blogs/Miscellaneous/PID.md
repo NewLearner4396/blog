@@ -1,6 +1,6 @@
 ---
 title: 了解PID控制
-date: 2025-04-15
+date: "2025-04-15"
 tags:
  - PID
  - control
@@ -15,6 +15,8 @@ categories:
 ### 什么是PID
 
 根据输入与输出的误差反馈控制输入以达到稳态的控制器
+
+在电机控制里，这个思路通常会展开成位置环、速度环和电流环的串级结构，可对照 [FOC和SVPWM的作用](../Math/motorControl.md) 一起看。
 
 举个简单例子：控制无人机飞行到指定高度
 
@@ -42,6 +44,8 @@ D: derivative - future
 
 **饱和**：控制器件有其物理限制，比如电机有最大转速，电池有最大放电电流
 
+例如 BLDC 驱动里母线电压有限、电流采样带宽有限，都会让理想 PID 回到工程实现里做折中，这在 [FOC和SVPWM的作用](../Math/motorControl.md) 里很常见。
+
 
 
 ### 参考
@@ -49,3 +53,4 @@ D: derivative - future
 [了解 PID 控制](https://www.youtube.com/watch?v=wkfEZmsQqiA)
 
 作者：[Brian Douglas](https://www.youtube.com/channel/UCq0imsn84ShAe9PBOFnoIrg)
+

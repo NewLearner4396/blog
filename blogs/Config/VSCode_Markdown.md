@@ -1,6 +1,6 @@
 ---
 title: VSCode编写Markdown的相关配置
-date: 2022-08-18
+date: "2022-08-18"
 tags:
  - markdown
  - VSCode
@@ -192,3 +192,4 @@ markdown支持写流程图，但可以用其他可视化工具代替此功能，
 [Markdown基本要素](https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/markdown-basics)
 
 [Markdown 教程](https://www.runoob.com/markdown/md-tutorial.html)
+

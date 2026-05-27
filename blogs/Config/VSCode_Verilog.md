@@ -1,6 +1,6 @@
 ---
 title: VSCode编写Verilog的相关配置
-date: 2022-08-18
+date: "2022-08-18"
 tags:
  - Verilog
  - VSCode
@@ -532,3 +532,4 @@ Ctags和iVerilog安装完我们就要配置插件`Verilog-HDL/SystemVerilog/Blue
 3. [全平台轻量开源verilog仿真工具iverilog+GTKWave使用教程](https://www.cnblogs.com/whik/p/11980103.html)
 4. [Windows 安装FPGA开源工具链](https://zhuanlan.zhihu.com/p/344993954)
 5. [集成电路设计开源EDA软件yosys详解1：工具安装](https://blog.csdn.net/fangfanglovezhou/article/details/124987987)
+

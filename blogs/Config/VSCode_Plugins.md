@@ -1,6 +1,6 @@
 ---
 title: VSCode好用的插件
-date: 2022-08-15
+date: "2022-08-15"
 tags:
  - plug
  - VSCode
@@ -230,3 +230,4 @@ AI代码机器人，实时提供代码建议，用起来挺方便的
 当光标悬浮在英文注释上时，可以将其翻译成中文悬浮显示。
 
 搭配`tecentCloundTranslate`和`baiduTranslate`这两个插件，可以使用他们的API key获得翻译服务。
+

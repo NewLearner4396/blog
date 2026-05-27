@@ -1,6 +1,6 @@
 ---
 title: 深度学习入门
-date: 2024-09-01
+date: "2024-09-01"
 tags:
  - Learning
 categories:

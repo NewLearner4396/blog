@@ -1,10 +1,11 @@
 ---
 title: 梳理学习《通信原理》
-date: 2022-09-25
+date: "2022-09-25"
 tags:
- - Communication
+  - Communication
 categories:
- -  Signal
+  - Signal
+publish: true
 ---
 
 ## 根据邵老师讲义梳理《通信原理》
@@ -242,3 +243,4 @@ $$
 ![AM频域](https://imagebed.krins.cloud/api/image/40BNJ4P8.png)
 
 ![AM接收](https://imagebed.krins.cloud/api/image/V60600P8.png)
+

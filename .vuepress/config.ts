@@ -1,13 +1,50 @@
 import { defineUserConfig } from "vuepress";
 import recoTheme from "vuepress-theme-reco";
+import path from "node:path";
 import { viteBundler } from '@vuepress/bundler-vite'
 // import { webpackBundler } from '@vuepress/bundler-webpack'
 import { markdownMathPlugin } from '@vuepress/plugin-markdown-math'
 import { markdownStylizePlugin } from '@vuepress/plugin-markdown-stylize'
 
+const mermaidComponentPath = path
+  .resolve(process.cwd(), '.vuepress/components/MermaidChart.ts')
+  .replace(/\\/g, '/')
+
+const localMermaidPlugin = () => (app) => ({
+  name: 'local-mermaid-plugin',
+  extendsMarkdown: (md) => {
+    const fence = md.renderer.rules.fence!
+
+    md.renderer.rules.fence = (...args) => {
+      const [tokens, index] = args
+      const info = tokens[index].info.trim()
+
+      if (info === 'mermaid') {
+        const code = encodeURIComponent(tokens[index].content)
+        return `<MermaidChart code="${code}"></MermaidChart>`
+      }
+
+      return fence(...args)
+    }
+  },
+  clientConfigFile: () =>
+    app.writeTemp(
+      'local-mermaid/client.js',
+      `import { defineClientConfig } from "vuepress/client";
+import MermaidChart from "${mermaidComponentPath}";
+
+export default defineClientConfig({
+  enhance: ({ app }) => {
+    app.component("MermaidChart", MermaidChart);
+  },
+});
+`,
+    ),
+})
 
 export default defineUserConfig({
   plugins: [
+    localMermaidPlugin(),
     // 添加 MathJax 插件
     markdownMathPlugin({
       output: 'chtml',  // 或者 'svg'，取决于你的需求

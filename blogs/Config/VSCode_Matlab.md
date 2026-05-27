@@ -1,6 +1,6 @@
 ---
 title: VSCode编写Matlab的相关配置
-date: 2022-08-18
+date: "2022-08-18"
 tags:
  - Matlab
  - VSCode
@@ -90,3 +90,4 @@ categories:
 [VScode+MATLAB](https://zhuanlan.zhihu.com/p/166873048)
 
 [使用vscode编辑并运行matlab脚本](https://zhuanlan.zhihu.com/p/395486395)
+

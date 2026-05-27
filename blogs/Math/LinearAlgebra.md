@@ -1,8 +1,8 @@
 ---
 title: MIT Linear Algebra
-date: 2025-01-15
+date: "2025-01-15"
 tags: 
- - Linear Algebra
+ - Linear_Algebra
 categories: 
  - Math
 ---
@@ -143,4 +143,5 @@ $$
 | 简化的行阶梯矩阵 | $R=I$ | $R=\begin{bmatrix}\mathbf{I} \\ \mathbf{0}\end{bmatrix}$ | $R=\begin{bmatrix}\mathbf{I} & \mathbf{F}\end{bmatrix}$ | $R=\begin{bmatrix}\mathbf{I} & \mathbf{F} \\ \mathbf{0} & \mathbf{0}\end{bmatrix}$ |
 | 什么样的b有解    | 任意  | 在A的列空间                                              | 任意                                                    | 在A的列空间                                                  |
 | 解的个数         | 1个解 | 0个或1个                                                 | 无穷解                                                  | 0个或无穷个                                                  |
+
 

@@ -1,6 +1,6 @@
 ---
 title: openCV库的学习笔记
-date: 2022-09-03
+date: "2022-09-03"
 tags:
  - Python
 categories:
@@ -1232,3 +1232,4 @@ cv2.destroyAllWindows()
 1. [【2022B站最好的OpenCV课程推荐】OpenCV从入门到实战 全套课程（附带课程课件资料+课件笔记）图像处理|深度学习人工智能计算机视觉python+AI](https://www.bilibili.com/video/BV1PV411774y?p=9&spm_id_from=pageDriver&vd_source=f7fc0a964268b45e70067d58c7c397fc)
 
 2. [最全面的 OpenCV 笔记](https://github.com/AccumulateMore/OpenCV)
+

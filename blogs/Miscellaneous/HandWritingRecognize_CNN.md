@@ -379,3 +379,4 @@ print("average_loss：", item_loss / (len(data2)))
 [零基础入门深度学习(4) - 卷积神经网络](https://www.zybuluo.com/hanbingtao/note/485480)
 
 [基于CNN的手写数字识别](https://blog.csdn.net/qq_44961028/article/details/118074416)
+

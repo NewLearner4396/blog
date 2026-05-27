@@ -1,6 +1,6 @@
 ---
 title: matlab常用方法
-date: 2022-11-30
+date: "2022-11-30"
 tags:
  - matlab
 categories:
@@ -127,4 +127,5 @@ end
 |\v |Vertical tab|
 |\xN |Hexadecimal number, N|
 |\N |Octal number, N|
+
 

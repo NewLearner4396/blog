@@ -1,6 +1,6 @@
 ---
 title: 使用Ubuntu遇到的问题
-date: 2022-11-23
+date: "2022-11-23"
 tags:
  - Linux
 categories:
@@ -391,3 +391,4 @@ chmod命令可以使用八进制数来指定权限。文件或目录的权限位
 1. [如何在linux中执行一个脚本](https://www.cnblogs.com/domestique/p/6682995.html#:~:text=%E5%A6%82%E6%9E%9C%E6%98%AF,%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%20%E5%90%8E%E8%87%AA%E5%8A%A8%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%B0%86%E8%84%9A%E6%9C%AC%E5%86%99%E5%88%B0%E7%9B%B8%E5%BA%94%E7%9A%84%E7%94%A8%E6%88%B7%E7%9B%AE%E5%BD%95%E4%B8%8B%E2%80%9C%EF%BD%9E%2F.bash_profile%E2%80%9D%EF%BC%8C%E8%8B%A5%E8%84%9A%E6%9C%AC%E2%80%9C%EF%BD%9E%2F.bash_profile%E2%80%9D%E4%B8%8D%E5%AD%98%E5%9C%A8%EF%BC%8C%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E6%8B%B7%E8%B4%9D%E2%80%9C%2Fetc%2Fprofile%E2%80%9D%E5%91%BD%E5%90%8D%E4%B8%BA%E2%80%9C%EF%BD%9E%2F.bash_profile%E2%80%9D%EF%BC%9B)
 
    
+
