@@ -211,7 +211,7 @@ for (;;)
 
 FreeRTOS 的价值，就在这里。它不是帮你“写得更高级”，而是帮你把控制器周围那些并发事务分开，让系统重新变得可管、可扩展、可调试。
 
-如果你对 PID 本身还不熟，可以先看 [了解PID控制](../Miscellaneous/PID.md)。如果后面控制对象从有刷电机走到 BLDC 或 FOC，再接着看 [FOC和SVPWM的作用](../Math/motorControl.md)。
+如果你对 PID 本身还不熟，可以先看 [了解PID控制](../Miscellaneous/PID.md)。如果后面控制对象从有刷电机走到 BLDC 或 FOC，再接着看 [FOC和SVPWM的作用](motorControl.md)。
 
 ## 系统目标
 
