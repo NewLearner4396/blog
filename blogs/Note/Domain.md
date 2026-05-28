@@ -1,9 +1,8 @@
 ---
-title: Windows内运行Linux-WSL2
+title: 此网站可用域名
 date: "2022-11-22"
 tags:
   - web
-  - Linux
 categories:
   - Others
   - Config
