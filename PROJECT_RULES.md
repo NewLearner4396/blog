@@ -11,7 +11,9 @@ These instructions apply to the entire repository.
 ## 2. Article Structure
 
 - Every blog article must use the frontmatter `title` field as the navigation title.
+- The frontmatter `title` should be more attractive for navigation: concise, memorable, and useful in lists or graph views, while still accurately naming the topic.
 - The visible article heading in the Markdown body must start at `##`.
+- The first visible `##` heading should better govern the whole article: it may be more explanatory than the navigation title, and should clearly state the note's scope, main question, or organizing perspective.
 - Chapter-level headings must use `###`.
 - Section-level headings must use `####`.
 - Finer internal breakdowns may use `#####` only when the structure would otherwise become unclear.
