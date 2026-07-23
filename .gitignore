@@ -1,9 +1,9 @@
 .vuepress/.cache
 .vuepress/.temp
 .vuepress/dist
-node_modules
+node_modules/
 .gitignore
 .obsidian/
-
-# Ignore Smart Environment folder
-.smart-env
+.codex/
+.smart-env/
+Kanban-PID.md

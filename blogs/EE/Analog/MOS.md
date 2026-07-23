@@ -1,11 +1,11 @@
 ---
 title: MOS常见电路
-date: "2025-04-07"
+date: 2025-04-07
 tags:
- - MOS
- - Semiconductor
+  - MOS
+  - Semiconductor
 categories:
- - Miscellaneous
+  - Analog
 ---
 
 ## MOS管应用的核心知识
@@ -61,5 +61,4 @@ JFET与MOS管的区别
 [【Hardware】【手机震动马达】](https://blog.csdn.net/syjie19900426/article/details/88135368)
 
 MOS管零电压关断
-
 
